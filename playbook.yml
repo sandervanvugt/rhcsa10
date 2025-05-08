@@ -1,0 +1,42 @@
+---
+- name: Deploy a bare-metal node via Ironic
+  hosts: localhost
+  gather_facts: no
+  vars:
+    node_name: baremetal-node-01
+
+  tasks:
+
+    - name: Ensure OpenStack cloud credentials are loaded
+      set_fact:
+        os_cloud: "bifrost"  # Zie clouds.yaml voor juiste cloud profiel
+
+    - name: Set node to 'available' state
+      os_ironic_node:
+        cloud: "{{ os_cloud }}"
+        name: "{{ node_name }}"
+        provision_state: available
+
+    - name: Deploy the node
+      os_ironic_node:
+        cloud: "{{ os_cloud }}"
+        name: "{{ node_name }}"
+        provision_state: active
+        wait: yes
+        timeout: 600
+
+    - name: Wait for SSH port to become available
+      wait_for:
+        host: "{{ lookup('os_ironic_node_info', node_name, cloud=os_cloud).ports[0].fixed_ips[0].ip_address }}"
+        port: 22
+        timeout: 300
+      delegate_to: localhost
+
+    - name: Run post-install script over SSH
+      ansible.builtin.shell: |
+        echo "Post-install tasks here..."
+      vars:
+        ansible_ssh_user: ubuntu
+        ansible_host: "{{ lookup('os_ironic_node_info', node_name, cloud=os_cloud).ports[0].fixed_ips[0].ip_address }}"
+      delegate_to: localhost
+

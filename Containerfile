@@ -1,8 +1,3 @@
-FROM registry.redhat.io/rhel10-beta/rhel-bootc:latest
-
-ADD etc /etc
-
-RUN dnf -y install httpd mod_ssl && dnf clean all
-RUN systemctl enable httpd && firewall-cmd --add-service=https
-
-COPY ./index.html /var/www/html/index.html
+FROM registry.access.redhat.com/ubi8/ubi:latest
+RUN dnf install vim-enhanced -y
+CMD ["/usr/bin/sleep", "30"]
