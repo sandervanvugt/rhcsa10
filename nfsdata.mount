@@ -1,0 +1,13 @@
+[Unit]
+Description=nfs mount
+Requires=network-online.target
+After=network-online.target
+
+[Mount]
+What=127.0.0.1:/var
+Where=/nfsdata
+Options=
+Type=nfs
+
+[Install]
+WantedBy=multi-user.target

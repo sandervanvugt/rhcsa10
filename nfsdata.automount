@@ -1,0 +1,11 @@
+[Unit]
+Description=nfs automount
+Requires=network-online.target
+After=network-online.service
+
+[Automount]
+Where=/nfsdata
+TimeoutIdleSec=10
+
+[Install]
+WantedBy=multi-user.target
