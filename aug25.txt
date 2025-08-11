@@ -1,0 +1,166 @@
+    1  ls -l $(which yum) $(which dnf)
+    2  dnf repolist
+    3  df -h
+    4  dd if=/dev/sr0 of=/rhel10.iso bs=1M
+    5  ls -l /rhel10.iso 
+    6  mkdir /repo
+    7  vim /etc/fstab
+    8  tail -1 /etc/fstab
+    9  mount -a
+   10  mount
+   11  history
+   12  tail -1 /etc/fstab 
+   13  vim countdown
+   14  chmod +x countdown 
+   15  cd /repo
+   16  ls
+   17  dnf config-manager --add-repo="file:///repo/BaseOS"
+   18  dnf repolist
+   19  dnf config-manager --add-repo="file:///repo/AppStream"
+   20  dnf search nmap
+   21  dnf install nmap
+   22  dnf config-manager --help | grep gpg
+   23  cd /etc/yum.repos.d/
+   24  ls
+   25  vim repo_BaseOS.repo 
+   26  vim repo_AppStream.repo 
+   27  dnf install nmap
+   28  history
+   29  cat repo_BaseOS.repo 
+   30  cd
+   31  dnf list
+   32  dnf list selinux*
+   33  dnf search seinfo
+   34  dnf search all seinfo
+   35  dnf provides */Containerfile
+   36  seinfo
+   37  history
+   38  lsblk
+   39  cd /etc
+   40  tar -czvf /root/archive.tgz .
+   41  tar -tvf /root/archive.tgz 
+   42  cut -d : -f 1 /etc/passwd
+   43  cut -d : -f 1 /etc/passwd | sort
+   44  cut -d : -f 1 /etc/passwd | sort | grep -v '^$'
+   45  cut -d : -f 1 /etc/passwd | sort | grep -v '^$' > /var/tmp/users
+   46  less /var/tmp/users 
+   47  useradd bob
+   48  mkdir /root/userfiles
+   49  find / -type f -user "bob"
+   50  find / -type f -user "bob" -exec cp -a {} /root/userfiles/ \;
+   51  ls -a /root/userfiles/
+   52  cd
+   53  dnf install -y git
+   54  git clone https://github.com/sandervanvugt/rhcsa9
+   55  cd rhcsa9/
+   56  ls
+   57  cd labs
+   58  ls
+   59  ./live-lab1-grade.sh 
+   60  cd
+   61  history
+   62  grep root /etc/shadow
+   63  id student
+   64  tail -1 /etc/passwd
+   65  su - bob
+   66  ls -l /etc/sudoer*
+   67  ls -ld /etc/sudoer*
+   68  visudo
+   69  useradd linda
+   70  passwd linda
+   71  su - linda
+   72  visudo
+   73  history
+   74  cat /etc/passwd
+   75  ls -ld /sbin
+   76  useradd --help | less
+   77  vim /etc/login.defs 
+   78  echo password | passwd --stdin bob
+   79  history -d 79
+   80  visudo
+   81  su - linda
+   82  visudo
+   83  cd /etc/skel/
+   84  ls -a
+   85  touch newfile
+   86  useradd bill
+   87  ls -la /home/bill
+   88  visudo
+   89  man sudoers
+   90  cd
+   91  grep bob /etc/shadow
+   92  usermod -L bob
+   93  grep bob /etc/shadow
+   94  passwd --help
+   95  man passwd
+   96  passwd bob
+   97  passwd -q bob
+   98  grep linda /etc/group
+   99  grep linda /etc/passwd
+  100  grep wheel /etc/group
+  101  id linda
+  102  history
+  103  vim /etc/login.defs 
+  104  touch /etc/skel/newfile
+  105  for i in anna anouk lisa linda; do useradd $i; done
+  106  for i in anna anouk lisa linda; do echo password | passwd --stdin $i; done
+  107  groupadd profs
+  108  groupadd students
+  109  usermod --help
+  110  usermod -aG profs anna
+  111  usermod -aG profs anouk
+  112  usermod -aG students lisa
+  113  usermod -aG students linda
+  114  id anna
+  115  id linda
+  116  chage linda
+  117  tail -5 /etc/shadow
+  118  echo password | passwd --stdin anna
+  119  echo pass | passwd --stdin anna
+  120  cd rhcsa9/
+  121  cat resources.txt 
+  122  ls
+  123  cd labs/
+  124  ./live-lab2-grade.sh 
+  125  grep anna /etc/shadow
+  126  cd /home
+  127  ls -l
+  128  mkdir -p /data/profs /data/students
+  129  chown :profs /data/profs
+  130  chgrp students /data/students/
+  131  ls -l /data
+  132  chmod 770 /data/students
+  133  chmod g+w,o-rx /data/profs
+  134  su - anna
+  135  su - anoul
+  136  su - anouk
+  137  chmod g+s profs
+  138  cd /data
+  139  chmod g+s profs
+  140  ls -l
+  141  touch profs/wortel1
+  142  ls -l profs/
+  143  su - anouk
+  144  chmod +t profs
+  145  ls -l
+  146  chmod o+x profs
+  147  ls -l
+  148  chmod o-x profs
+  149  su - anna
+  150  su - anouk
+  151  chown anouk profs/
+  152  ls -l
+  153  su - anouk
+  154  cd
+  155  find / -perm /4000 -exec ls -l {} \;
+  156  ls -l /etc/shadow
+  157  find / -perm /4000 -exec ls -l {} \; > /root/suid-$(date +%d-%m-%Y).txt
+  158  cat suid-11-08-2025.txt 
+  159  touch gggg
+  160  chmod u+s gggg
+  161  ls -l gggg
+  162  find / -perm /4000 -exec ls -l {} \; > /root/suid.txt
+  163  diff /root/suid.txt /root/suid-11-08-2025.txt 
+  164  umask
+  165  ip a
+  166  history > /tmp/aug25.txt
