@@ -164,3 +164,230 @@
   164  umask
   165  ip a
   166  history > /tmp/aug25.txt
+  167  mkdir -p /data/profs /data/students
+  168  cd /data
+  169  ls -l
+  170  chgrp profs profs
+  171  chgrp students students
+  172  chmod 770 *
+  173  ls -l
+  174  chmod 0770 *
+  175  ls -l
+  176  chmod g-s *
+  177  ls -l
+  178  umask 002
+  179  umask
+  180  touch hhh
+  181  ls -l
+  182  vim /etc/profile
+  183  vim /etc/bashrc
+  184  vim /etc/login.defs 
+  185  lsblk
+  186  cd 
+  187  vim /etc/login.defs 
+  188  exit
+  189  ./countdown 12
+  190  ./countdown 18
+  191  ./countdown 12
+  192  ./countdown 1
+  193  ./countdown 15
+  194  vim /etc/bashrc 
+  195  vim /etc/login.defs
+  196  vim /etc/bashrc 
+  197  cd /etc/profile.d/
+  198  grep umask *
+  199  cd 
+  200  lsblk
+  201  poweroff
+  202  lsblk
+  203  cd /proc
+  204  mount | grep proc
+  205  ls
+  206  cat partitions 
+  207  cd
+  208  fdisk /dev/nvme0n2
+  209  lsblk
+  210  mkfs.xfs /dev/nvme0n2p4
+  211  mkdir /mydata
+  212  vim /etc/fstab
+  213  mount -a
+  214  reboot
+  215  mount -o remount,rw
+  216  mount -o remount,rw /
+  217  lsblk
+  218  cat /etc/fstab
+  219  blkid
+  220  blkid | awk '/nvme0n1p4/ { print $2 }'
+  221  blkid | awk '/nvme0n1p4/ { print $2 }' >> /etc/fstab
+  222  vim /etc/fstab
+  223  exit
+  224  lsblk
+  225  cd rhcsa9/
+  226  ./countdown 12
+  227  ls
+  228  true
+  229  echo $?
+  230  ls iugugfu
+  231  echo $?
+  232  lsblk | awk '/nvme0n.4/ { print $2 }'
+  233  lsblk | awk '/nvme0n14/ { print $2 }'
+  234  lsblk | awk '/nvme0n.p4/ { print $2 }'
+  235  blkid | awk '/nvme0n.p4/ { print $2 }'
+  236  blkid
+  237  tail -1 /etc/fstab
+  238  fdisk /dev/nvme0n1
+  239  lsblk
+  240  mount | grep efi
+  241  cd /boot/efi/
+  242  ls
+  243  cd
+  244  cd /boot
+  245  umount /dev/sda2
+  246  umount /dev/nvme0n1p2
+  247  lsof
+  248  lsof /boot
+  249  mount
+  250  mount | grep '^/'
+  251  lsblk
+  252  findmnt
+  253  cat /etc/fstab
+  254  cd /run/systemd/generator/
+  255  ls
+  256  cat repo.mount 
+  257  cd
+  258  lsblk
+  259  fdisk /dev/nvme0n2
+  260  blkid
+  261  cd /dev/disk
+  262  ls
+  263  cd by-uuid/
+  264  ls
+  265  ls -l
+  266  vim /etc/fstab
+  267  reboot
+  268  lsblk
+  269  man mount
+  270  grep wheel /etc/group
+  271  grep student /etc/passwd
+  272  usermod --help
+  273  usermod -c "Sander van Vugt" student
+  274  grep student /etc/passwd
+  275  reboot
+  276  grep student  /etc/passwd
+  277  history
+  278  poweroff
+  279  ls
+  280  cd rhcsa9/
+  281  ./countdown 16
+  282  lsblk
+  283  mkdir -p /mounts/files
+  284  fdisk /dev/nvme0n1
+  285  lsblk
+  286  mkfs.ext4 /dev/nvme0n1p1
+  287  blkid | awk '/nvme0n1p1/ { print $2 }'
+  288  blkid | awk '/nvme0n1p1/ { print $2 }' >> /etc/fstab
+  289  vim /etc/fstab
+  290  fdisk /dev/nvme0n1
+  291  lsblk
+  292  mkfs.xfs -L myxfs /dev/nvme0n1p5
+  293  vim /etc/fstab
+  294  mount -a
+  295  mkdir /mounts/xfs
+  296  xxd /dev/nvme0n1p5 | less
+  297  mount -a
+  298  fdisk /dev/nvme0n1
+  299  mkswap /dev/nvme0n1p6
+  300  vim /etc/fstab
+  301  swapon -a
+  302  cd rhcsa9/
+  303  ls
+  304  cd labs
+  305  ls
+  306  ./live-lab4-grade.sh 
+  307  cd
+  308  which usermod
+  309  echo $PATH
+  310  /sbin/usermod
+  311  vim /etc/group
+  312  id anna
+  313  history
+  314  sleep infinity &
+  315  ps aux
+  316  ps aux | grep sleep
+  317  kill 3598
+  318  top
+  319  clear
+  320  lscpu | less
+  321  echo 0 > /sys/bus/cpu/devices/cpu1/online 
+  322  lscpu | less
+  323  dd if=/dev/zero of=/dev/null &
+  324  top
+  325  killall dd
+  326  echo 1 > /sys/bus/cpu/devices/cpu1/online 
+  327  nice --help
+  328  nice -n -10 sleep infinity
+  329  nice -n -10 sleep infinity &
+  330  top
+  331  while true; do true; done &
+  332  top
+  333  sysctl -a
+  334  sysctl -a | wc -l
+  335  systemctl status tuned
+  336  tuned-adm list
+  337  tuned-adm recommend
+  338  tuned-adm profile powersave
+  339  cd /usr/lib/tuned/profiles/
+  340  ls
+  341  cd powersave/
+  342  ;ls
+  343  ls
+  344  vim tuned.conf 
+  345  history
+  346  cd
+  347  systemctl -t help
+  348  systemctl list-units 
+  349  systemctl status sshd.service
+  350  dnf install -y httpd
+  351  hostname
+  352  hostnamectl hostname rhcsa1.example.com
+  353  hostname
+  354  ip a
+  355  vim /etc/hosts
+  356  systemctl status httpd
+  357  systemctl enable --now httpd
+  358  systemctl status httpd
+  359  ls /usr/lib/systemd/system
+  360  cd /etc/systemd/system/
+  361  vim sleep.service
+  362  systemctl daemon-reload
+  363  systemctl enable --now sleep.service 
+  364  systemctl status sleep.service
+  365  kill -9 5827
+  366  systemctl status sleep.service
+  367  systemctl edit httpd.service
+  368  systemctl cat httpd.service
+  369  vim /etc/httpd/conf/httpd.conf 
+  370  systemctl restart httpd
+  371  cd
+  372  echo "export EDITOR=/usr/bin/vim" >> /etc/profile.d/therealeditor.sh
+  373  source /etc/profile.d/therealeditor.sh 
+  374  systemctl edit httpd.service
+  375  systemctl show httpd.service
+  376  man systemd.directives
+  377  man org.freedesktop.systemd1
+  378  journalctl
+  379  date
+  380  journalctl -u sshd
+  381  journalctl -xu sshd
+  382  journalctl -p err
+  383  journalctl -xp err
+  384  journalctl -xb
+  385  cd /var/log
+  386  ls
+  387  ls -l
+  388  mkdir journal
+  389  ls journal/
+  390  systemctl restart systemd-journal-flush.service 
+  391  ls -l journal/
+  392  cd
+  393  history > /tmp/aug25.txt 
