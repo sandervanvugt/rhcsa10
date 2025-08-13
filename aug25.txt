@@ -391,3 +391,177 @@
   391  ls -l journal/
   392  cd
   393  history > /tmp/aug25.txt 
+  394  ip a
+  395  systemctl status NetworkManager
+  396  nmtui
+  397  ip a
+  398  lspci -k
+  399  ip a
+  400  ping nu.nl
+  401  ethtool -i ens160
+  402  ethtool --help
+  403  ethtool -s ens160
+  404  ethtool -S ens160
+  405  modinfo e1000e
+  406  ethtool ens160
+  407  vgdisplay
+  408  pvdisplay
+  409  lvdisplay
+  410  vgdisplay -v
+  411  lsblk
+  412  fdisk /dev/nvme0n1
+  413  lsblk
+  414  pvcreate /dev/nvme0n1p7
+  415  vgcreate vgdata /dev/nvme0n1p7
+  416  vgs
+  417  lvcreate -n lvdata -L 1G vgdata
+  418  echo $(( 255 * 4 ))
+  419  lvcreate -n lvdata -l 100%FREE vgdata
+  420  history
+  421  mkfs.ext4 /dev/vgdata/lvdata
+  422  vim /etc/fstab
+  423  mount -a
+  424  reboot
+  425  cd rhcsa9/
+  426  ./countdown 14
+  427  mount | grep lv
+  428  ls -l /dev/vgdata/lvdata /dev/mapper/vgdata-lvdata 
+  429  history
+  430  vgs
+  431  lvs
+  432  df -h
+  433  dd if=/dev/zero of=/lvdata/bigfile bs=1M
+  434  df -h
+  435  vgs
+  436  vgextend vgdata /dev/nvme0n1p8
+  437  lsblk
+  438  vgextend vgdata /dev/nvme0n2p8
+  439  vgs
+  440  lvextend -r -l 50%FREE /dev/vgdata/lvdata
+  441  lvextend -r -l +50%FREE /dev/vgdata/lvdata
+  442  df -h
+  443  history
+  444  lsblk
+  445  fdisk /dev/nvme0n2
+  446  vgcreate vgdb /dev/nvme0n2p11
+  447  lvcreate -n lvdb -L 1020M vgdb
+  448  mkfs.xfs /dev/vgdb/lvdb
+  449  mkdir -p /mounts/lvdb
+  450  vim /etc/fstab
+  451  lvs
+  452  vgs
+  453  vgextend rhel /dev/nvme0n2p10
+  454  vgs
+  455  vgdisplay rhel
+  456  echo $(( 1264 * 4 ))
+  457  vgextend rhel /dev/nvme0n2p10
+  458  history
+  459  lvextend -r -l +100%FREE /dev/rhel/root
+  460  cd rhcsa9/labs
+  461  ./live-lab9-grade.sh 
+  462  mount -a
+  463  ./live-lab9-grade.sh 
+  464  cd
+  465  vim boot.txt
+  466  reboot
+  467  ./countdown 12
+  468  vim /etc/default/grub 
+  469  cd /boot
+  470  ls
+  471  cd loader/
+  472  ls
+  473  cd entries/
+  474  ls
+  475  uname -r
+  476  vim aa4ce407973d40fc9a016af025d92027-6.12.0-55.9.1.el10_0.aarch64.conf 
+  477  grub2-mkconfig -o /boot/grub2/grub.cfg
+  478  reboot
+  479  systemctl list-units -t target
+  480  systemctl cat httpd.service
+  481  systemctl get-default
+  482  systemctl set-default multi-user.target
+  483  reboot
+  484  systemctl cat reboot.target
+  485  systemctl set-default reboot.target
+  486  reboot
+  487  ./countdown 6
+  488  ./countdown 13
+  489  systemctl set-default graphical.target
+  490  systemctl get-default
+  491  systemctl list-dependencies
+  492  history
+  493  dnf install -y httpd
+  494  systemctl status httpd
+  495  ps aux | grep http
+  496  ps Zaux | grep http
+  497  ls -Z /var/www
+  498  vim /etc/httpd/conf/httpd.conf 
+  499  mkdir /web
+  500  vim /web/index.html
+  501  systemctl restart httpd
+  502  curl localhost
+  503  getenforce
+  504  setenforce permissive
+  505  curl localhost
+  506  cat /var/log/httpd/error_log 
+  507  vim /etc/httpd/conf/httpd.conf 
+  508  systemctl restart httpd
+  509  curl localhost
+  510  getenforce
+  511  setenforce enforcing
+  512  curl localhost
+  513  grep avc /var/log/audit/audit.log 
+  514  date -d @1755103925
+  515  ls -ldZ /web
+  516  ls -ldZ /web/index.html 
+  517  ls -Z /var/www
+  518  semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
+  519  ls -ldZ /web
+  520  restorecon -Rv /web
+  521  getenforce
+  522  curl localhost
+  523  history
+  524  ls -l /var/www
+  525  ls -ld /web
+  526  semanage fcontext -l
+  527  semanage fcontext -l | wc -l
+  528  cp /etc/hosts .
+  529  ls -lZ hosts
+  530  ls -Z /etc/hosts
+  531  mv /web
+  532  mv hosts /web
+  533  ls -Z /web
+  534  restorecon -Rv /web
+  535  man semanage-fcontext
+  536  cd /etc/selinux/targeted/contexts/files/
+  537  ls
+  538  cat file_contexts.local
+  539  cd
+  540  reboot
+  541  ./countdown 12
+  542  semanage fcontext -l -C
+  543  ls -Z /var/www
+  544  dnf install -y selinux-policy-doc
+  545  man -k
+  546  mandb
+  547  man -k _selinux
+  548  man -k _selinux | wc -l
+  549  man -k _selinux | grep http
+  550  man httpd_selinux
+  551  vim /etc/ssh/sshd_config
+  552  systemctl restart sshd
+  553  journalctl -u sshd
+  554  grep avc /var/log/audit/audit.log 
+  555  semanage port -l | grep 22
+  556  man semanage-port
+  557  semanage port -a -t ssh_port_t -p tcp 2022
+  558  systemctl restart sshd
+  559  semanage boolean -l
+  560  semanage boolean -l | wc -l
+  561  semanage boolean -l | grep ftp
+  562  setsebool -P ftpd_anon_write on
+  563  journalctl | grep sealert
+  564  sealert -l 5a170f1e-7dce-4e2f-b3e4-9b109ddd68ab | less
+  565  journalctl | grep sealert | grep http
+  566  sealert -l 12bc9dd8-f509-4e30-a7ba-f96e8c5b9d6d | less
+  567  history > /tmp/aug25.txt
