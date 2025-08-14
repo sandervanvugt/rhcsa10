@@ -1,0 +1,28 @@
+ADDITIONAL RESOURCES 
+***	means: these are courses all should do!
+**	means: these are nice to deepen your skills and insight
+*	means: nice additional learning, but not really required for passing the RHCSA test
+
+
+LIVE COURSES
+*	Linux under the Hood: https://learning.oreilly.com/live-events/linux-under-the-hood-updated/0636920137849/
+*	Linux Security from Basics to Guru: https://learning.oreilly.com/live-events/linux-security-from-basics-to-guru/0636920095339/
+*	Mastering Systemd: https://learning.oreilly.com/live-events/mastering-systemd/0636920436324/
+***	Bash Shell Scripting in 4 Hours: https://learning.oreilly.com/live-events/bash-shell-scripting-in-4-hours/0636920245810/
+*	Linux Performance Optimization: https://learning.oreilly.com/live-events/linux-performance-optimization/0636920155775/
+***	Linux Troubleshooting: https://learning.oreilly.com/live-events/linux-performance-optimization/0636920155775/
+
+ON DEMAND COURSES
+***	Linux Fundamentals 3rd edition: https://learning.oreilly.com/course/linux-fundamentals-3rd/9780135465363/
+***	Red Hat Certified Systems Administrator (RHCSA) RHEL 10: https://learning.oreilly.com/course/red-hat-rhcsa/9780135493137/
+***	RHCSA Exam Labs: https://learning.oreilly.com/course/rhcsa-exam-labs/9780135342374/
+**	Red Hat Certified Specialist in Containers: https://learning.oreilly.com/course/red-hat-certified/9780135335956/
+**	SELinux: https://learning.oreilly.com/course/mastering-security-enhanced-linux/9780138282691/
+**	Bash Scripting: https://learning.oreilly.com/course/bash-shell-scripting/9780137689064/
+*	Linux under the Hood 2nd Edition: https://learning.oreilly.com/course/linux-under-the/9780138293321/
+
+BOOK
+*	Red Hat RHCSA 9 Cert Guide: https://learning.oreilly.com/library/view/red-hat-rhcsa/9780138096311/
+
+ADDITIONAL IN-DEPTH COURSES:
+For more advanced and longer live courses, see my own offering at https://www.sandervanvugt.com/u_course_cat/open-training/
