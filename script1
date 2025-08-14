@@ -1,0 +1,13 @@
+#!/bin/bash
+# here you explain what the script is doing
+
+echo which directory?
+
+read DIR
+
+cd $DIR
+pwd
+ls
+
+read
+
