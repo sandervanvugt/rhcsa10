@@ -565,3 +565,224 @@
   565  journalctl | grep sealert | grep http
   566  sealert -l 12bc9dd8-f509-4e30-a7ba-f96e8c5b9d6d | less
   567  history > /tmp/aug25.txt
+  568  vim /etc/ssh/sshd_config
+  569  systemctl restart sshd
+  570  vim /etc/hosts
+  571  dnf install -y nfs-utils
+  572  showmount -e nfsserver
+  573  mount nfsserver:/nfsdata /mnt
+  574  mount
+  575  umount /mnt
+  576  dnf install -y autofs
+  577  vim /etc/auto.master
+  578  vim /etc/auto.misc
+  579  vim /etc/auto.nfsdata
+  580  systemctl enable --now autofs
+  581  ls /
+  582  cd /nfsdata
+  583  ls -a
+  584  cd files
+  585  cat /etc/auto.nfsdata 
+  586  cd data
+  587  ls
+  588  cd 
+  589  vim /etc/auto.master
+  590  vim /etc/auto.ldap
+  591  systemctl restart autofs
+  592  cd /home/ldap/
+  593  cd ldapuser1
+  594  cd ..
+  595  ls -a
+  596  cd ldapuser3
+  597  cd
+  598  history
+  599  vim /etc/httpd/conf/httpd.conf 
+  600  systemctl restart httpd
+  601  journalctl -u httpd
+  602  grep avc /var/log/audit/audit.log 
+  603  man semanage-port
+  604  semanage port -a -t http_port_t -p tcp 82
+  605  systemctl restart httpd
+  606  mv /etc/hosts /web
+  607  ls -Z /web
+  608  cp /web/hosts /etc
+  609  restorecon -v /web/hosts 
+  610  systemctl status firewalld
+  611  firewall-cmd --list-all
+  612  ls /usr/lib/firewalld/services/
+  613  cat /usr/lib/firewalld/services/https.xml
+  614  firewall-cmd --get-service
+  615  firewall-cmd --get-services
+  616  firewall-cmd --add-service http --permanent
+  617  firewall-cmd --list-all
+  618  firewall-cmd --reload
+  619  history
+  620  timedatectl set-time --help
+  621  systemctl status chronyd
+  622  vim /etc/chrony.conf 
+  623  systemctl restart chronyd
+  624  systemctl status chronyd
+  625  chronyc sources
+  626  exit
+  627  crontab -e -u student
+  628  date
+  629  systemctl list-unit-files -t timer
+  630  systemctl cat logrotate.timer
+  631  journalctl 
+  632  systemctl status logrotate.timer 
+  633  systemctl status logrotate.service
+  634  man systemd.timer
+  635  systemctl list-units -t timer
+  636  systemctl cat logrotate.timer 
+  637  flatpak 
+  638  flatpak remotes
+  639  flatpak remote-add --if-not-exists fedora oci+https://registry.fedoraproject.org
+  640  flatpak remotes
+  641  flatpak remote-ls --app
+  642  flatpak install virt-manager
+  643  flatpak install --user anna firefox
+  644  cat /etc/passwd
+  645  flatpak install --user=anna firefox
+  646  flatpak search firefox
+  647  flatpak install --help| less
+  648  flatpak install --user=anna Firefox
+  649  flatpak install firefox
+  650  flatpak list
+  651  cd /etc/flatpak/
+  652  ls
+  653  cd remotes.d/
+  654  ls
+  655  cat rhel.flatpakrepo 
+  656  flatpak search gimp
+  657  flatpak install -u anna org.gimp.GIMP 
+  658  flatpak install --user=anna org.gimp.GIMP 
+  659  flatpak install --user=anna gimp
+  660  flatpak ls
+  661  flatpak list
+  662  find / -name "*virt-manager*"
+  663  find / -name "*virt-manager*" | less
+  664  exit
+  665  flatpak remotes
+  666  flatpak remote-delete fedora
+  667  flatpak remote-add --help
+  668  flatpak remote-add --user=linda --if-not-exists fedora oci+https://registry.fedoraproject.org
+  669  flatpak search gimp
+  670  flatpak search --help
+  671  flatpak search --user=linda gimp
+  672  flatpak install --user=linda gimp
+  673  passwd anna
+  674  ./countdown 12
+  675  ./countdown 45
+  676  dnf install -y httpd
+  677  vim /etc/httpd/conf/httpd.conf 
+  678  man semanage-port
+  679  semanage port -a -t http_port_t -p tcp 82
+  680  useradd --help | less
+  681  useradd -u 1100 -s /sbin/nologin lori
+  682  grep -R '^[Aa]dministrator' /etc/*
+  683  grep -Rl '^[Aa]dministrator' /etc/*
+  684  grep -Rl '^[Aa]dministrator' /etc/* > /tmp/stratorfiles.txt
+  685  ln -s /etc/hosts /tmp/hosts
+  686  ls -l /tmp/hosts
+  687  groupadd sales
+  688  mkdir -p /data/sales
+  689  chgrp sales /data/sales
+  690  usermod -aG sales linda
+  691  usermod -aG sales lisa
+  692  id lisa
+  693  ls -ld /data/sales
+  694  chmod g+w /data/sales
+  695  chmod g+s /data/sales
+  696  chmod +t /data/sales
+  697  chown linda /data/sales
+  698  ls -ld /data/sales
+  699  history
+  700  man httpd
+  701  vgs
+  702  lvcreate -n lvlab -l 50 vgdata
+  703  mkfs.xfs /dev/vgdata/lvlab 
+  704  lvresize /dev/vgdata/lvlab +200M
+  705  lvresize /dev/vgdata/lvlab -L +200M
+  706  mkfs.xfs /dev/vgdata/lvlab 
+  707  mkdir /lvlab
+  708  man mount
+  709  vim /etc/fstab
+  710  systemctl daemon-reload
+  711  ls /run/systemd/generator/
+  712  cp /run/systemd/generator/lvlab.mount /etc/systemd/system
+  713  vim /etc/systemd/system/lvlab.mount 
+  714  vim /etc/fstab
+  715  systemctl enable --now lvlab.mount
+  716  vim /etc/httpd/conf/httpd.conf 
+  717  systemctl restart httpd
+  718  getenforce
+  719  vim /etc/httpd/conf/httpd.conf 
+  720  systemctl restart httpd
+  721  journalctl -u httpd
+  722  man semanage-port
+  723  semanage port -a -t http_port_t -p tcp 86
+  724  systemctl restart httpd
+  725  tuned-adm recommend
+  726  tuned-adm profile virtual-guest
+  727  find / -perm /6000
+  728  find / -perm /6000 > /root/sugidfiles.txt
+  729  find / -perm /6000 -type f > /root/sugidfiles.txt
+  730  vim /root/sugidcheck
+  731  echo hello a.txt
+  732  echo hello > a.txt
+  733  echo hello > b.txt
+  734  diff a.txt b.txt
+  735  echo $?
+  736  echo bye > b.txt
+  737  diff a.txt b.txt
+  738  echo $?
+  739  vim /root/sugidcheck
+  740  chmod +x sugidcheck 
+  741  ./sugidcheck 
+  742  vim /root/sugidcheck
+  743  ./sugidcheck 
+  744  touch /tmp/testfile
+  745  chmod u+s /tmp/testfile 
+  746  ./sugidcheck 
+  747  journalctl 
+  748  crontab -e -u root
+  749  cd rhcsa10/
+  750  ls
+  751  cd labs/
+  752  ls
+  753  ./live-mini-exam-grade.sh 
+  754  exit
+  755  history
+  756  cd rhcsa10
+  757  ls
+  758  git clone https://github.com/sandervanvugt/rhcsa10
+  759  cd rhcsa10/
+  760  ls
+  761  vim script1 
+  762  cat resources.txt 
+  763  less resources.txt 
+  764  vim script1 
+  765  ls -l
+  766  ./script1
+  767  pwd
+  768  vim script1
+  769  source script1
+  770  cd -
+  771  . script1
+  772  cd -
+  773  cat script1 
+  774  vim script2
+  775  ./script2
+  776  ./script2 hh
+  777  man test
+  778  vim script3
+  779  ./script3 5
+  780  vim script3
+  781  cd labs/
+  782  ls
+  783  vim live-lab1-grade.sh 
+  784  cd ..
+  785  ls
+  786  less mini-exam-45min.txt 
+  787  exit
+  788  history > /tmp/aug25.txt
