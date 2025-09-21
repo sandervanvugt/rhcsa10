@@ -1,6 +1,10 @@
 #!/bin/bash
 # exit if not root
 clear
+
+echo -e "\e[5m\033[35m\033[1mWARNING\e[0m\033[0m\033[0m\t\ this script is currently in maintenance because of technical issues. 
+echo -e \t\tI'm expecting to push the final version to this Git repo on or before Sept. 26th 2025
+
 ls /root &>/dev/null || (echo run this script with root privileges && exit 2)
 
 # check if the system has recently rebooted
