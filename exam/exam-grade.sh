@@ -108,6 +108,7 @@ TOTALSCORE=$(( TOTAL + SCORE ))
 TOTALTOTAL=$TOTAL
 
 echo -e "\033[1mchecking task 13 results\033[0m"
+echo this task has been upgraded to RHCSA 10
 source exam-task13.sh
 echo the score is $SCORE
 TOTALSCORE=$(( TOTAL + SCORE ))
