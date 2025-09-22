@@ -4,6 +4,7 @@ clear
 
 echo -e "\e[5m\033[35m\033[1mWARNING\e[0m\033[0m\033[0m\t\ this script is currently in maintenance because of technical issues. 
 echo -e \t\tI'm expecting to push the final version to this Git repo on or before Sept. 26th 2025
+echo -e \t\tUntil then, I will indicate for each task if it has been updated
 
 ls /root &>/dev/null || (echo run this script with root privileges && exit 2)
 
@@ -22,8 +23,18 @@ else
  	echo -e "your system recently rebooted. Good, let's continue!"
 fi
 
+
+if ssh server2 id 
+then
+	"\033[31m[OK]\033[0m\t\t I can ssh to server2 as the root user, we can continue"
+else
+	"\033[31m[FAIL]\033[0m\t\t I cannot ssh to server2 as the root user. This is critical for evaluating your work. Fix this and try again."
+	exit
+fi
+
 # evaluating tasks
 echo -e "\033[1mchecking task 1 results\033[0m"
+echo this has been updated to RHCSA 10
 source exam-task1.sh
 echo the score is $SCORE
 TOTALSCORE=$SCORE
@@ -31,6 +42,7 @@ TOTALTOTAL=$TOTAL
 
 echo -e "\033[1mchecking task 2 results\033[0m"
 source exam-task2.sh
+echo this has been updated to RHCSA 10
 echo the score is $SCORE
 TOTALSCORE=$(( TOTAL + SCORE ))
 TOTALTOTAL=$TOTAL
@@ -103,6 +115,12 @@ TOTALTOTAL=$TOTAL
 
 echo -e "\033[1mchecking task 14 results\033[0m"
 source exam-task14.sh
+echo the score is $SCORE
+TOTALSCORE=$(( TOTAL + SCORE ))
+TOTALTOTAL=$TOTAL
+
+echo -e "\033[1mchecking task 14 results\033[0m"
+source exam-task15.sh
 echo the score is $SCORE
 TOTALSCORE=$(( TOTAL + SCORE ))
 TOTALTOTAL=$TOTAL
