@@ -1,18 +1,9 @@
-if file /rhel10.iso | grep 9660 &>/dev/null
+if [ -d /repo/BaseOS ] && [ -d /repo/AppStream ]  &>/dev/null
 then
-	echo -e "\033[32m[OK]\033[0m\t\t /rhel10.iso file was found"
+	echo -e "\033[32m[OK]\033[0m\t\t repository subdirectories found in /repo"
 	SCORE=$(( SCORE + 10 ))
 else
-	echo -e "\033[31m[FAIL]\033[0m\t\t /rhel10.iso file was not found"
-fi
-TOTAL=$(( TOTAL + 10 ))
-
-if mount | grep /repo | grep rhel10 &>/dev/null
-then
-        echo -e "\033[32m[OK]\033[0m\t\t the rhel10.iso file is mounted on /repo"
-        SCORE=$(( SCORE + 10 ))
-else
-        echo -e "\033[31m[FAIL]\033[0m\t\t the rhel10.iso file is not mounted on /repo"
+	echo -e "\033[31m[FAIL]\033[0m\t\t repository subdirectories not found in /repo"
 fi
 TOTAL=$(( TOTAL + 10 ))
 

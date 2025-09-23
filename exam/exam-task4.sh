@@ -1,32 +1,47 @@
-if ps aux | grep 'sleep infinity' | grep -v grep &>/dev/null
+export EXT4ID=$(blkid | awk '/ext4/ { print $2 }')
+export SWAPID=$(blkid | awk '/swap/ && !/mapper/ { print $2 }')
+
+#debugging
+echo EXT4ID is $EXT4ID
+echo SWAPID is $SWAPID
+
+if [ -n $EXT4ID ] && [ -n $SWAPID ] &>/dev/null
 then
-	echo -e "\033[32m[OK]\033[0m\t\t found a process \033[1msleep infinity\033[0m"
+	echo -e "\033[32m[OK]\033[0m\t\t the ext4 partition and the swap partition were found"
 	SCORE=$(( SCORE + 10 ))
 else
-	echo -e "\033[31m[FAIL]\033[0m\t\t the process \033[1msleep infinity\033[0m was not found"
+	echo -e "\033[31m[FAIL]\033[0m\t\t could find both the ext4 partition as the swap partition"
 fi
 TOTAL=$(( TOTAL + 10 ))
 
-
-if [[ $(ps -eo ni,cmd,pid | awk '/sleep/ && /infinity/ && !/awk/ { print $1 }') == 19 ]] &>/dev/null
+if grep '${EXT4ID}.*files' /etc/fstab &>/dev/null && grep '${SWAPID}.*swap' /etc/fstab 
 then
-	echo -e "\033[32m[OK]\033[0m\t\t found correct niceness of 19"
+	echo -e "\033[32m[OK]\033[0m\t\t found both filesystems in /etc/fstab"
 	SCORE=$(( SCORE + 10 ))
 else
-	if [[ $(ps -eo ni,cmd,pid | awk '/sleep/ && /infinity/ && !/awk/ { print $1 }' | wc -l) -gt 1 ]] &>/dev/null
-	then
-		echo -e "\033[31m[FAIL]\033[0m\t\t multiple sleep infinity processes found"
-	else
-		echo -e "\033[31m[FAIL]\033[0m\t\t niceness of 19 was not found"
-	fi
+	echo -e "\033[31m[FAIL]\033[0m\t\t filesystems not found in /etc/fstab"
 fi
 TOTAL=$(( TOTAL + 10 ))
 
-if grep -d skip -l 'sleep infinity' /home/student/.* &>/dev/null
+if mount | grep '/mnt/files' 
 then
-	echo -e "\033[32m[OK]\033[0m\t\t found the command in $(grep -d skip -l 'sleep infinity' /home/student/.*)"
+	echo -e "\033[32m[OK]\033[0m\t\t the ext4 partition was found as mounted"
 	SCORE=$(( SCORE + 10 ))
 else
-	echo -e "\033[31m[FAIL]\033[0m\t\t command not found in any of the startup files for user student"
+	echo -e "\033[31m[FAIL]\033[0m\t\t the ext4 partition was not found as mounted"
 fi
 TOTAL=$(( TOTAL + 10 ))
+
+# finding swap device name
+export SWAPDEV=$(blkid | grep $SWAPID | cut -d : -f 1)
+echo SWAPDEV is $SWAPDEV
+
+# evaluating availability
+if swapon -s | grep $SWAPDEV
+then
+        echo -e "\033[32m[OK]\033[0m\t\t swap device is active"
+        SCORE=$(( SCORE + 10 ))
+else
+        echo -e "\033[31m[FAIL]\033[0m\t\t swap device is not currently active"
+fi
+
