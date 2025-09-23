@@ -15,7 +15,7 @@ fi
 TOTAL=$(( TOTAL + 10 ))
 
 set -x
-if grep '${EXT4ID}.*files' /etc/fstab &>/dev/null && grep '${SWAPID}.*swap' /etc/fstab 
+if grep ${EXT4ID}.*files /etc/fstab &>/dev/null && grep ${SWAPID}.*swap /etc/fstab 
 then
 	echo -e "\033[32m[OK]\033[0m\t\t found both filesystems in /etc/fstab"
 	SCORE=$(( SCORE + 10 ))
