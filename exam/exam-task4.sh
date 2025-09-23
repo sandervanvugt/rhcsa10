@@ -1,10 +1,6 @@
 export EXT4ID=$(blkid | awk '/ext4/ { print $2 }')
 export SWAPID=$(blkid | awk '/swap/ && !/mapper/ { print $2 }')
 
-#debugging
-echo EXT4ID is $EXT4ID
-echo SWAPID is $SWAPID
-
 if [ -n $EXT4ID ] && [ -n $SWAPID ] &>/dev/null
 then
 	echo -e "\033[32m[OK]\033[0m\t\t the ext4 partition and the swap partition were found"
@@ -14,7 +10,6 @@ else
 fi
 TOTAL=$(( TOTAL + 10 ))
 
-set -x
 if grep ${EXT4ID}.*files /etc/fstab &>/dev/null && grep ${SWAPID}.*swap /etc/fstab 
 then
 	echo -e "\033[32m[OK]\033[0m\t\t found both filesystems in /etc/fstab"
@@ -23,7 +18,6 @@ else
 	echo -e "\033[31m[FAIL]\033[0m\t\t filesystems not found in /etc/fstab"
 fi
 TOTAL=$(( TOTAL + 10 ))
-set +x
 
 if mount | grep '/mnt/files' 
 then
