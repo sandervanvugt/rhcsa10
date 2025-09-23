@@ -1,72 +1,29 @@
-#!/usr/bin/env bash
-set -e
+export VGUSEDBYMYFILES=$(lvdisplay | grep -A3 myfiles | awk '/VG Name/ { print $3 }')
+export VGUSEDBYROOT=$(lvdisplay | grep -A3 root | awk '/VG Name/ { print $3 }')
 
-# Get all disk devices (excluding partitions), one per line
-mapfile -t disks < <(lsblk -dn -o NAME,TYPE | awk '$2=="disk" {print "/dev/" $1}')
-
-# Make sure at least two disks are present
-if (( ${#disks[@]} < 2 )); then
-  echo "Error: less than two disks detected." >&2
-  exit 1
-fi
-
-# The second disk is:
-second_disk="${disks[1]}"
-
-echo "Second disk detected as: $second_disk"
-
-
-if [ -n $second_disk ]
+if vgdisplay $(echo VGUSEDBYMYFILES | grep 'PE Size' | grep '8.00') &>/dev/null
 then
-	echo -e "\033[32m[OK]\033[0m\t\t block device \033[1m${second_disk}\033[0m was found"
-else
-	echo -e "\033[31m[FAIL]\033[0m\t\t block device \033[1m${second_disk}\033[0m was not found"
-fi
-
-
-if [ -b ${second_disk}.*1 ] && [ -b ${second_disk}.*2 ]
-then
-	echo -e "\033[32m[OK]\033[0m\t\t two partitions were found"
+	echo -e "\033[32m[OK]\033[0m\t\t the VG used by the LV myfiles uses 8 MiB extents"
 	SCORE=$(( SCORE + 10 ))
 else
-	echo -e "\033[31m[FAIL]\033[0m\t\t two partitions were not found"
+	echo -e "\033[31m[FAIL]\033[0m\t\t the VG used by the LV myfiles does not use 8MiB extents"
 fi
 TOTAL=$(( TOTAL + 10 ))
 
-
-
-if fdisk -l /dev/${second_disk} | awk '${second_disk}.*1/ && /1G/' &>/dev/null
+if grep myfiles.*/mnt/data /etc/fstab &>/dev/null
 then
-	echo -e "\033[32m[OK]\033[0m\t\t the first partition has a size of 1G"
+	echo -e "\033[32m[OK]\033[0m\t\t the \033[1mmyfiles\033[0m LV mounts on /mnt/data"
 	SCORE=$(( SCORE + 10 ))
 else
-	echo -e "\033[31m[FAIL]\033[0m\t\t incorrect size on first partition"
+	echo -e "\033[31m[FAIL]\033[0m\t\t the \033[1mmyfiles\033[0m LV does not mount on /mnt/data"
 fi
 TOTAL=$(( TOTAL + 10 ))
 
-
-if [[ $(fdisk -l /dev/sdb | awk '/sdb2/ && /1G/' &>/dev/null) ]]
+if vgdisplay | grep -A 15 $VGUSEDBYROOT | grep 'Cur PV.*2' &>/dev/null
 then
-	echo -e "\033[32m[OK]\033[0m\t\t the second partition has a size of 5G and is marked as LVM partition"
+	echo -e "\033[32m[OK]\033[0m\t\t the root logical volume \033[1mlvlabs\033[0m was resized"
 	SCORE=$(( SCORE + 10 ))
 else
-	if [[ $(fdisk -l /dev/sdb | awk '/sdb2/ && !/lvm/') ]]
-	then
-		echo -e "\033[31m[FAIL]\033[0m\t\t type of the second partition is incorrect"
-	fi
-	if [[ $(fdisk -l /dev/sdb | awk '/sdb2/ && !/5G/') ]]
-        then
-                echo -e "\033[31m[FAIL]\033[0m\t\t size of the second partition is not correct"
-        fi
-fi
-TOTAL=$(( TOTAL + 10 ))
-
-
-if true
-then
-	echo -e "\033[32m[OK]\033[0m\t\t "
-	SCORE=$(( SCORE + 10 ))
-else
-	echo -e "\033[31m[FAIL]\033[0m\t\t "
+	echo -e "\033[31m[FAIL]\033[0m\t\t the root logical volume was not resized"
 fi
 TOTAL=$(( TOTAL + 10 ))
