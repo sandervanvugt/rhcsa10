@@ -1,4 +1,4 @@
-if ssh server2.example.com grep '^root:...*:' /etc/shadow &>/dev/null" 
+if ssh server2.example.com grep '^root:...*:' /etc/shadow &>/dev/null 
 then
 	echo -e "\033[32m[OK]\033[0m\t\t user root on server2 seems to have a password"
 	SCORE=$(( SCORE + 10 ))
