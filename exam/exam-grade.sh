@@ -56,6 +56,7 @@ TOTALTOTAL=$TOTAL
 
 echo -e "\033[1mchecking task 4 results\033[0m"
 source exam-task4.sh
+echo this has been updated to RHCSA 10
 echo the score is $SCORE
 TOTALSCORE=$(( TOTAL + SCORE ))
 TOTALTOTAL=$TOTAL

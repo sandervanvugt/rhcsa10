@@ -1,48 +1,29 @@
-if vgs | grep vglabs &>/dev/null
+export VGUSEDBYMYFILES=$(lvdisplay | grep -A3 myfiles | awk '/VG Name/ { print $3 }')
+export VGUSEDBYROOT=$(lvdisplay | grep -A3 root | awk '/VG Name/ { print $3 }')
+
+if vgdisplay $(echo VGUSEDBYMYFILES | grep 'PE Size' | grep '8.00' &>/dev/null
 then
-	echo -e "\033[32m[OK]\033[0m\t\t volume group \033[1mvglabs\033[0m was found"
+	echo -e "\033[32m[OK]\033[0m\t\t the VG used by the LV myfiles uses 8 MiB extents"
 	SCORE=$(( SCORE + 10 ))
 else
-	echo -e "\033[31m[FAIL]\033[0m\t\t no volume group \033[1mvglabs\033[0m was found"
+	echo -e "\033[31m[FAIL]\033[0m\t\t the VG used by the LV myfiles does not use 8MiB extents"
 fi
 TOTAL=$(( TOTAL + 10 ))
 
-if vgdisplay vglabs | grep 'PE Size' | grep '2' &>/dev/null
+if grep myfiles.*/mnt/data /etc/fstab &>/dev/null
 then
-	echo -e "\033[32m[OK]\033[0m\t\t \033[1mvglabs\033[0m PE size is correct"
+	echo -e "\033[32m[OK]\033[0m\t\t the \033[1mmyfiles\033[0m LV mounts on /mnt/data"
 	SCORE=$(( SCORE + 10 ))
 else
-	echo -e "\033[31m[FAIL]\033[0m\t\t \033[1mvglabs\033[0m PE size is not correct"
+	echo -e "\033[31m[FAIL]\033[0m\t\t the \033[1mmyfiles\033[0m LV does not mount on /mnt/data"
 fi
 TOTAL=$(( TOTAL + 10 ))
 
-if lvs | grep lvlabs &>/dev/null
+if vgdisplay | grep -A 15 $VGUSEDBYROOT | grep 'Cur PV.*2' &>/dev/null
 then
-	echo -e "\033[32m[OK]\033[0m\t\t logical volume \033[1mlvlabs\033[0m was found"
+	echo -e "\033[32m[OK]\033[0m\t\t the root logical volume \033[1mlvlabs\033[0m was resized"
 	SCORE=$(( SCORE + 10 ))
 else
-	echo -e "\033[31m[FAIL]\033[0m\t\t logical volume \033[1mlvlabs\033[0m was not found"
-fi
-TOTAL=$(( TOTAL + 10 ))
-
-LVSIZE=$(lvdisplay /dev/vglabs/lvlabs | awk '/Current LE/ { print $3 }')
-VGSIZE=$(vgdisplay vglabs | awk '/Total PE/ { print $3 }')
-HALF=$(( VGSIZE / 2 ))
-
-if [ $LVSIZE -eq $HALF ]
-then
-	echo -e "\033[32m[OK]\033[0m\t\t logical volume \033[1mlvlabs\033[0m uses 50% of available extents"
-	SCORE=$(( SCORE + 10 ))
-else
-	echo -e "\033[31m[FAIL]\033[0m\t\t logical volume \033[1mlvlabs\033[0m does not use 50% of available extents"
-fi
-TOTAL=$(( TOTAL + 10 ))
-
-if true
-then
-	echo -e "\033[32m[OK]\033[0m\t\t "
-	SCORE=$(( SCORE + 10 ))
-else
-	echo -e "\033[31m[FAIL]\033[0m\t\t "
+	echo -e "\033[31m[FAIL]\033[0m\t\t the root logical volume was not resized"
 fi
 TOTAL=$(( TOTAL + 10 ))
