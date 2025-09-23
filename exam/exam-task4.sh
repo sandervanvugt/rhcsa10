@@ -14,6 +14,7 @@ else
 fi
 TOTAL=$(( TOTAL + 10 ))
 
+set -x
 if grep '${EXT4ID}.*files' /etc/fstab &>/dev/null && grep '${SWAPID}.*swap' /etc/fstab 
 then
 	echo -e "\033[32m[OK]\033[0m\t\t found both filesystems in /etc/fstab"
@@ -22,6 +23,7 @@ else
 	echo -e "\033[31m[FAIL]\033[0m\t\t filesystems not found in /etc/fstab"
 fi
 TOTAL=$(( TOTAL + 10 ))
+set +x
 
 if mount | grep '/mnt/files' 
 then
