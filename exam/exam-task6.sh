@@ -1,4 +1,4 @@
-if ssh server2 getent chisha | grep 1234 &>/dev/null && ssh server2 getent myapp | grep nologin &>/dev/null
+if ssh server2 getent passwd chisha | grep 1234 &>/dev/null && ssh server2 getent passwd myapp | grep nologin &>/dev/null
 then
 	echo -e "\033[32m[OK]\033[0m\t\t users chisha and myapp were correctly created"
 	SCORE=$(( SCORE + 10 ))
@@ -7,7 +7,7 @@ else
 fi
 TOTAL=$(( TOTAL + 10 ))
 
-if grep sales /etc/group | grep chisha | grep caroline &>/dev/null
+if ssh server2 grep sales /etc/group | grep chisha | grep caroline &>/dev/null
 then
 	echo -e "\033[32m[OK]\033[0m\t\t group sales was found with correct membership"
 	SCORE=$(( SCORE + 10 ))
