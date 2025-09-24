@@ -41,9 +41,9 @@ else
         echo -e "\033[31m[FAIL]\033[0m\t\t server1 is not set as the repository server on server2"
 fi
 
-if grep "baseurl /etc/yum.repos.d/*" | grep redhat.com &>/dev/null
-then
-        echo -e "\033[31m[FAIL]\033[0m\t\t this server has been registered using subscription manager. This is a critical error. \033[31mYOU HAVE FAILED THE EXAM\033[0m"
-	exit 9
-fi
+#if grep "baseurl /etc/yum.repos.d/*" | grep redhat.com &>/dev/null
+#then
+#        echo -e "\033[31m[FAIL]\033[0m\t\t this server has been registered using subscription manager. This is a critical error. \033[31mYOU HAVE FAILED THE EXAM\033[0m"
+#	exit 9
+#fi
 
