@@ -2,9 +2,6 @@
 # exit if not root
 clear
 
-echo -e "\e[5m\033[35m\033[1mWARNING\e[0m\033[0m\033[0m\t\ this script is currently in maintenance because of technical issues." 
-echo -e "\t\tBecause of these issues currently up to task11 will be evaluated and graded. Any tasks beyond this will not be graded and dont count for your pass/fail score"
-
 ls /root &>/dev/null || (echo run this script with root privileges && exit 2)
 
 # check if the system has recently rebooted
@@ -23,7 +20,7 @@ else
 fi
 
 
-if ssh server2 id 
+if ssh server2 id &>/dev/null
 then
 	"\033[31m[OK]\033[0m\t\t echo I can ssh to server2 as the root user, we can continue"
 else
