@@ -40,4 +40,4 @@ then
 else
         echo -e "\033[31m[FAIL]\033[0m\t\t swap device is not currently active"
 fi
-
+TOTAL=$(( TOTAL + 10 ))

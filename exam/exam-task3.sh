@@ -32,6 +32,7 @@ then
 else
 	echo -e "\033[31m[FAIL]\033[0m\t\t server1 is not set as the repository server on server1"
 fi
+TOTAL=$(( TOTAL + 10 ))
 
 if ssh root@server2 "grep -l server1 /etc/yum.repos.d/*" &>/dev/null
 then
@@ -40,6 +41,7 @@ then
 else
         echo -e "\033[31m[FAIL]\033[0m\t\t server1 is not set as the repository server on server2"
 fi
+TOTAL=$(( TOTAL + 10 ))
 
 #if grep "baseurl /etc/yum.repos.d/*" | grep redhat.com &>/dev/null
 #then
