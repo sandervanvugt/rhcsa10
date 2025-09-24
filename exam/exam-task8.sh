@@ -7,7 +7,7 @@ else
 fi
 TOTAL=$(( TOTAL + 10 ))
 
-if ssh server2 grep 'OnCalendar=Mon..Fri *-*-* 02:00:00' /home/chisha/.config/systemd/*timer &>/dev/null
+if ssh server2 grep 'OnCalendar=Mon..Fri *-*-* 02:00:00' /home/chisha/.config/systemd/user/*timer &>/dev/null
 then
 	echo -e "\033[32m[OK]\033[0m\t\t the timer is scheduled for the correct time"
 	SCORE=$(( SCORE + 10 ))
