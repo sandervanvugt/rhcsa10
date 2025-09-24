@@ -1,4 +1,4 @@
-if grep 'pool.*pool.ntp.org' /etc/chronyd.conf &>/dev/null && ssh server2 grep 'pool.*pool.ntp.org' /etc/chronyd.conf &>/dev/null
+if grep -v rhel /etc/chronyd.conf | grep 'pool.*pool.ntp.org' &>/dev/null && ssh server2 grep -v rhel /etc/chronyd.conf | grep 'pool.*pool.ntp.org' &>/dev/null
 then
 	echo -e "\033[32m[OK]\033[0m\t\t both servers are using the right NTP configuration"
 	SCORE=$(( SCORE + 10 ))
