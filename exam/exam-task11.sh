@@ -5,7 +5,7 @@ then
 else
 	echo -e "\033[31m[FAIL]\033[0m\t\t httpd DocumentRoot is not set to /web"
 fi
-TOTAL=$(( TOTAL + 10 ))
+#TOTAL=$(( TOTAL + 10 ))
 
 
 if grep 'Directory.*/web' /etc/httpd/conf/httpd.conf &>/dev/null &>/dev/null
@@ -15,7 +15,7 @@ then
 else
 	echo -e "\033[31m[FAIL]\033[0m\t\t apache restrictions don't seem the allow access to web content in /web"
 fi
-TOTAL=$(( TOTAL + 10 ))
+#TOTAL=$(( TOTAL + 10 ))
 
 if grep 'hello from' /web/index.html &>/dev/null
 then
@@ -24,7 +24,7 @@ then
 else
 	echo -e "\033[31m[FAIL]\033[0m\t\t requested web content not found"
 fi
-TOTAL=$(( TOTAL + 10 ))
+#TOTAL=$(( TOTAL + 10 ))
 
 
 if curl localhost 2>/dev/null | grep 'hello from' &>/dev/null
@@ -34,4 +34,4 @@ then
 else
 	echo -e "\033[31m[FAIL]\033[0m\t\t web content at custom location is not reachable"
 fi
-TOTAL=$(( TOTAL + 30 ))
+#TOTAL=$(( TOTAL + 30 ))

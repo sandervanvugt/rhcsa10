@@ -5,7 +5,7 @@ then
 else
 	echo -e "\033[31m[FAIL]\033[0m\t\t sleep.service not found in the right location"
 fi
-TOTAL=$(( TOTAL + 10 ))
+#TOTAL=$(( TOTAL + 10 ))
 
 if grep 'WantedBy=multi-user.target' /etc/systemd/system/sleep.service &>/dev/null
 then
@@ -14,7 +14,7 @@ then
 else
 	echo -e "\033[31m[FAIL]\033[0m\t\t \033[1msleep.service\033[0m is not enabled"
 fi
-TOTAL=$(( TOTAL + 10 ))
+#TOTAL=$(( TOTAL + 10 ))
 
 if grep 'Restart=always' /etc/systemd/system/sleep.service &>/dev/null
 then
@@ -23,5 +23,5 @@ then
 else
 	echo -e "\033[31m[FAIL]\033[0m\t\t Restart option not found"
 fi
-TOTAL=$(( TOTAL + 10 ))
+#TOTAL=$(( TOTAL + 10 ))
 

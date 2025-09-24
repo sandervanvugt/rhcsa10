@@ -2,9 +2,8 @@
 # exit if not root
 clear
 
-echo -e "\e[5m\033[35m\033[1mWARNING\e[0m\033[0m\033[0m\t\ this script is currently in maintenance because of technical issues. 
-echo -e \t\tI'm expecting to push the final version to this Git repo on or before Sept. 26th 2025
-echo -e \t\tUntil then, I will indicate for each task if it has been updated
+echo -e "\e[5m\033[35m\033[1mWARNING\e[0m\033[0m\033[0m\t\ this script is currently in maintenance because of technical issues." 
+echo -e \t\tBecause of these issues currently up to task7 will be evaluated and graded. Any tasks beyond this should be ignored."
 
 ls /root &>/dev/null || (echo run this script with root privileges && exit 2)
 
@@ -34,7 +33,6 @@ fi
 
 # evaluating tasks
 echo -e "\033[1mchecking task 1 results\033[0m"
-echo this has been updated to RHCSA 10
 source exam-task1.sh
 echo the score is $SCORE
 TOTALSCORE=$SCORE
@@ -42,35 +40,30 @@ TOTALTOTAL=$TOTAL
 
 echo -e "\033[1mchecking task 2 results\033[0m"
 source exam-task2.sh
-echo this has been updated to RHCSA 10
 echo the score is $SCORE
 TOTALSCORE=$(( TOTAL + SCORE ))
 TOTALTOTAL=$TOTAL
 
 echo -e "\033[1mchecking task 3 results\033[0m"
 source exam-task3.sh
-echo this has been updated to RHCSA 10
 echo the score is $SCORE
 TOTALSCORE=$(( TOTAL + SCORE ))
 TOTALTOTAL=$TOTAL
 
 echo -e "\033[1mchecking task 4 results\033[0m"
 source exam-task4.sh
-echo this has been updated to RHCSA 10
 echo the score is $SCORE
 TOTALSCORE=$(( TOTAL + SCORE ))
 TOTALTOTAL=$TOTAL
 
 echo -e "\033[1mchecking task 5 results\033[0m"
 source exam-task5.sh
-echo this has been updated to RHCSA 10
 echo the score is $SCORE
 TOTALSCORE=$(( TOTAL + SCORE ))
 TOTALTOTAL=$TOTAL
 
 echo -e "\033[1mchecking task 6 results\033[0m"
 source exam-task6.sh
-echo this has been updated to RHCSA 10
 echo the score is $SCORE
 TOTALSCORE=$(( TOTAL + SCORE ))
 TOTALTOTAL=$TOTAL
@@ -139,6 +132,6 @@ then
         echo -e "\033[32mCONGRATULATIONS!!\033[0m\t\t You passed this sample exam!"
 	echo -e "\033[1mResults obtained here don't guarantee anything for the real exam\033[0m"
 else
-        echo -e "\033[31m[FAIL]\033[0m\t\t You did NOT pass this sample exam \033[36m:-(\033[0m"
+        echo -e "\033[31m[FAIL]\033[0m\t\t You did NOT pass this sample exam \033[0m"
 fi
 
