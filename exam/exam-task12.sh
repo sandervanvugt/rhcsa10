@@ -1,3 +1,9 @@
+if ssh server2 getenforce | grep Permissive || ssh server2 getenforce | grep -i Disabled &>/dev/null
+then    
+        echo -e "\033[31m[FAIL]\033[0m\t\t SELinux is not in enforcing mode. This misbehaviour will be punished"
+	SCORE=$(( SCORE - 60 ))
+fi
+
 if ssh server2 grep 'Listen.*82' /etc/httpd/conf/httpd.conf &>/dev/null
 then
 	echo -e "\033[32m[OK]\033[0m\t\t server2 httpd server is listening on port 82"
