@@ -8,7 +8,7 @@ fi
 TOTAL=$(( TOTAL + 10 ))
 
 
-if ls -Z /var/www/html/hosts | grep httpd_sys_content &>/dev/null
+if ssh server2 ls -Z /var/www/html/hosts | grep httpd_sys_content &>/dev/null
 then
 	echo -e "\033[32m[OK]\033[0m\t\t the file hosts has been labeled for httpd access"
 	SCORE=$(( SCORE + 10 ))
