@@ -3,7 +3,7 @@
 clear
 
 echo -e "\e[5m\033[35m\033[1mWARNING\e[0m\033[0m\033[0m\t\ this script is currently in maintenance because of technical issues." 
-echo -e "\t\tBecause of these issues currently up to task8 will be evaluated and graded. Any tasks beyond this will not be graded and dont count for your pass/fail score"
+echo -e "\t\tBecause of these issues currently up to task11 will be evaluated and graded. Any tasks beyond this will not be graded and dont count for your pass/fail score"
 
 ls /root &>/dev/null || (echo run this script with root privileges && exit 2)
 
