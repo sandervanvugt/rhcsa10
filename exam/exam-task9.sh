@@ -1,8 +1,14 @@
-#if test -z /etc/hostname &>/dev/null
-#then
-#	echo -e "\033[32m[OK]\033[0m\t\t hostname is set to examlabs.example.com"
-#	SCORE=$(( SCORE + 10 ))
-#else
-	echo -e "\033[31m[WARNING]\033[0m\t\t bug-fixing: this task is not currently evaluated"
-#fi
-#TOTAL=$(( TOTAL + 10 ))
+if ssh server2 sudo -H -u chisha flatpak list --user | grep -i gimp &>/dev/null
+then
+	echo -e "\033[32m[OK]\033[0m\t\t user chisha has gimp installed"
+	if ssh server2 sudo -H -u anna flatpak list --user | grep -i gimp &>/dev/nill
+	then
+		echo -e "\033[31m[FAIL]\033[0m\t\t user anna also has access to the gimp flatpak and that's wrong"
+	else	
+		echo -e "\033[32m[OK]\033[0m\t\t user anna has no access to the gimp flatpak"
+		SCORE=$(( SCORE + 10 ))
+	fi
+else
+	echo -e "\033[31m[WARNING]\033[0m\t\t user chisha does not have gimp installed"
+fi
+TOTAL=$(( TOTAL + 10 ))
