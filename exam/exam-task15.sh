@@ -1,5 +1,5 @@
 #find /etc -type f -exec grep -Ri 'administrator' {} \; > /root/lab15.check &>/dev/null
-find /etc -type f -readable -print0 | xargs -0 -r grep -H 'administrator' > /root/lab15.check
+find /etc -type f -readable -print0 | xargs -0 -r grep -iH 'administrator' > /root/lab15.check
 
 
 if diff /tmp/lab15.check /root/administratorfiles.txt &>/dev/null
