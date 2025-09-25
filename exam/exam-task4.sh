@@ -10,7 +10,7 @@ else
 fi
 TOTAL=$(( TOTAL + 10 ))
 
-if grep ${EXT4ID}.*files /etc/fstab &>/dev/null && grep ${SWAPID}.*swap /etc/fstab 
+if grep ${EXT4ID}.*files /etc/fstab &>/dev/null && grep ${SWAPID}.*swap /etc/fstab &>/dev/null
 then
 	echo -e "\033[32m[OK]\033[0m\t\t found both filesystems in /etc/fstab"
 	SCORE=$(( SCORE + 10 ))
@@ -19,7 +19,7 @@ else
 fi
 TOTAL=$(( TOTAL + 10 ))
 
-if mount | grep '/mnt/files' 
+if mount | grep '/mnt/files' &>/dev/null
 then
 	echo -e "\033[32m[OK]\033[0m\t\t the ext4 partition was found as mounted"
 	SCORE=$(( SCORE + 10 ))
@@ -29,11 +29,11 @@ fi
 TOTAL=$(( TOTAL + 10 ))
 
 # finding swap device name
-export SWAPDEV=$(blkid | grep $SWAPID | cut -d : -f 1)
+export SWAPDEV=$(blkid | grep $SWAPID | cut -d : -f 1) &>/dev/null
 echo SWAPDEV is $SWAPDEV
 
 # evaluating availability
-if swapon -s | grep $SWAPDEV
+if swapon -s | grep $SWAPDEV &>/dev/null
 then
         echo -e "\033[32m[OK]\033[0m\t\t swap device is active"
         SCORE=$(( SCORE + 10 ))
