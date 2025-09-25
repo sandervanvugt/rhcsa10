@@ -1,4 +1,5 @@
 set -x
+set +f
 find /etc -type f -exec grep -Ri 'administrator' {} \; > /root/lab15.check &>/dev/null
 set +x
 
