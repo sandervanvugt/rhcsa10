@@ -22,7 +22,7 @@ fi
 
 if ssh server2 id &>/dev/null
 then
-	echo -e "\033[31m[OK]\033[0m\t\t I can ssh to server2 as the root user, we can continue"
+	echo -e "\033[32m[OK]\033[0m\t\t I can ssh to server2 as the root user, we can continue"
 else
 	"\033[31m[FAIL]\033[0m\t\t echo I cannot ssh to server2 as the root user. This is critical for evaluating your work. Fix this and try again."
 	exit
