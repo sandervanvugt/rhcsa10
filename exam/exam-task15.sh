@@ -1,4 +1,4 @@
-grep -Ri 'administrator' /etc/* > /root/lab15.check &>/dev/null
+find /etc -type f -exec grep -Ri 'administrator' {} \; > /root/lab15.check &>/dev/null
 
 if diff /tmp/lab15.check /root/administratorfiles.txt &>/dev/null
 then
