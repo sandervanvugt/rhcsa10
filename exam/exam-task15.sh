@@ -1,4 +1,6 @@
+set +o
 find /etc -type f -exec grep -Ri 'administrator' {} \; > /root/lab15.check &>/dev/null
+set -o
 
 if diff /tmp/lab15.check /root/administratorfiles.txt &>/dev/null
 then
