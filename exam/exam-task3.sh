@@ -7,7 +7,7 @@ else
 fi
 TOTAL=$(( TOTAL + 10 ))
 
-if ls -Z /repo | grep httpd_sys_content_t &>/dev/null
+if ls -Z /repo 2>/dev/null | grep httpd_sys_content_t &>/dev/null
 then
 	echo -e "\033[32m[OK]\033[0m\t\t the /repo directory has the right SELinux label"
         SCORE=$(( SCORE + 10 ))
