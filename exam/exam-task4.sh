@@ -10,12 +10,17 @@ else
 fi
 TOTAL=$(( TOTAL + 10 ))
 
-if grep ${EXT4ID}.*files /etc/fstab &>/dev/null && grep ${SWAPID}.*swap /etc/fstab &>/dev/null
+if [ -z $EXT4ID ] || [ -z $SWAPID ]
 then
-	echo -e "\033[32m[OK]\033[0m\t\t found both filesystems in /etc/fstab"
-	SCORE=$(( SCORE + 10 ))
+	echo -e "\033[31m[FAIL]\033[0m\t\t could find both the ext4 partition as the swap partition"
 else
-	echo -e "\033[31m[FAIL]\033[0m\t\t filesystems not found in /etc/fstab"
+	if grep ${EXT4ID}.*files /etc/fstab &>/dev/null && grep ${SWAPID}.*swap /etc/fstab &>/dev/null
+	then
+		echo -e "\033[32m[OK]\033[0m\t\t found both filesystems in /etc/fstab"
+		SCORE=$(( SCORE + 10 ))
+	else
+		echo -e "\033[31m[FAIL]\033[0m\t\t filesystems not found in /etc/fstab"
+	fi
 fi
 TOTAL=$(( TOTAL + 10 ))
 
@@ -29,15 +34,18 @@ fi
 TOTAL=$(( TOTAL + 10 ))
 
 # finding swap device name
-export SWAPDEV=$(blkid | grep $SWAPID | cut -d : -f 1) &>/dev/null
-echo SWAPDEV is $SWAPDEV
-
-# evaluating availability
-if swapon -s | grep $SWAPDEV &>/dev/null
+if export SWAPDEV=$(blkid | grep $SWAPID | cut -d : -f 1) &>/dev/null
 then
-        echo -e "\033[32m[OK]\033[0m\t\t swap device is active"
-        SCORE=$(( SCORE + 10 ))
+	echo SWAPDEV is $SWAPDEV
+# evaluating availability
+	if swapon -s | grep $SWAPDEV &>/dev/null
+	then
+        	echo -e "\033[32m[OK]\033[0m\t\t swap device is active"
+        	SCORE=$(( SCORE + 10 ))
+	else
+        	echo -e "\033[31m[FAIL]\033[0m\t\t swap device is not currently active"
+	fi
 else
-        echo -e "\033[31m[FAIL]\033[0m\t\t swap device is not currently active"
+	echo -e "\033[31m[FAIL]\033[0m\t\t the swap device name could not be determined"
 fi
 TOTAL=$(( TOTAL + 10 ))
