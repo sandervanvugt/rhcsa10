@@ -1,12 +1,17 @@
 export VGUSEDBYMYFILES=$(lvdisplay | grep -A3 myfiles | awk '/VG Name/ { print $3 }')
 export VGUSEDBYROOT=$(lvdisplay | grep -A3 root | awk '/VG Name/ { print $3 }')
 
-if vgdisplay $(echo VGUSEDBYMYFILES | grep 'PE Size' | grep '8.00') &>/dev/null
+if [ -z $VGUSEDBYMYFILES ]
 then
-	echo -e "\033[32m[OK]\033[0m\t\t the VG used by the LV myfiles uses 8 MiB extents"
-	SCORE=$(( SCORE + 10 ))
+	echo -e "\033[31m[FAIL]\033[0m\t\t It seems you didnt create an LV myfiles"
 else
-	echo -e "\033[31m[FAIL]\033[0m\t\t the VG used by the LV myfiles does not use 8MiB extents"
+	if vgdisplay $(echo VGUSEDBYMYFILES | grep 'PE Size' | grep '8.00') &>/dev/null
+	then
+		echo -e "\033[32m[OK]\033[0m\t\t the VG used by the LV myfiles uses 8 MiB extents"
+		SCORE=$(( SCORE + 10 ))
+	else
+		echo -e "\033[31m[FAIL]\033[0m\t\t the VG used by the LV myfiles does not use 8MiB extents"
+	fi
 fi
 TOTAL=$(( TOTAL + 10 ))
 
