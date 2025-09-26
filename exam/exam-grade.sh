@@ -2,6 +2,10 @@
 # exit if not root
 clear
 
+echo -e "\e[5m\033[35m\033[1mWARNING\e[0m\033[0m\033[0m\t\tthis script is currently in version 0.1 and may still have bugs. If anything doesnt work as expected, please let me know by sending an email to mail@sandervanvugt.nl."
+echo press enter to continue
+read
+
 ls /root &>/dev/null || (echo run this script with root privileges && exit 2)
 
 # check if the system has recently rebooted
