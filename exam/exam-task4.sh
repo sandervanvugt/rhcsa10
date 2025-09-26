@@ -1,12 +1,12 @@
 export EXT4ID=$(blkid | awk '/ext4/ { print $2 }')
 export SWAPID=$(blkid | awk '/swap/ && !/mapper/ { print $2 }')
 
-if [ -n $EXT4ID ] && [ -n $SWAPID ] &>/dev/null
+if [ -z $EXT4ID ] || [ -z $SWAPID ]
 then
+	echo -e "\033[31m[FAIL]\033[0m\t\t could find both the ext4 partition as the swap partition"
+else
 	echo -e "\033[32m[OK]\033[0m\t\t the ext4 partition and the swap partition were found"
 	SCORE=$(( SCORE + 10 ))
-else
-	echo -e "\033[31m[FAIL]\033[0m\t\t could find both the ext4 partition as the swap partition"
 fi
 TOTAL=$(( TOTAL + 10 ))
 
