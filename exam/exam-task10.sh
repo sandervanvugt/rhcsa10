@@ -14,13 +14,18 @@ TOTAL=$(( TOTAL + 10 ))
 
 if [ -f /etc/auto.master ] &>/dev/null
 then
-	export AUTOFSFILE=$(awk '/homes/ { print $2 }' /etc/auto.master)
-	if grep '\*.*/homes/&' $AUTOFSFILE &>/dev/null
+	if grep 'homes' /etc/auto.master
 	then
-		echo -e "\033[32m[OK]\033[0m\t\t wildcard mount correctly configured"
-		SCORE=$(( SCORE + 10 ))
+		export AUTOFSFILE=$(awk '/homes/ { print $2 }' /etc/auto.master)
+		if grep '\*.*/homes/&' $AUTOFSFILE &>/dev/null
+		then
+			echo -e "\033[32m[OK]\033[0m\t\t wildcard mount correctly configured"
+			SCORE=$(( SCORE + 10 ))
+		else
+			echo -e "\033[31m[FAIL]\033[0m\t\t wildcard mount not correctly configured"
+		fi
 	else
-		echo -e "\033[31m[FAIL]\033[0m\t\t wildcard mount not correctly configured"
+		echo -e "\033[31m[FAIL]\033[0m\t\t there is no directory homes in /etc/auto.master"
 	fi
 else
 	echo -e "\033[31m[FAIL]\033[0m\t\t /etc/auto.master does not exist"
