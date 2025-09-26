@@ -1,4 +1,4 @@
-if $(which showmount) &>/dev/null
+if which showmount &>/dev/null
 then
 	if showmount -e server2 | grep homes &>/dev/null
 	then
