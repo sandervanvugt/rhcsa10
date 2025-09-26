@@ -34,18 +34,23 @@ fi
 TOTAL=$(( TOTAL + 10 ))
 
 # finding swap device name
-if export SWAPDEV=$(blkid | grep $SWAPID | cut -d : -f 1) &>/dev/null
+if [ -z $SWAPID ]
 then
-	echo SWAPDEV is $SWAPDEV
-# evaluating availability
-	if swapon -s | grep $SWAPDEV &>/dev/null
-	then
-        	echo -e "\033[32m[OK]\033[0m\t\t swap device is active"
-        	SCORE=$(( SCORE + 10 ))
-	else
-        	echo -e "\033[31m[FAIL]\033[0m\t\t swap device is not currently active"
-	fi
+	echo -e "\033[31m[FAIL]\033[0m\t\t the swap device was not found"
 else
-	echo -e "\033[31m[FAIL]\033[0m\t\t the swap device name could not be determined"
+	if export SWAPDEV=$(blkid | grep $SWAPID | cut -d : -f 1) &>/dev/null
+	then
+		echo SWAPDEV is $SWAPDEV
+		# evaluating availability
+		if swapon -s | grep $SWAPDEV &>/dev/null
+		then
+       		 	echo -e "\033[32m[OK]\033[0m\t\t swap device is active"
+        		SCORE=$(( SCORE + 10 ))
+		else
+        		echo -e "\033[31m[FAIL]\033[0m\t\t swap device is not currently active"
+		fi
+	else
+		echo -e "\033[31m[FAIL]\033[0m\t\t the swap device name could not be determined"
+	fi
 fi
 TOTAL=$(( TOTAL + 10 ))
