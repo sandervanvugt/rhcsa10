@@ -12,7 +12,7 @@ TOTAL=$(( TOTAL + 10 ))
 
 if [ -z $EXT4ID ] || [ -z $SWAPID ]
 then
-	echo -e "\033[31m[FAIL]\033[0m\t\t could find both the ext4 partition as the swap partition"
+	echo -e "\033[31m[FAIL]\033[0m\t\t could find fstab entries for the ext4 partition and the swap partition"
 else
 	if grep ${EXT4ID}.*files /etc/fstab &>/dev/null && grep ${SWAPID}.*swap /etc/fstab &>/dev/null
 	then
