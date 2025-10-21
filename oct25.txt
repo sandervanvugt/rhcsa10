@@ -1,0 +1,130 @@
+    1  vim countdown
+    2  cat countdown 
+    3  chmod +x countdown 
+    4  ./countdown 14
+    5  rpm -qf $(which useradd)
+    6  which useradd
+    7  rpm -qc shadow-utils
+    8  ls -l $(which dnf) $(which yum)
+    9  df -h
+   10  mount
+   11  ls /run/media/student/RHEL-10-0-BaseOS-aarch64/
+   12  mkdir /repo
+   13  lsblk
+   14  dd if=/dev/sr0 of=/rhel10.iso bs=1M
+   15  ls -Zd /repo
+   16  mount /rhel10.iso /repo
+   17  ls -Zd /repo
+   18  umount /repo
+   19  df -h
+   20  rm -f /rhel10.iso 
+   21  cp -R /run/media/student/RHEL-10-0-BaseOS-aarch64/BaseOS/ /repo
+   22  ls /repo
+   23  cp -R /run/media/student/RHEL-10-0-BaseOS-aarch64/AppStream/ /repo
+   24  ls -dZ /repo
+   25  history
+   26  df -h
+   27  dnf install -y nmap
+   28  dnf config-manager --add-repo="file:///repo/AppStream"
+   29  dnf config-manager --add-repo="file:///repo/BaseOS"
+   30  dnf install -y nmap
+   31  cd /etc/yum.repos.d/
+   32  ls
+   33  vim repo_BaseOS.repo 
+   34  vim repo_AppStream.repo 
+   35  dnf install nmap
+   36  history
+   37  cat repo_BaseOS.repo 
+   38  hostname
+   39  cat /etc/hosts
+   40  ls
+   41  vim repo_BaseOS.repo 
+   42  history
+   43  cd
+   44  ./countdown 12
+   45  dnf install git
+   46  git clone https://github.com/sandervanvugt/rhcsa10
+   47  cd rhcsa10/
+   48  ls
+   49  cd 
+   50  dnf list
+   51  dnf list selinux*
+   52  dnf provides */seinfo
+   53  seinfo
+   54  dnf search seinfo
+   55  dnf search all seinfo
+   56  dnf info setools-console
+   57  cd rhcsa10/
+   58  ls
+   59  cd labs/
+   60  ls
+   61  cd
+   62  ./countdown 12
+   63  ls /etc/hosts
+   64  cd /etc
+   65  ls hosts
+   66  tar cvzf /root/archive.tgz .
+   67  tar tvf /root/archive.tgz 
+   68  cd /
+   69  tar cvzf /root/archive.tgz /etc
+   70  tar tvf /root/archive.tgz 
+   71  tar cvzf /root/archive.tgz -C /etc .
+   72  history
+   73  cut -d : -f 1 /etc/passwd
+   74  cut -d : -f 1 /etc/passwd | sort
+   75  cut -d : -f 1 /etc/passwd | sort >/var/tmp/users
+   76  useradd bob
+   77  mkdir /root/userfiles
+   78  find / -user bob
+   79  find / -user bob -type f
+   80  find / -user bob -type f -exec cp {} /root/userfiles/ \;
+   81  ls -al /root/userfiles/
+   82  cd
+   83  mkdir one
+   84  find / -user bob -type f | xargs cp /root/one/
+   85  ls one/
+   86  ls -a one/
+   87  cd rhcsa10/
+   88  cd labs/
+   89  ./live-lab1-grade.sh 
+   90  history
+   91  find / -user bob -type f | xargs cp {} /root/one/
+   92  ls -l /root/one
+   93  ls -la /root/one
+   94  cd 
+   95  ls one
+   96  ls -d one
+   97  find / -user bob -type f 
+   98  find / -user bob -type f | xargs -i cp {} /root/one/
+   99  ls -al one
+  100  man xargs
+  101  history
+  102  su - bob
+  103  grep root /etc/shadow
+  104  exit
+  105  id student
+  106  visudo
+  107  passwd bob
+  108  su - bob
+  109  visudo
+  110  su - bob
+  111  visudo
+  112  ps aux | less
+  113  less /etc/passwd
+  114  su - lisa
+  115  grep bob /etc/sudoers
+  116  echo password | passwd --stdin lisa
+  117  passwd lisa
+  118  vim /etc/login.defs 
+  119  cd /etc/skel
+  120  ls -a
+  121  touch hellofile
+  122  useradd anna
+  123  ls -la /home/anna/
+  124  passwd anna
+  125  grep anna /etc/shadow
+  126  usermod -L anna
+  127  grep anna /etc/shadow
+  128  cd
+  129  ip a
+  130  history > /tmp/oct25.txt
