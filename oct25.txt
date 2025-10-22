@@ -102,29 +102,315 @@
   102  su - bob
   103  grep root /etc/shadow
   104  exit
-  105  id student
-  106  visudo
-  107  passwd bob
-  108  su - bob
-  109  visudo
-  110  su - bob
-  111  visudo
-  112  ps aux | less
-  113  less /etc/passwd
-  114  su - lisa
-  115  grep bob /etc/sudoers
-  116  echo password | passwd --stdin lisa
-  117  passwd lisa
-  118  vim /etc/login.defs 
-  119  cd /etc/skel
-  120  ls -a
-  121  touch hellofile
-  122  useradd anna
-  123  ls -la /home/anna/
-  124  passwd anna
-  125  grep anna /etc/shadow
-  126  usermod -L anna
-  127  grep anna /etc/shadow
-  128  cd
-  129  ip a
-  130  history > /tmp/oct25.txt
+  105  ./countdown 12
+  106  id student
+  107  visudo
+  108  passwd bob
+  109  su - bob
+  110  visudo
+  111  su - bob
+  112  visudo
+  113  ps aux | less
+  114  less /etc/passwd
+  115  su - lisa
+  116  grep bob /etc/sudoers
+  117  echo password | passwd --stdin lisa
+  118  passwd lisa
+  119  vim /etc/login.defs 
+  120  cd /etc/skel
+  121  ls -a
+  122  touch hellofile
+  123  useradd anna
+  124  ls -la /home/anna/
+  125  passwd anna
+  126  grep anna /etc/shadow
+  127  usermod -L anna
+  128  grep anna /etc/shadow
+  129  cd
+  130  ip a
+  131  history > /tmp/oct25.txt
+  132  vim /etc/login.defs 
+  133  touch /etc/skel/newfile
+  134  for i in anna anouk lisa linda; do useradd $i; done
+  135  for i in anna anouk lisa linda; do echo password | passwd --stdin $i; done
+  136  grep linda /etc/passwd
+  137  grep linda /etc/shadow
+  138  ls /home/linda
+  139  groupadd profs
+  140  groupadd students
+  141  usermod -aG profs anna
+  142  usermod -aG profs anouk
+  143  usermod -aG student linda
+  144  usermod -aG student lisaq
+  145  usermod -aG student lisa
+  146  history
+  147  rhcsa10/labs/live-lab2-grade.sh 
+  148  vim rhcsa10/labs/live-lab2-grade.sh 
+  149  grep students /etc/group | grep linda | grep lisa
+  150  tail /etc/group
+  151  grep student /etc/group
+  152  vim /etc/group
+  153  id lisa
+  154  rhcsa10/labs/live-lab2-grade.sh 
+  155  ls -l
+  156  echo hello > /home/linda/hellofile
+  157  chmod 007 /home/linda/hellofile 
+  158  chown linda /home/linda/hellofile
+  159  su - linda
+  160  man 7 capabilities
+  161  mkdir -p /data/profs /data/students
+  162  ls -l
+  163  cd /data
+  164  ls -l
+  165  id
+  166  chgrp profs profs
+  167  chown :student students
+  168  ls -l
+  169  chmod 770 *
+  170  ls -l
+  171  su - linda
+  172  ls -l
+  173  chgrp students students
+  174  ls -l
+  175  su - linda
+  176  chmod g+s students
+  177  cd students
+  178  rm -f *
+  179  touch rootfile
+  180  ls -l
+  181  su - lisa
+  182  chmod +t .
+  183  su - lisa
+  184  su - linda
+  185  history
+  186  ls -l /usr/bin/passwd
+  187  ls -l /etc/shadow
+  188  cd
+  189  find / -perm /4000
+  190  find / -perm /4000 > suidfiles.txt
+  191  touch /home/linda/runme
+  192  chmod u+s /home/linda/runme
+  193  find / -perm /4000 > suidfiles-$(date +%d-%m-%y).txt
+  194  diff /root/suidfiles.txt /root/suidfiles-22-10-25.txt 
+  195  umask
+  196  su - linbda
+  197  su - linda
+  198  history
+  199  cd /etc/yum.repos.d/
+  200  ls
+  201  cat repo_AppStream.repo 
+  202  cat  repo_BaseOS.repo 
+  203  ls /repo
+  204  ls /repo/BaseOS/
+  205  cd
+  206  lsblk
+  207  mount /dev/sr0 /mnt
+  208  #cp -R /mnt/BaseOS/ /repo
+  209  #cp -R /mnt/AppStream/ /repo
+  210  rm -f /data
+  211  rm -rf /data
+  212  mkdir /data/profs /data/students
+  213  mkdir -p /data/profs /data/students
+  214  cd /data
+  215  ls
+  216  ls -l
+  217  chgrp profs profs
+  218  chgrp students students
+  219  ls -l
+  220  chmod 770 *
+  221  ls -l
+  222  umask 002
+  223  touch ufile
+  224  mkdir udir
+  225  ls -ld u*
+  226  cd
+  227  cd rhcsa10/labs/
+  228  ls
+  229  ./live-lab2-grade.sh 
+  230  ls
+  231  history
+  232  cd
+  233  lsblk
+  234  cd /dev
+  235  ls
+  236  cd
+  237  ./countdown 12
+  238  lsblk
+  239  mount
+  240  mount | grep proc
+  241  cd /proc
+  242  ls
+  243  cat partitions 
+  244  lsblk
+  245  poweroff
+  246  ./countdown 12
+  247  lsblk
+  248  fdisk /dev/nvme0n1
+  249  lsblk
+  250  mount /dev/nvme0n1p4 /mnt
+  251  mkfs.xfs /dev/nvme0n1p4
+  252  mount /dev/nvme0n1p4 /mnt
+  253  lsblk
+  254  mount
+  255  findmnt
+  256  lsblk
+  257  history
+  258  fdisk /dev/nvme0n2
+  259  history
+  260  fdisk /dev/nvme0n1
+  261  history
+  262  lsblk 
+  263  fdisk /dev/nvme0n1
+  264  history
+  265  df -h
+  266  df 
+  267  echo $(( 983040 * 1024 ))
+  268  echo $(( 1024 * 1024 * 1024 ))
+  269  echo $(( 1024 * 1024 ))
+  270  echo $(( 1073741824 - 1048576 ))
+  271  fdisk /dev/nvme0n1
+  272  echo $(( 2097152 * 512 ))
+  273  lsblk
+  274  history
+  275  lsblk
+  276  fdisk -l /dev/nvme0n1
+  277  fdisk /dev/nvme0n1
+  278  mount | grep fat
+  279  dnf search btrfs
+  280  fdisk /dev/nvme0n1
+  281  mkfs /dev/nvme0n1p5
+  282  umount /mnt
+  283  mount /dev/nvme0n1p5 /mnt
+  284  mount | grep n1p5
+  285  df -h
+  286  umount /mnt
+  287  mkfs.ext4 /dev/nvme0n1p5
+  288  mkfs /dev/nvme0n1p5
+  289  xxd /dev/nvme0n1p5 | less
+  290  dd if=/dev/zero of=/dev/nvme0n1p5 bs=1M count=1
+  291  xxd /dev/nvme0n1p5 | less
+  292  mkfs.ext4 /dev/nvme0n1p5
+  293  fdisk /dev/nvme0n2
+  294  mkfs /dev/nvme0n2p5
+  295  mkfs.xfs /dev/nvme0n2p6
+  296  mkdir /oldschool /newschool
+  297  vim /etc/fstab
+  298  history -w
+  299  lsblk
+  300  fdisk /dev/nvme0n1
+  301  lsblk
+  302  mount /dev/nvme0n1p4 /mnt
+  303  mkfs.xfs /dev/nvme0n1p4
+  304  mount /dev/nvme0n1p4 /mnt
+  305  lsblk
+  306  mount
+  307  findmnt
+  308  lsblk
+  309  history
+  310  fdisk /dev/nvme0n2
+  311  history
+  312  fdisk /dev/nvme0n1
+  313  history
+  314  lsblk 
+  315  fdisk /dev/nvme0n1
+  316  history
+  317  df -h
+  318  df 
+  319  echo $(( 983040 * 1024 ))
+  320  echo $(( 1024 * 1024 * 1024 ))
+  321  echo $(( 1024 * 1024 ))
+  322  echo $(( 1073741824 - 1048576 ))
+  323  fdisk /dev/nvme0n1
+  324  echo $(( 2097152 * 512 ))
+  325  lsblk
+  326  history
+  327  lsblk
+  328  fdisk -l /dev/nvme0n1
+  329  fdisk /dev/nvme0n1
+  330  mount | grep fat
+  331  dnf search btrfs
+  332  fdisk /dev/nvme0n1
+  333  mkfs /dev/nvme0n1p5
+  334  umount /mnt
+  335  mount /dev/nvme0n1p5 /mnt
+  336  mount | grep n1p5
+  337  df -h
+  338  umount /mnt
+  339  mkfs.ext4 /dev/nvme0n1p5
+  340  mkfs /dev/nvme0n1p5
+  341  xxd /dev/nvme0n1p5 | less
+  342  dd if=/dev/zero of=/dev/nvme0n1p5 bs=1M count=1
+  343  xxd /dev/nvme0n1p5 | less
+  344  mkfs.ext4 /dev/nvme0n1p5
+  345  fdisk /dev/nvme0n2
+  346  mkfs /dev/nvme0n2p5
+  347  mkfs.xfs /dev/nvme0n2p6
+  348  mkdir /oldschool /newschool
+  349  vim /etc/fstab
+  350  history -w
+  351  reboot
+  352  ./countdown 10
+  353  ./countdown 8
+  354  ./countdown 12
+  355  lsblk
+  356  cat /etc/fstab
+  357  blkid
+  358  blkid | awk '{ print $2 }'
+  359  blkid | awk '{/n3p5/ print $2 }'
+  360  blkid | awk '/n3p5/ { print $2 }'
+  361  blkid | awk '/n3p5/ { print $2 }' >> /etc/fstab
+  362  blkid | awk '/n3p6/ { print $2 }' >> /etc/fstab
+  363  vim /etc/fstab
+  364  reboot
+  365  ./countdown 12
+  366  lsblk
+  367  history
+  368  lsblk
+  369  touch /oldschool/oldfile
+  370  touch /newschool/newfile
+  371  umount /oldschool 
+  372  fdisk /etc/fstab
+  373  vim /etc/fstab
+  374  fdisk /dev/nvme0n1
+  375  lsblk
+  376  fdisk /dev/nvme0n3
+  377  reboot
+  378  lsblk
+  379  fdisk /dev/nvme0n3
+  380  reboot
+  381  vim /etc/fstab
+  382  mount -a
+  383  lsblk
+  384  cd /oldschool/
+  385  ls
+  386  cd /dev/disk/
+  387  ls
+  388  cd by-uuid/
+  389  ls
+  390  ls -l
+  391  cd /run/systemd/generator/
+  392  ls
+  393  cat newschool.mount 
+  394  cd
+  395  top
+  396  less /proc/meminfo 
+  397  top
+  398  fdisk -l
+  399  lsblk
+  400  fdisk /dev/nvme0n1
+  401  mkswap /dev/nvme0n1p7
+  402  blkid | awk '/n1p7/ { print $2 }' >> /etc/fstab
+  403  vim /etc/fstab
+  404  free -m
+  405  swapon -a
+  406  free -m
+  407  dd if=/dev/zero of=/swapfile bs=1M count=1024
+  408  ls -l /swapfile 
+  409  mkswap /swapfile
+  410  chmod 600 /swapfile 
+  411  vim /etc/fstab
+  412  swapon -a
+  413  free -m
+  414  reboot
+  415  free -m
+  416  history > /tmp/oct25.txt 
