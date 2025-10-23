@@ -414,3 +414,239 @@
   414  reboot
   415  free -m
   416  history > /tmp/oct25.txt 
+  417  cd /proc
+  418  ls
+  419  cat meminfo 
+  420  cd sys
+  421  ls
+  422  cd vm
+  423  ls
+  424  cat swappiness 
+  425  echo 120 > swappiness 
+  426  cat swappiness 
+  427  sysctl -a
+  428  sysctl -a | grep swapp
+  429  vim /etc/sysctl.conf 
+  430  sysctl -a | wc -l
+  431  cd
+  432  tuned-adm recommend
+  433  tuned-adm list
+  434  tuned-adm profile powersave
+  435  tuned-adm list
+  436  cd /usr/lib/tuned/
+  437  ls
+  438  cd profiles/
+  439  ls
+  440  cd powersave/
+  441  ls
+  442  vim tuned.conf 
+  443  su - linda
+  444  exit
+  445  loginctl list-users
+  446  loginctl list-sessions
+  447  ps aux | grep linda
+  448  for i in $(ps aux | awk '/linda/ { print $2 }'; do echo $i; done
+  449  for i in $(ps aux | awk '/linda/ { print $2 }'); do echo $i; done
+  450  for i in $(ps aux | awk '/linda/ { print $2 }'); do kill -9 $i; done
+  451  systemctl status NetworkManager
+  452  nmcli connection show
+  453  nmcli device show
+  454  nmcli device edit 
+  455  nmtui
+  456  ip a
+  457  history
+  458  ps aux | less
+  459  systemctl -t help
+  460  dnf install -y httpd
+  461  systemctl cat httpd
+  462  cd rhcsa10/
+  463  ls
+  464  ls /usr/lib/systemd/system
+  465  vim /etc/systemd/system/sleep.service
+  466  systemctl daemon-reload
+  467  systemctl status sleep
+  468  systemctl start sleep
+  469  systemctl status sleep
+  470  kill 11093
+  471  systemctl status sleep
+  472  systemctl cat sleep
+  473  systemctl start sleep
+  474  systemctl status sleep
+  475  kill -9 11108
+  476  systemctl status sleep
+  477  systemctl cat sleep
+  478  man -k systemd | wc -l
+  479  man systemd.directives
+  480  man systemd.service
+  481  history
+  482  systemctl list-units
+  483  systemctl list-unit-files
+  484  systemctl list-unit-files -t timer
+  485  systemctl enable --now sleep
+  486  systemctl cat sleep
+  487  cd /etc/systemd/system/
+  488  ls
+  489  ls multi-user.target.wants/
+  490  ls multi-user.target.wants/ -l
+  491  cat sleep.service 
+  492  systemctl edit httpd.service
+  493  export EDITOR=/usr/bin/bim
+  494  export EDITOR=/usr/bin/vim
+  495  echo export EDITOR=/usr/bin/vim >> ~/.bashrc
+  496  systemctl edit httpd.service
+  497  systemctl cat httpd.service
+  498  systemctl status httpd
+  499  systemctl start httpd
+  500  systemctl status httpd
+  501  kill -9 11614
+  502  systemctl status httpd
+  503  systemctl show httpd
+  504  cd /usr/lib/systemd/system
+  505  grep -i require
+  506  grep -i require *
+  507  cd
+  508  systemctl list-dependencies httpd
+  509  systemctl cat httpd
+  510  dnf install -y vsftpd
+  511  systemctl edit httpd.service
+  512  systemctl stop httpd
+  513  systemctl status httpd
+  514  systemctl status vsftpd
+  515  systemctl start httpd
+  516  systemctl status vsftpd
+  517  history
+  518  journalctl
+  519  mkdir /var/log/journal
+  520  ls /var/log/journal/
+  521  systemctl restart systemd-journal-flush.service 
+  522  ls /var/log/journal/
+  523  journalctl -u httpd
+  524  journalctl -p err
+  525  journalctl -xp err
+  526  history
+  527  mkdir /web
+  528  vim /web/index.html
+  529  vim /etc/httpd/conf/httpd.conf 
+  530  systemctl restart httpd
+  531  curl localhost
+  532  getenforce
+  533  setenforce permissive
+  534  curl localhost
+  535  history
+  536  cd /var/log
+  537  ls
+  538  cd httpd/
+  539  ls 
+  540  less error_log 
+  541  vim /etc/httpd/conf/httpd.conf 
+  542  systemctl restart httpd
+  543  curl localhost
+  544  getenforce 
+  545  setenforce enforcing
+  546  curl localhost
+  547  history
+  548  systemctl status auditd
+  549  grep AVC /var/log/audit/audit.log 
+  550  date -d @1761234500
+  551  ps Zaux | grep http
+  552  ls -Z /var/www
+  553  ls -dZ /web
+  554  grep AVC /var/log/audit/audit.log | tail -1
+  555  cd
+  556  getenforce
+  557  grep AVC /var/log/audit/
+  558  grep AVC /var/log/audit/audit.log 
+  559  man semanage-fcontext
+  560  semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
+  561  semanage fcontext -l -C
+  562  ls -dZ /web
+  563  restorecon -Rv /web
+  564  getenforce
+  565  curl localhost
+  566  history
+  567  dnf list selinux
+  568  dnf list selinux*
+  569  man -k _selinux
+  570  dnf install selinux-policy-doc
+  571  man -k _selinu
+  572  man -k _selinu | wc -l
+  573  man -k _selinu | grep http
+  574  man httpd_selinux
+  575  vim /etc/ssh/sshd_config
+  576  systemctl restart sshd
+  577  systemctl status sshd
+  578  journalctl -u sshd
+  579  setenforce permissive
+  580  systemctl restart sshd
+  581  setenforce enforcing
+  582  grep AVC /var/log/audit/audit.log 
+  583  semanage port -a -t ssh_port_t -p tcp 2022
+  584  getenforce
+  585  systemctl restart sshd
+  586  ss -tupn
+  587  ss -tupln
+  588  man semanage-port
+  589  getsebool -a
+  590  getsebool -a | grep ftp
+  591  setsebool -P ftpd_anon_write on
+  592  journalctl | grep sealert
+  593  sealert -l 69d59668-631f-4c24-b752-f75bde596fec
+  594  sealert -l 69d59668-631f-4c24-b752-f75bde596fec | less
+  595  journalctl | grep sealert
+  596  sealert -l d46257a6-4a78-410e-8739-e9b8e641c63a | less
+  597  cp /etc/hosts ~
+  598  ls -Z /etc/hosts ~/hosts
+  599  mv hosts /web/
+  600  ls -Z /web
+  601  restorecon -Rv /web
+  602  reboot
+  603  ./countdown 13
+  604  ./countdown 1
+  605  ./countdown 12
+  606  ./countdown 1
+  607  ./countdown 12
+  608  lsblk
+  609  fdisk /dev/nvme0n3
+  610  pvcreate /dev/nvme0n3p8
+  611  pvs
+  612  vgcreate vgdata /dev/nvme0n3p8
+  613  pvs
+  614  vgs
+  615  lvcreate -n lvdata -L 1G vgdata
+  616  lvcreate -n lvdata -l 100%FREE  vgdata
+  617  lvs
+  618  mkfs.ext4 /dev/vgdata/lvdata
+  619  vim /etc/fstab
+  620  mount -a
+  621  mkdir /lvdata
+  622  mount -a
+  623  mount
+  624  ls -l /dev/mapper/vgdata-lvdata /dev/vgdata/lvdata
+  625  history
+  626  xxd /dev/nvme0n3p8 | less
+  627  vgs
+  628  vgextend vgdata /dev/nvme0n3p9
+  629  vgs
+  630  df -h
+  631  lvextend /dev/vgdata/lvdata -r -l +50%FREE
+  632  lvs
+  633  df -h
+  634  history
+  635  firewall-cmd --list-all
+  636  firewall-cmd --get-services
+  637  vim /usr/lib/firewalld/services/kube-controller-manager
+  638  vim /usr/lib/firewalld/services/kube-controller-manager.xml
+  639  firewall-cmd --add-service http
+  640  firewall-cmd --list-all
+  641  firewall-cmd --reload
+  642  firewall-cmd --list-all
+  643  firewall-cmd --add-service http --permanent
+  644  firewall-cmd --list-all
+  645  firewall-cmd --reload
+  646  firewall-cmd --list-all
+  647  firewall-cmd --help | grep port
+  648  firewall-cmd --add-port=2022/tcp --permanent
+  649  firewall-cmd --reload
+  650  firewall-cmd --list-all
+  651  firewall-cmd --list-services 
+  652  history > /tmp/oct25.txt 
