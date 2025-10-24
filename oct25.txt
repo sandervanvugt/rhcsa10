@@ -650,3 +650,176 @@
   650  firewall-cmd --list-all
   651  firewall-cmd --list-services 
   652  history > /tmp/oct25.txt 
+  653  vim /etc/ssh/sshd_config
+  654  systemctl restart sshd
+  655  vim /etc/default/grub 
+  656  cd /boot
+  657  ls
+  658  cd loader/
+  659  ls
+  660  cd entries/
+  661  ls
+  662  uname -r
+  663  vim ac51fbd7a7db4c00ad58b33ce0d1c0a9-6.12.0-55.9.1.el10_0.aarch64.conf 
+  664  cd
+  665  grub2-mkconfig -o /boot/grub2/grub.cfg 
+  666  reboot
+  667  systemctl list-unit-files -t target
+  668  systemctl get-default
+  669  systemctl set-default graphical.target
+  670  hostnamectl hostname server2.example.com
+  671  vim /etc/hosts
+  672  exit
+  673  dnf install nfs-utils
+  674  showmount -e 192.168.29.144
+  675  mount 192.168.29.144:/nfsdata /mnt
+  676  munt
+  677  mount
+  678  umount /mnt
+  679  dnf install -y autofs
+  680  cd /etc/
+  681  vim auto.master
+  682  cat auto.misc
+  683  vim auto.master
+  684  vim auto.nfsdata
+  685  systemctl restart autofs
+  686  ls /
+  687  cd /nfsdata
+  688  ls -a
+  689  cd files
+  690  ls
+  691  mount
+  692  vim /etc/auto.master
+  693  vim /etc/auto.ldap
+  694  systemctl restart autofs
+  695  cd /home
+  696  ls
+  697  cd ldap
+  698  ls -a
+  699  cd ldapuser1
+  700  cd ../ldapuser2
+  701  cd
+  702  timedatectl
+  703  timedatectl set-time
+  704  hwclock
+  705  hwclock --systohc
+  706  timedatectl list-timezones 
+  707  timedatectl set-timezone America/Lima
+  708  timedatectl status
+  709  timedatectl set-timezone Europe/Amsterdam
+  710  timedatectl status
+  711  systemctl status chrony
+  712  systemctl status chronyd
+  713  vim /etc/chrony.conf 
+  714  vim /etc/hosts
+  715  systemctl restart chronyd
+  716  chronyc sources
+  717  ./countdown 13
+  718  systemctl list-unit-files -t timer
+  719  systemctl cat logrotate.timer
+  720  systemctl list-unit-files logrotate*
+  721  systemctl status logrotate.service 
+  722  man systemd.time
+  723  man systemd.timer
+  724  dnf install -y sysstat
+  725  systemctl list-unit-files sysstat*
+  726  cd /var/log/sa
+  727  ls
+  728  cd
+  729  systemctl status crond
+  730  ls /etc/cron*.*/*
+  731  ls /etc/cron*/*
+  732  crontab -e -u linda
+  733  vim /etc/crontab
+  734  tail -f /var/log/messages 
+  735  ls -l /sbin/init
+  736  reboot
+  737  dnf install -y flatpak
+  738  ./countdown 45
+  739  vim /etc/httpd/conf/httpd.conf 
+  740  man semanage-port
+  741  semanage port -a -t http_port_t -p tcp 82
+  742  systemctl restart httpd
+  743  setenforce
+  744  getenforce
+  745  ss -tunlp
+  746  useradd -u 1100 -s /sbin/nologin lori
+  747  grep lori /etc/passwd
+  748  history
+  749  grep -lR '^[Aa]dministrator' /etc/
+  750  grep -lR '^[Aa]dministrator' /etc/ > /tmp/stratorfiles.txt
+  751  ls -l /sbin/nologin
+  752  ls -l /sbin/nologin /usr/sbin/nologin
+  753  ln -s /etc/hosts /tmp/hosts
+  754  ls -l /tmp/hosts
+  755  mkdir -p /data/sales
+  756  cd /data
+  757  ls -l
+  758  chown linda:sales sales
+  759  groupadd sales
+  760  chown linda:sales sales
+  761  ls -l
+  762  chmod 3775 sales
+  763  usermod -aG sales linda
+  764  usermod -aG sales lisa
+  765  su - lisa
+  766  su - linda
+  767  su - lisa
+  768  vgs
+  769  lvcreate -n lvlab -l 50 vgdata
+  770  mkdir /lvlab
+  771  vim /etc/fstab
+  772  mkfs.xfs /dev/vgdata/lvdata 
+  773  mount -a
+  774  mkfs.xfs /dev/vgdata/lvlab
+  775  lvextend -r /dev/vgdata/lvlab -L 400M
+  776  lvextend -L 400M /dev/vgdata/lvlab 
+  777  mkfs.xfs /dev/vgdata/lvlab
+  778  man mount
+  779  vim /etc/fstab
+  780  systemctl daemon-reload
+  781  mount -a
+  782  cd /run/systemd/generator/
+  783  ls
+  784  cp lvlab.mount /etc/systemd/system/
+  785  cd /etc/systemd/system/
+  786  vim lvlab.mount 
+  787  systemctl enable lvlab.mount
+  788  systemctl cat sshd.service 
+  789  vim lvlab.mount 
+  790  systemctl enable lvlab.mount
+  791  vim /etc/fstab
+  792  tuned-adm recommend 
+  793  tuned-adm profile virtual-guest
+  794  cd
+  795  find / -perm /6000 -type f
+  796  find / -perm /6000 -type f > /root/sugidfiles.txt
+  797  vim sugidcheck
+  798  echo h > a.txt
+  799  echo g > b.txt
+  800  diff a.txt b.txt
+  801  echo $?
+  802  vim sugidcheck
+  803  chmod +x sugidcheck 
+  804  touch /tmp/testfile
+  805  chmod u+s /tmp/testfile 
+  806  ls -l /tmp/testfile 
+  807  bash -x sugidcheck 
+  808  vim suidfiles-22-10-25.txt 
+  809  grep SUID /var/log/messages
+  810  crontab -e -u root
+  811  cat sugidcheck 
+  812  cd rhcsa10/
+  813  ls
+  814  crontab -e -u root
+  815  cd labs/
+  816  ls
+  817  ./live-mini-exam-grade.sh 
+  818  cd
+  819  visudo
+  820  cd rhcsa10/labs/
+  821  ls
+  822  cd ..
+  823  less resources.txt 
+  824  cd
+  825  history > /tmp/oct25.txt 
