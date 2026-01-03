@@ -1,5 +1,5 @@
-export EXT4ID=$(blkid | awk '/ext4/ { print $2 }')
-export SWAPID=$(blkid | awk '/swap/ && !/mapper/ { print $2 }')
+export EXT4ID=$(blkid | awk '/ext4/ { print $2 }' | cut -d\" -f2)
+export SWAPID=$(blkid | awk '/swap/ && !/mapper/ { print $2 }' | cut -d\" -f2 )
 
 if [ -z $EXT4ID ] || [ -z $SWAPID ]
 then
