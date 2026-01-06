@@ -1,6 +1,6 @@
 export VGUSEDBYMYFILES=$(lvdisplay | grep -A3 myfiles | awk '/VG Name/ { print $3 }')
 export VGUSEDBYROOT=$(lvdisplay | grep -A3 root | awk '/VG Name/ { print $3 }')
-export LVUSEDUUID=$(blkid | awk '/myfiles/ { print $2 }' | cut -d\" -f2)
+export LVUSEDUUID=$(blkid | awk -F\" '/myfiles/ { print $2 }')
 
 if [ -z $VGUSEDBYMYFILES ]
 then
