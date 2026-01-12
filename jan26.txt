@@ -1,0 +1,183 @@
+    1  ls -l $(which dnf) $(which yum)
+    2  which dnf
+    3  dfn install -y nmap
+    4  dnf install -y nmap
+    5  df -h
+    6  lsblk
+    7  dd if=/dev/sr0 of=/rhel10.iso bs=1M
+    8  mkdir /repo
+    9  vim /etc/fstab
+   10  mount -a
+   11  ls /repo
+   12  cd /repo/
+   13  ls
+   14  ls BaseOS/
+   15  ls BaseOS/Packages/
+   16  ls AppStream/Packages/
+   17  cd
+   18  dnf config-manager --add-repo="file:///repo/AppStream
+   19  "
+   20  dnf config-manager --add-repo="file:///repo/BaseOS"
+   21  dnf repolist
+   22  dnf install -y nmap
+   23  cd /etc/yum.repos.d/
+   24  ls
+   25  vim repo_BaseOS.repo 
+   26  vim repo_AppStream.repo 
+   27  dnf install -y nmap
+   28  cd 
+   29  dnf install -y git
+   30  git clone https://github.com/sandervanvugt/rhcsa10
+   31  history
+   32  dnf list selinux*
+   33  dnf search seinfo
+   34  dnf search all seinfo
+   35  dnf provides */Containterfile
+   36  dnf provides */Containerfile
+   37  dnf info setools-console
+   38  ls
+   39  cd rhcsa10/
+   40  ./counter 16
+   41  cd
+   42  ls /etc/hosts
+   43  cd etc
+   44  cd /etc
+   45  ls hosts
+   46  tar czvf /root/archive.tgz .
+   47  tar tvf /root/archive.tgz 
+   48  history | tail -5
+   49  cd
+   50  tar -czvf /root/arhive2.tgz -C /etc .
+   51  ls -l
+   52  diff archive.tgz arhive2.tgz 
+   53  cut -d : -f 1 /etc/passwd
+   54  cut -d : -f 1 /etc/passwd | sort
+   55  cut -d : -f 1 /etc/passwd | sort > /var/tmp/users
+   56  useradd bob
+   57  mkdir /root/userfiles
+   58  find / -user bob -type f
+   59  find / -user bob -type f -exec cp {} /root/userfiles/ \;
+   60  ls -al userfiles/
+   61  cd rhcsa10/
+   62  ls
+   63  cd labs/
+   64  ls
+   65  ./live-lab1-grade.sh 
+   66  cd
+   67  find / -user bob -type f
+   68  find / -user bob -type f -exec ls -l {} \;
+   69  find / -user bob -type f -exec cp {} /root/userfiles \;
+   70  cd rhcsa10/
+   71  ls
+   72  cat resources.txt 
+   73  ./counter 12
+   74  history
+   75  visudo
+   76  exit
+   77  sudo visudo
+   78  vim /etc/profile
+   79  vim /etc/sysctl.conf 
+   80  cd /etc/sudoers.d/
+   81  ls
+   82  vim lisa.conf
+   83  useradd lisa
+   84  passwd lisa
+   85  ssh lisa@localhost
+   86  ls
+   87  visudo
+   88  mv lisa.conf lisa
+   89  cd
+   90  ssh lisa@localhost
+   91  visudo
+   92  passwd linda
+   93  su - linda
+   94  vim /etc/passwd
+   95  su - halt
+   96  useradd santos -s /usr/bin/nano
+   97  passwd santos
+   98  su - santos
+   99  echo password | passwd --stdin santos
+  100  vim /etc/login.defs 
+  101  ls -al /etc/skel/
+  102  cp /etc/hosts /etc/skel/
+  103  grep lisa /etc/shadow
+  104  usermod -L lisa
+  105  grep lisa /etc/shadow
+  106  usermod -U lisa
+  107  grep lisa /etc/shadow
+  108  chage lisa
+  109  grep lisa /etc/shadow
+  110  passwd --help
+  111  chage --help
+  112  chage -l lisa
+  113  man motd
+  114  man issue
+  115  id lisa
+  116  id student
+  117  grep student /etc/passwd
+  118  grep wheel /etc/group
+  119  id user
+  120  id student
+  121  history -d 121
+  122  history
+  123  vim /etc/login.defs 
+  124  touch /etc/skel/newfile
+  125  userdel -rf linda
+  126  userdel -rf lisa
+  127  ls -l /home
+  128  groupadd profs
+  129  groupadd student
+  130  groupadd students
+  131  useradd --help | less
+  132  useradd -G students linda
+  133  useradd -G students lisa
+  134  useradd -G profs anna
+  135  useradd -G profs anouk
+  136  for i in linda lisa anna anouk; do echo $i; done
+  137  for i in linda lisa anna anouk; do echo password | passwd --stdin $i; done
+  138  id anna
+  139  cd rhcsa10/
+  140  ls
+  141  cd labs
+  142  ls
+  143  ./live-lab2-grade.sh 
+  144  history
+  145  usermod -G wheel anna
+  146  id anna
+  147  usermod --help 
+  148  usermod -aG profs anna
+  149  history
+  150  echo hello > /tmp/hellofile
+  151  chown linda /tmp/hellofile
+  152  chmod 066 /tmp/hellofile
+  153  ls -l /tmp/hellofile 
+  154  su - linda
+  155  cd
+  156  echo hello > /home/linda/hellofile
+  157  su - linda
+  158  mkdir -p /data/profs /data/students
+  159  chown :profs /data/profs
+  160  chgrp students /data/students/
+  161  chmod 770 /data/students
+  162  ls -l /data
+  163  chmod g+w,o-rx /data/profs/
+  164  ls -l /data
+  165  su - anna
+  166  chmod g+s /data/profs
+  167  ls -ld /data/profs/
+  168  su - anna
+  169  su - anouk
+  170  chmod +t /data/profs
+  171  su - anna
+  172  su - anouke
+  173  su - anouk
+  174  ls -l /usr/bin/passwd
+  175  ls -l /etc/shadow
+  176  find / -perm /4000
+  177  umask
+  178  umask 027
+  179  umask
+  180  mkdir one
+  181  ls -ld one
+  182  umask 022
+  183  history > /tmp/jan26.txt
