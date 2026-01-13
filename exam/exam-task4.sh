@@ -1,5 +1,5 @@
-export EXT4ID=$(blkid | awk '/ext4/ { print $2 }')
-export SWAPID=$(blkid | awk '/swap/ && !/mapper/ { print $2 }')
+export EXT4ID=$(blkid | awk -F\" '/ext4/ { print $2 }')
+export SWAPID=$(blkid | awk -F\" '/swap/ && !/mapper/ { print $2 }')
 
 if [ -z $EXT4ID ] || [ -z $SWAPID ]
 then
@@ -38,7 +38,7 @@ if [ -z $SWAPID ]
 then
 	echo -e "\033[31m[FAIL]\033[0m\t\t the swap device was not found"
 else
-	if export SWAPDEV=$(blkid | grep $SWAPID | cut -d : -f 1) &>/dev/null
+	if export SWAPDEV=$(blkid | grep $SWAPID | cut -d: -f 1) &>/dev/null
 	then
 		echo SWAPDEV is $SWAPDEV
 		# evaluating availability
