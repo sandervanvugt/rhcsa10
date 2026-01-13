@@ -181,3 +181,176 @@
   181  ls -ld one
   182  umask 022
   183  history > /tmp/jan26.txt
+  184  ip a
+  185  man semanage-port
+  186  mkdir -p /data/{profs,students}
+  187  ls -l /data
+  188  cd /data
+  189  chgrp profs profs
+  190  chgrp students students
+  191  chmod 770 *
+  192  ls -l
+  193  umask
+  194  umask 002
+  195  touch newfile
+  196  ls -l newfile 
+  197  cd
+  198  lsblk
+  199  poweroff
+  200  cd rhcsa10/
+  201  ls
+  202  vim counter
+  203  chmod +x counter 
+  204  ./counter 16
+  205  lsblk
+  206  ls /proc
+  207  cat /proc/partitions 
+  208  lsblk
+  209  fdisk /dev/nvme0n2
+  210  lsblk
+  211  history
+  212  fdisk /dev/nvme0n1
+  213  fdisk /dev/nvme0n2
+  214  fdisk /dev/nvme0n2p1
+  215  lsblk
+  216  mkfs.xfs /dev/nvme0n2p4
+  217  mount /dev/nvme0n1p4 /mnt
+  218  mount /dev/nvme0n2p4 /mnt
+  219  echo $?
+  220  mount
+  221  touch /mnt/mynewfile
+  222  lsblk
+  223  umount /mnt
+  224  mount /dev/nvme0n2p4 /mnt
+  225  cd /mnt
+  226  umount /mnt
+  227  lsof /mnt
+  228  cd
+  229  ount
+  230  mount
+  231  lsblk
+  232  findmnt
+  233  lsblk
+  234  cp rhcsa10/counter /usr/local/bin
+  235  echo $PATH
+  236  cp rhcsa10/counter /usr/local/sbin
+  237  counter 12
+  238  mkdir /mounts/one
+  239  mkdir -p /mounts/one
+  240  vim /etc/fstab
+  241  mount -a
+  242  reboot
+  243  cd rhcsa10/
+  244  ./counter 5
+  245  lsblk
+  246  blkid
+  247  blkid | awk '/n1p4/ { print $2 }'
+  248  blkid | awk '/n1p4/ { print $2 }' >> /etc/fstab
+  249  vim /etc/fstab
+  250  reboot
+  251  history
+  252  tail -2 /etc/fstab
+  253  vim /etc/fstab
+  254  vim /etc/default/grub 
+  255  cd /boot
+  256  ls
+  257  cd loader
+  258  ls
+  259  cd entries/
+  260  ls
+  261  vim a1182ed6b1eb4a4ca4f32bf80ed9b0c2-6.12.0-55.9.1.el10_0.aarch64.conf 
+  262  cd
+  263  grub2-mkconfig -o /boot/grub2/grub.cfg
+  264  history
+  265  reboot
+  266  vim fixboot.exo
+  267  find / -name "counter"
+  268  ln /usr/local/bin/counter /usr/local/bin/countdown
+  269  ln /usr/local/sbin/counter /usr/local/sbin/countdown
+  270  lsblk
+  271  journalctl -p err
+  272  cd /dev/disk/
+  273  ls
+  274  ls -l
+  275  cd by-uuid/
+  276  ls
+  277  ls -l
+  278  history
+  279  ls -l /sbin/init
+  280  cd
+  281  lsblk
+  282  fdisk /dev/nvme0n2
+  283  free -m
+  284  mkswap /dev/nvme0n2p5
+  285  vim /etc/fstab
+  286  swapon -a
+  287  free -m
+  288  history
+  289  vmstat
+  290  free -m
+  291  reboot
+  292  free -m
+  293  vmstat 2 20
+  294  free -m
+  295  history
+  296  dd if=/dev/zero of=/dev/null &
+  297  top
+  298  killall dd
+  299  dd if=/dev/zero of=/dev/null &
+  300  top
+  301  vim runslow
+  302  chmod +x runslow
+  303  ./runslow &
+  304  top
+  305  nice --help | less
+  306  killall dd
+  307  loginctl lust-sessions
+  308  loginctl list-sessions
+  309  top
+  310  tuned-adm list
+  311  tuned-adm profile powersave
+  312  tuned-adm recommend
+  313  history
+  314  ip a
+  315  systemctl status NetworkManager
+  316  nmtui
+  317  ip a
+  318  nmtui
+  319  dnf install -y zsh
+  320  vim /etc/hosts
+  321  dnf install -y nmap
+  322  dig example.com
+  323  systemctl -t help
+  324  ls /usr/lib/systemd/system
+  325  cd /etc/systemd/system/
+  326  ls
+  327  vim sleep.service
+  328  systemctl daemon-reload
+  329  systemctl enable --now sleep.service 
+  330  systemctl status sleep
+  331  kill -9 9614
+  332  systemctl status sleep
+  333  cd
+  334  man -k freeze
+  335  systemctl list-unit-files
+  336  systemctl list-units
+  337  systemctl list-units -t socket
+  338  systemctl status sleep
+  339  dnf install -y httpd
+  340  systemctl cat httpd.service 
+  341  systemctl show httpd.service 
+  342  systemctl edit httpd.service
+  343  export EDITOR=/usr/bin/vim
+  344  systemctl edit httpd.service
+  345  systemctl daemon-reload
+  346  systemctl restart httpd
+  347  systemctl status httpd
+  348  kill -9 10384
+  349  systemctl status httpd
+  350  systemctl cat httpd.service
+  351  journalctl
+  352  mkdir /var/log/journal
+  353  systemctl restart systemd-journal-flush.service 
+  354  ls /var/log/journal/
+  355  ls /var/log/journal/a1182ed6b1eb4a4ca4f32bf80ed9b0c2/
+  356  history > /tmp/jan26.txt
