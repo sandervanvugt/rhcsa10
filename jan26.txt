@@ -546,3 +546,229 @@
   546  ls -Z /etc/hosts
   547  reboot
   548  history > /tmp/jan26.txt
+  549  less /usr/lib/firewalld/services/http.xml 
+  550  cat /usr/lib/firewalld/services/http.xml 
+  551  ls -ldZ /var/tmp
+  552  firewall-cmd --list-all
+  553  firewall-cmd --get-services
+  554  firewall-cmd --get-services | grep ftp
+  555  firewall-cmd --add-service=ftp --permanent
+  556  firewall-cmd --list-all
+  557  firewall-cmd --reload
+  558  firewall-cmd --list-all
+  559  date 
+  560  date -s 16:16
+  561  date 
+  562  hwclock --systohc
+  563  hwclock
+  564  date
+  565  systemctl status chronyd
+  566  history
+  567  grep AVC /var/log/audit/audit.log 
+  568  date -d @1768415882
+  569  date +%d-%m-%y
+  570  date +%d.%m.%y
+  571  date +%d.%M.%y
+  572  timedatectl
+  573  timedatectl list-timezone
+  574  timedatectl list-timezones
+  575  timedatectl set-timezone Africa/Lusaka
+  576  date
+  577  timedatectl
+  578  vim /etc/chrony.conf 
+  579  systemctl restart chronyd
+  580  chronyc sources
+  581  ping whatever.com
+  582  ping whatever.example.com
+  583  vim /etc/chrony.conf 
+  584  systemctl restart chronyd
+  585  chronyc sources
+  586  which crontab
+  587  rpm -qf /bin/crontab
+  588  which chronyc
+  589  rpm -qf /bin/chronyc
+  590  date
+  591  at 18:00
+  592  systemctl list-units -t timer
+  593  systemctl list-units fstrim*
+  594  systemctl list-unit-files fstrim*
+  595  systemctl cat fstrim.timer
+  596  man systemd.directives
+  597  man systemd.timer
+  598  systemctl status fstrim.timer
+  599  systemctl status fstrim.service
+  600  systemctl show fstrim.timer
+  601  systemctl show fstrim.service
+  602  systemctl list-units -t timer
+  603  systemctl list-unit-files -t timer
+  604  systemctl status logrotate.service
+  605  systemctl status logrotate.timer
+  606  dnf install -y sysstat
+  607  rpm -ql sysstat
+  608  dnf install -y sysstat
+  609  systemctl list-unit-files -t timer
+  610  systemctl edit sysstat-collect.timer 
+  611  sar -A
+  612  crontab -e -u linda
+  613  sar -A
+  614  ls /etc/cron*/
+  615  journalctl
+  616  journalctl | grep -i linda
+  617  sar -A
+  618  systemctl cat sysstat-collect.timer 
+  619  systemctl cat sysstat.service
+  620  /usr/lib64/sa/sa1
+  621  ls /var/log/sa
+  622  sar -A
+  623  crontab -e -u lisa
+  624  history
+  625  flatpak --version
+  626  flatpak remotes
+  627  podman login registry.redhat.io
+  628  flatpak remote-add 
+  629  flatpak remote-add fedora oci+https://registry.fedoraproject.org
+  630  flatpak remotes
+  631  flatpak remote-ls --app
+  632  cd rhcsa10/
+  633  ls
+  634  cat resources.txt 
+  635  vim counter 
+  636  ls
+  637  vim script1
+  638  script1
+  639  echo $PATH
+  640  ./script1
+  641  pwd
+  642  vim script1
+  643  . script1
+  644  cd
+  645  cd rhcsa10/
+  646  vim script2 
+  647  man [
+  648  man test
+  649  vim script2 
+  650  ./script2 hello
+  651  echo $?
+  652  ls
+  653  echo $?
+  654  ls oihiuguyg
+  655  echo $?
+  656  ./script2
+  657  echo $?
+  658  vim script3
+  659  ls iuguiguig && echo hello
+  660  ls iuguiguig || echo hello
+  661  vim script3
+  662  ./script3 5
+  663  history
+  664  cat script3 
+  665  vim script3
+  666  vim script4
+  667  ls
+  668  less mini-exam-45min.txt 
+  669  dnf install -y httpd
+  670  vim /etc/httpd/conf/httpd.conf 
+  671  man semanage-port
+  672  semanage port -a -t http_port_t -p tcp 81
+  673  firewall-cmd --help | grep port
+  674  #--add-port=<portid>[-<portid>]/<protocol>
+  675  firewall-cmd --add-port=82/tcp --permanent
+  676  firewall-cmd --reload
+  677  firewall-cmd --list-all
+  678  useradd -u 1100 -s /sbin/nologin lori
+  679  grep lori /etc/passwd
+  680  cd /
+  681  grep -R '^[Aa]dministrator' /etc/*
+  682  grep -lR '^[Aa]dministrator' /etc/*
+  683  grep -lR '^[Aa]dministrator' /etc/* > /tmp/stratorfiles.txt
+  684  ln -s /etc/hosts /tmp/hosts
+  685  ls -l /tmp/hosts
+  686  mkdir -p /data/sales
+  687  groupadd sales
+  688  chgrp sales /data/sales
+  689  chmod 3770 /data/sales
+  690  usermod -aG sales linda
+  691  usermod -aG sales lisa
+  692  id lisa
+  693  id linda
+  694  chown linda /data/sales
+  695  ls -ld /data/sales
+  696  vgs 
+  697  lvcreate -n lvlab -l 50 vgfiles
+  698  mkfs.xfs /dev/vgfiles/lvlab 
+  699  mkdir /lvlab
+  700  man mount
+  701  vim /etc/fstab
+  702  mount -a
+  703  vim /etc/fstab
+  704  systemctl daemon-reload
+  705  ls -ld /lvlab/
+  706  vim /etc/fstab
+  707  man mount
+  708  mount -a
+  709  mkfs.xfs /dev/mapper/vgfiles-lvlab 
+  710  mkfs.ext4 /dev/mapper/vgfiles-lvlab 
+  711  vim /etc/fstab
+  712  mount -a
+  713  cd /run/systemd/generator/
+  714  ls
+  715  cat lvlab.mount 
+  716  systemctl daemon-reload
+  717  cat lvlab.mount 
+  718  cd ..
+  719  cd generator/
+  720  ls
+  721  cat lvlab.mount 
+  722  cp lvlab.mount /etc/systemd/system
+  723  cd /etc/systemd/system/
+  724  systemctl daemon-reload
+  725  systemctl enable --now lvlab.mount
+  726  ls
+  727  cat sleep.service 
+  728  vim lvlab.mount 
+  729  systemctl enable --now lvlab.mount
+  730  vim /etc/fstab
+  731  reboot
+  732  tuned-adm recommend
+  733  tuned-adm profile virtual-guest
+  734  find / -perm /6000 > /root/sugidfiles.txt
+  735  cat sugidfiles.txt 
+  736  vim sugidcheck
+  737  vim a.txt
+  738  vim b.txt
+  739  diff a.txt b.txt
+  740  echo $?
+  741  vim sugidcheck
+  742  chmod +x sugidcheck 
+  743  ls -lrt
+  744  vim sugidcheck
+  745  bash -x sugidcheck 
+  746  ls -l
+  747  touch /tmp/testfile
+  748  chmod u+s /tmp/testfile
+  749  ./sugidcheck 
+  750  journalctl 
+  751  crontab -e
+  752  cd rhcsa10/
+  753  ls
+  754  cd exam/
+  755  ls
+  756  cd ~
+  757  cd rhcsa10/
+  758  cd labs/
+  759  ls
+  760  ./live-mini-exam-grade.sh 
+  761  ls -ld /data/sales
+  762  cd ..
+  763  cd exam/
+  764  ls
+  765  exit
+  766  systemctl status lvlab.mount
+  767  mount | grep lvlab
+  768  cd rhcsa10/
+  769  vim mini-exam-45min.txt 
+  770  exit
+  771  cd rhcsa10/
+  772  ls
+  773  cat resources.txt
+  774  history > /tmp/jan26.txt
