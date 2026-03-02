@@ -1,0 +1,154 @@
+    1  which dnf
+    2  ls -l $(which dnf) $(which ym)
+    3  ls -l $(which dnf) $(which yum)
+    4  df -h
+    5  lsblk
+    6  ls -l /dev/sr0
+    7  dd if=/dev/sr0 of=/rhel10.iso bs=1M
+    8  ls -l /rhel10.iso 
+    9  mkdir /repo
+   10  vim /etc/fstab
+   11  mount -a
+   12  ls /repo
+   13  ls /repo/BaseOS/
+   14  ls /repo/BaseOS/Packages/
+   15  ls /repo/AppStream/Packages/
+   16  history
+   17  tail -1 /etc/fstab
+   18  dnf repolist
+   19  dnf config-manager --add-repo=file:///repo/BaseOS
+   20  dnf config-manager --add-repo=file:///repo/AppStream
+   21  dnf repolist
+   22  dnf install -y nmap
+   23  cd /etc/yum.repos.d/
+   24  ls
+   25  vim repo_BaseOS.repo 
+   26  vim repo_AppStream.repo 
+   27  dnf install -y nmap
+   28  history
+   29  tail -1 /etc/fstab
+   30  lsblk
+   31  mount /dev/sr0 /mnt
+   32  ls /mnt
+   33  umount /mnt
+   34  cat repo_BaseOS.repo 
+   35  dnf list 'selinux*'
+   36  dnf search sealert
+   37  dnf search all sealert
+   38  dnf provides */sealert
+   39  dnf info setroubleshoot-server-3.3.35-1.el10.aarch64 
+   40  rpm -qf $(which ls)
+   41  dnf remove coreutils
+   42  cd
+   43  ls -l /etc/hosts
+   44  cd /etc
+   45  tar czvf /root/archive.tgz .
+   46  cd
+   47  ls
+   48  tar tvf archive.tgz 
+   49  history
+   50  cut -d : -f 1 /etc/passwd
+   51  cut -d : -f 1 /etc/passwd | sort
+   52  cut -d : -f 1 /etc/passwd | sort | grep -v '^$'
+   53  cut -d : -f 1 /etc/passwd | sort >/var/tmp/users2
+   54  diff /var/tmp/users /var/tmp/users2
+   55  cut -d : -f 1 /etc/passwd | sort | grep -v '^$' >/var/tmp/users
+   56  diff /var/tmp/users /var/tmp/users2
+   57  useradd bob
+   58  find / -user bob -type f
+   59  mkdir /root/userfiles
+   60  find / -user bob -type f -exec cp {} /root/userfiles/ \;
+   61  ls -al /root/userfiles/
+   62  dnf install -y git
+   63  git clone https://github.com/sandervanvugt/rhcsa10
+   64  cd rhcsa10/
+   65  ls
+   66  cd labs/
+   67  ls
+   68  ./live-lab1-grade.sh 
+   69  ls
+   70  vim live-lab1-grade.sh 
+   71  cd
+   72  ./countdown 1
+   73  history
+   74  history | less
+   75  visudo
+   76  id
+   77  exit
+   78  visudo
+   79  useradd linda
+   80  passwd linda
+   81  visudo
+   82  su - linda
+   83  visudo
+   84  su - linda
+   85  history
+   86  visudo
+   87  id linda
+   88  visudo
+   89  less /etc/passwd
+   90  man 5 passwd
+   91  less /etc/shadow
+   92  less /etc/passwd
+   93  usermod --help
+   94  man man
+   95  man -k passwd
+   96  passwd bob
+   97  echo password | passwd --stdin bob
+   98  vim /etc/login.defs
+   99  cd /etc/skel/
+  100  ls 
+  101  ls -a
+  102  touch newfile
+  103  useradd lisa
+  104  ls -l /home/lisa
+  105  ls -la /home/lisa
+  106  cd ../yum.repos.d/
+  107  ls
+  108  cat repo_BaseOS.repo 
+  109  history
+  110  cd
+  111  groupadd profs
+  112  groupadd students
+  113  for i in anna anouk; do useradd $i -G profs; done
+  114  for i in lisa linda; do useradd $i -G students; done
+  115  usermod -aG students linda
+  116  usermod -aG students lisa
+  117  for i in anna anouk lisa linda; do echo password | passwd --stdin $i; done
+  118  chage --help
+  119  chage -M 90 lisa
+  120  grep lisa /etc/passwd
+  121  grep lisa /etc/shadow
+  122  chage -l lisa
+  123  exit
+  124  touch /etc/skel/newfile
+  125  touch /home/{anna,anouk,linda,lisa}/newfile
+  126  ls -l /home/{anna,anouk,linda,lisa}/newfile
+  127  vim /etc/login.defs 
+  128  cd rhcsa10/
+  129  ls
+  130  cd labs/
+  131  ls
+  132  ./live-lab2-grade.sh 
+  133  ls -l /home
+  134  cd
+  135  ls
+  136  chown lisa:linda userfiles/
+  137  ls -ld userfiles/
+  138  mkdir -p /data/{profs,students}
+  139  ls -l /data
+  140  chown :profs /data/profs
+  141  chgrp students /data/students
+  142  ls -l /data
+  143  chmod 770 /data/students
+  144  chmod g+w,o-rx /data/profs
+  145  su - anna
+  146  chmod g+s /data/profs
+  147  su - anna
+  148  su - anouk
+  149  chmod +t /data/profs
+  150  ls -ld /data/profs
+  151  su - anouk
+  152  ls -l /usr/bin/passwd /etc/shadow
+  153  find / -perm /4000
+  154  history > /tmp/march26.txt
