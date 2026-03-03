@@ -152,3 +152,174 @@
   152  ls -l /usr/bin/passwd /etc/shadow
   153  find / -perm /4000
   154  history > /tmp/march26.txt
+  155  ip a
+  156  find / -perm /4000
+  157  find / -perm /4000 > suidfiles.txt
+  158  ls
+  159  chmod u+s countdown 
+  160  ls
+  161  ls -l
+  162  find / -perm /4000 > suid2.txt
+  163  diff suidfiles.txt suid2.txt 
+  164  echo $?
+  165  ls uguigiug
+  166  echo $?
+  167  ls rhcsa10/
+  168  echo $?
+  169  vim lab3.sh
+  170  chmod +x lab3.sh 
+  171  ./lab3.sh 
+  172  ls rhcsa10/ && echo file exists
+  173  ls rhcsa10/ >/dev/null && echo file exists
+  174  ls rhcs >/dev/null && echo file exists
+  175  ls rhcs >/dev/null || echo file exists
+  176  ls rhcs >/dev/null || echo file NOT exists
+  177  cat lab3.sh 
+  178  history | less
+  179  lsblk
+  180  ls /data
+  181  rm -rf /data
+  182  mkdir -p /data/{profs,students}
+  183  cd /data
+  184  ls -l
+  185  chgrp profs profs
+  186  chgrp students students
+  187  chmod 770 *
+  188  ls -l
+  189  umask
+  190  umask 002
+  191  touch one
+  192  ls -l
+  193  mkdir two
+  194  ls -l
+  195  vim /etc/login.defs 
+  196  umask
+  197  su - linda
+  198  lsblk
+  199  cat /proc/partitions 
+  200  poweroff
+  201  vim countdown
+  202  chmod + countdown 
+  203  chmod +x countdown 
+  204  ./countdown 3
+  205  ./countdown 16
+  206  ./countdown 15
+  207  ./countdown 12
+  208  ./countdown 5
+  209  ./countdown 16
+  210  ./countdown 7
+  211  ./countdown 12
+  212  which shutdown
+  213  history
+  214  xfs_admin -L DATAVASE /dev/nvme0n1p1
+  215  umount /somewhere 
+  216  xfs_admin -L DATAVASE /dev/nvme0n1p1
+  217  lsblk
+  218  xfs_admin -L DATAVASE /dev/nvme0n2p1
+  219  vim /etc/fstab
+  220  mount -a
+  221  cd /run/systemd/generator/
+  222  ls
+  223  cat somewhere.mount 
+  224  cd ..
+  225  systemctl daemon-reload
+  226  cd generator/
+  227  cat somewhere.mount 
+  228  cd
+  229  ./countdown 13
+  230  free -m
+  231  vim /etc/default/grub 
+  232  cd /boot
+  233  ls
+  234  cd loader/
+  235  ls
+  236  cd entries/
+  237  kls
+  238  ls
+  239  vim 9d4d28a525d744ae9d56991f26ff84a3-6.12.0-55.9.1.el10_0.aarch64.conf 
+  240  cd
+  241  grub2-mkconfig -o /boot/grub2/grub.cfg
+  242  reboot
+  243  free -m
+  244  lsblk
+  245  fdisk /dev/nvme0n1
+  246  mkswap /dev/nvme0n1p4
+  247  blkid | awk '/n1p4/ { print $2 }'
+  248  blkid | awk '/n1p4/ { print $2 }' >> /etc/fstab
+  249  vim /etc/fstab
+  250  free -m
+  251  swapon -a
+  252  free -m
+  253  history
+  254  reboot
+  255  mv countdown /usr/local/bin
+  256  echo $PATH
+  257  ln /usr/local/bin/countdown /usr/local/sbin/countdown
+  258  countdown 4
+  259  top
+  260  lscpu | less
+  261  cat  /sys/bus/cpu/devices/cpu1/online 
+  262  echo 0 >  /sys/bus/cpu/devices/cpu1/online 
+  263  lscpu | less
+  264  dd if=/dev/zero of=/dev/null &
+  265  top
+  266  killall dd
+  267  history
+  268  dd if=/dev/zero of=/dev/null &
+  269  top
+  270  killall dd
+  271  history
+  272  sysctl -a
+  273  sysctl -a | wc -l
+  274  tuned-adm list
+  275  tuned-adm profile powersave
+  276  tuned-adm recommend
+  277  systemctl status tuned
+  278  history
+  279  echo 1 >  /sys/bus/cpu/devices/cpu1/online 
+  280  su - linda
+  281  ps aux | grep linda
+  282  killall dd
+  283  killall sleep
+  284  su - linda
+  285  systemctl status NetworkManager
+  286  nmtui
+  287  ip a
+  288  systemctl -t help
+  289  systemctl hybrid-sleep -h
+  290  systemctl hybrid-sleep --help
+  291  systemctl cat crond.service 
+  292  cd /etc/systemd/system/
+  293  vim sleep.service
+  294  systemctl daemon-reload
+  295  systemctl enable --now sleep.service
+  296  systemctl status sleep
+  297  kill -9 8809
+  298  systemctl status sleep
+  299  history
+  300  systemctl list-unit-files
+  301  systemctl list-units
+  302  systemctl list-unit-files -t timer
+  303  systemctl show crond.service
+  304  man systemd.directives
+  305  man systemd.service
+  306  systemctl edit crond.service
+  307  man systemd.service
+  308  systemctl edit crond.service
+  309  systemctl cat crond.service 
+  310  export EDITOR=/usr/bin/vim
+  311  systemctl edit crond.service
+  312  echo export EDITOR=/usr/bin/vim >> ~/.bashrc
+  313  history
+  314  journalctl
+  315  journalctl -p err
+  316  journalctl -xb
+  317  journalctl -xbu crond.service
+  318  journalctl -xb -u crond.service
+  319  mkdir /var/log/journal
+  320  ls -l /var/log/journal/
+  321  systemctl restart systemd-journal-flush
+  322  ls -l /var/log/journal/
+  323  cd
+  324  history
+  325  history > /tmp/march26.txt
