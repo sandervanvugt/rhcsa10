@@ -323,3 +323,202 @@
   323  cd
   324  history
   325  history > /tmp/march26.txt
+  326  lsblk
+  327  fdisk /dev/nvme0n1
+  328  pvcreate /dev/nvme0n1p5
+  329  xxd /dev/nvme0n1p5 | less
+  330  vgcreate vgdata /dev/nvme0n1p5
+  331  vgs
+  332  pvs
+  333  lvcreate -n lvdata -L 1G vgdata
+  334  lvcreate -n lvdata -l 255 vgdata
+  335  vgextend vgdata /dev/nvme0n1p6
+  336  vgs
+  337  xdd /dev/nvme0n1p6 | less
+  338  xxd /dev/nvme0n1p6 | less
+  339  lvs
+  340  mkfs.ext4 /dev/vgdata/lvdata
+  341  vim /etc/fstab
+  342  mount -a
+  343  reboot
+  344  countdown 7
+  345  countdown 10
+  346  countdown 12
+  347  lsblk
+  348  mount | grep lvdata
+  349  ls -l /dev/mapper/vgdata-lvdata /dev/vgdata/lvdata
+  350  history
+  351  vgs
+  352  lvs
+  353  lsblk
+  354  history
+  355  vgcreate --help | less
+  356  vgdisplay vgdata
+  357  vgs
+  358  lsblk
+  359  fdisk /dev/nvme0n2
+  360  vgcreate vgfiles /dev/nvme0n2p7
+  361  lvcreate -l 100%FREE -n lvfiles vgfiles
+  362  lvs
+  363  mkfs.ext4 /dev/vgfiles/lvfiles 
+  364  df -h
+  365  mkdir /lvfiles
+  366  vim /etc/fstab
+  367  mount -a
+  368  df -h
+  369  vgs
+  370  vgextend vgfiles /dev/nvme0n2p8
+  371  vgs
+  372  lvextend -r -l 50%FREE /dev/vgfiles/lvfiles
+  373  lvextend -r -l +50%FREE /dev/vgfiles/lvfiles
+  374  lvs
+  375  vgs
+  376  df -h
+  377  history
+  378  cd rhcsa10/labs/
+  379  ls
+  380  vim live-lab9-grade.sh 
+  381  echo $(( 1024 * 5 ))
+  382  echo $(( 1020 * 5 ))
+  383  history
+  384  cd
+  385  vim /etc/default/grub 
+  386  cd /boot
+  387  ls
+  388  cd loader/
+  389  ls
+  390  cd entries/
+  391  ls
+  392  vim 9d4d28a525d744ae9d56991f26ff84a3-6.12.0-55.9.1.el10_0.aarch64.conf 
+  393  cd
+  394  systemctl list-unit-files -t target
+  395  systemctl cat rescue.target
+  396  systemctl cat remote-fs.target 
+  397  systemctl get-default
+  398  systemctl set-default multi-user.target
+  399  reboot
+  400  history
+  401  dnf install -y httpd
+  402  hostname
+  403  vim /etc/hosts
+  404  dnf install -y zsh
+  405  vim /etc/httpd/conf/httpd.conf 
+  406  mkdir /web
+  407  vim /web/index.html
+  408  systemctl enable --now httpd
+  409  curl localhost
+  410  getenforce
+  411  setenforce permissive
+  412  curl localhost
+  413  cd /var/log/
+  414  ls
+  415  cd httpd
+  416  ls
+  417  cat error_log 
+  418  vim /etc/httpd/conf/httpd.conf 
+  419  systemctl restart httpd
+  420  getenforce
+  421  curl localhost
+  422  systemctl status httpd
+  423  curl localhost
+  424  vim /etc/httpd/conf/httpd.conf 
+  425  ls
+  426  cat error_log 
+  427  umask
+  428  ls -ld /web
+  429  ps aux | grep http
+  430  cd
+  431  chmod -R 755 /web
+  432  vim /etc/login.defs 
+  433  umask
+  434  umask 022
+  435  curl localhost
+  436  setenforce enforcing
+  437  curl localhost
+  438  history
+  439  grep -A10 DocumentRoot /etc/httpd/conf/httpd.conf 
+  440  history
+  441  ls -Z /var/www
+  442  ps Zaux | grep http
+  443  ls -Zd /web
+  444  grep AVC /var/log/audit/audit.log 
+  445  semanage fcontext -l
+  446  semanage fcontext -l | wc -l
+  447  semanage fcontext -l -C
+  448  man semanage-fcontext
+  449  # semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
+  450         # restorecon -R -v /web
+  451  semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
+  452  ls -lZd /web
+  453  restorecon -Rv /web
+  454  curl localhost
+  455  getenforce
+  456  history
+  457  dnf list selinux*
+  458  dnf install -y selinux-policy-doc
+  459  man -k _selinux
+  460  man -k _selinux | wc -l
+  461  man -k _selinux | grep http
+  462  man httpd_selinux
+  463  vim /etc/ssh/sshd_config
+  464  systemctl restart sshd
+  465  systemctl status sshd
+  466  journalctl -xeu sshd.service
+  467  getenforce
+  468  setenforce permissive
+  469  systemctl restart sshd
+  470  setenforce enforcing
+  471  grep AVC /var/log/audit/audit.log 
+  472  date -d @1772647015
+  473  man semanage-port
+  474   # semanage port -a -t ssh_port_t -p tcp 8991
+  475  semanage port -a -t ssh_port_t -p tcp 2022
+  476  getenforce
+  477  systemctl restart sshd
+  478  semanage port -l | grep ssh
+  479  history
+  480  getsebool -a
+  481  getsebool -a | wc -l
+  482  getsebool -a | grep ftp
+  483  setsebool -p ftpd_anon_write on
+  484  setsebool -P ftpd_anon_write=on
+  485  history
+  486  journactl | grep sealert
+  487  journalctl | grep sealert
+  488  sealert -l 3a3b0f52-af0c-4413-8374-40fa4f386f55 | less
+  489  sealert -l 5ba0751c-d014-42ae-a812-3b96fcd15543 | less
+  490  history
+  491  mv /etc/hosts /var/www/html/
+  492  ls -Z /var/www/html/
+  493  restorecon -Rv /var/www/html
+  494  cp /var/www/html/hosts /etc/
+  495  ls -Zd /etc
+  496  ls -Z /etc/hosts
+  497  vim /etc/hosts
+  498  dnf install nfs-utils
+  499  showmount -e nfsserver
+  500  mount nfsserver:/nfsdata /mnt
+  501  mount
+  502  umount /mnt
+  503  dnf install -y autofs
+  504  vim /etc/auto.master
+  505  vim /etc/auto.misc
+  506  vim /etc/auto.master
+  507  vim /etc/auto.nfsdata
+  508  systemctl enable --now autofs
+  509  ls /
+  510  cd /nfsdata
+  511  ls -a
+  512  cd files
+  513  mount
+  514  vim /etc/auto.master
+  515  vim /etc/auto.ldap
+  516  systemctl restart autofs
+  517  cd /home/ldap
+  518  ls -a
+  519  cd ldapuser1
+  520  cd ../ldapuser2
+  521  cd ..
+  522  ls
+  523  cd
+  524  history > /tmp/march26.txt 
