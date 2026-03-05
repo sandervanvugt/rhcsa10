@@ -522,3 +522,164 @@
   522  ls
   523  cd
   524  history > /tmp/march26.txt 
+  525  vim /etc/ssh/sshd_config
+  526  systemctl restart sshd
+  527  systemctl status firewalld
+  528  firewall-cmd --get-services
+  529  cd /usr/lib/firewalld/services/
+  530  ls
+  531  vim rdp.xml 
+  532  cd
+  533  firewall-cmd --list-all
+  534  firewall-cmd --add-service http
+  535  firewall-cmd --list-all
+  536  firewall-cmd --reload
+  537  firewall-cmd --list-all
+  538  firewall-cmd --add-service http --permanent
+  539  firewall-cmd --list-all
+  540  firewall-cmd --reload
+  541  firewall-cmd --list-all
+  542  date
+  543  man date
+  544  date +%m/%d/%y
+  545  hwclock
+  546  date
+  547  hwclock --help
+  548  timedatectl show
+  549  timedatectl status
+  550  timedatectl set-timezone Africa/Lusaka
+  551  timedatectl status
+  552  ls -l
+  553  systemctl status chronyd
+  554  vim /etc/chrony.conf 
+  555  ssh student@nfsserver
+  556  ping nfsserver.example.com
+  557  systemctl restart chronyd
+  558  chronyc sources
+  559  timedatectl 
+  560  chronyc sources
+  561  history
+  562  head /etc/chrony.conf 
+  563  systemctl status chrond
+  564  systemctl status crond
+  565  crontab -e -u linda
+  566  journalctl -F
+  567  journalctl -f
+  568  history
+  569  ls /etc/cron*/*
+  570  systemctl list-unit-files -t timer
+  571  systemctl status fstrim.service
+  572  systemctl cat fstrim.timer
+  573  man systemd.timer
+  574  systemctl status fstrim.timer
+  575  date
+  576  at 18:00
+  577  cat /etc/crontab 
+  578  reboot
+  579  history
+  580  history | grep for
+  581  history | grep '&&'
+  582  if ls rhcsa10; then echo it exists; fi
+  583  cd rhcsa10/
+  584  less resources.txt 
+  585  history | grep '||'
+  586  if ikhkuh >/dev/null || echo whatever is not succesfl
+  587  ls ikhkuh >/dev/null || echo whatever is not succesfl
+  588  ls ikhkuh &>/dev/null || echo whatever is not succesfl
+  589  ls
+  590  cd ..
+  591  ls
+  592  vim /usr/local/bin/countdown 
+  593  countdown 5
+  594  man test
+  595  vim /usr/local/bin/countdown 
+  596  countdown 12
+  597  cd rhcsa10/
+  598  ls
+  599  cd labs/
+  600  ls
+  601  cd ..
+  602  less mini-exam-45min.txt 
+  603  dnf install -y httpd
+  604  vim /etc/httpd/conf/httpd.conf 
+  605  systemctl restart httpd
+  606  man semanage-port
+  607  semanage port -a -t http_port_t -p tcp 82
+  608  systemctl restart httpd
+  609  useradd -u 1100 -s /sbin/nologin lori
+  610  grep lori /etc/passwd
+  611  grep  '^[Aa]dministrator' /etc/*
+  612  grep  '^[Aa]dministrator' /etc/* 2>/dev/null
+  613  grep  '.dministrator' /etc/* 2>/dev/null
+  614  grep  '[Aa]dministrator' /etc/* 2>/dev/null
+  615  grep  '^[Aa]dministrator' /etc/* 2>/dev/null
+  616  grep -r '^[Aa]dministrator' /etc/* 2>/dev/null
+  617  grep -lr '^[Aa]dministrator' /etc/* 2>/dev/null
+  618  grep -lr '^[Aa]dministrator' /etc/* 2>/dev/null > /tmp/stratorfiles.txt
+  619  ln -s /etc/hosts /tmp/hosts
+  620  ls -l /tmp/hosts
+  621  mkdir -p /data/sales
+  622  groupadd sales
+  623  usermod -aG sales linda
+  624  usermod -aG sales lisa
+  625  chmod 3770 /data/sales
+  626  chown linda:sales /data/sales
+  627  ls -ld /data/sales
+  628  lsblk
+  629  fdisk /dev/nvme0n2
+  630  vgcreate vglab /dev/nvme0n2p9
+  631  vgremove vglab
+  632  vgcreate -s 8 vglab /dev/nvme0n2p9
+  633  vgdisplay vglab 
+  634  lvcreate -n lvlab -l 50 vglab
+  635  mkfs.xfs /dev/vglab/lvlab 
+  636  mkdir /lvlab
+  637  man mount
+  638  vim /etc/fstab
+  639  history
+  640  mount -a /etc/fstab
+  641  systemctl daemon-reload
+  642  cd /run/systemd/generator/
+  643  ls
+  644  cat lvlab.mount 
+  645  cp lvlab.mount /etc/systemd/system/
+  646  vim /etc/systemd/system/lvlab.mount 
+  647  vim /etc/fstab
+  648  systemctl enable --now lvlab.mount
+  649  cd
+  650  reboot
+  651  lsblk
+  652  tuned-adm recommend 
+  653  tuned-adm profile virtual-guest
+  654  man find
+  655  find / -perm /6000 -exec ls -l {} \;
+  656  find / -perm /6000 >/sugidfiles.txt
+  657  touch try
+  658  chmod 6666 try
+  659  ls -l try 
+  660  find / -perm -6000
+  661  find / -perm 6000
+  662  find / -perm /6000
+  663  vim sugidcheck
+  664  chmod +x sugidcheck 
+  665  ./sugidcheck 
+  666  find / -perm /6000 >/root/sugidfiles.txt
+  667  ./sugidcheck 
+  668  vim sugidcheck 
+  669  journalctl
+  670  vim sugidcheck 
+  671  ./sugidcheck 
+  672  journalctl
+  673  touch /tmp/testfile
+  674  chmod 4660 /tmp/testfile 
+  675  ./sugidcheck 
+  676  journalctl
+  677  crontab -e
+  678  cd rhcsa10/
+  679  ls
+  680  cd labs/
+  681  ls
+  682  ./live-mini-exam-grade.sh 
+  683  vim live-mini-exam-grade.sh 
+  684  ./live-mini-exam-grade.sh 
+  685  history >/tmp/march26.txt 
