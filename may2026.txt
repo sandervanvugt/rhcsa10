@@ -1,0 +1,170 @@
+    1  which dnf
+    2  ls -l $(which dnf) $(which yum)
+    3  df -h
+    4  lsblk
+    5  dd if=/dev/sr0 of=/rhel10.iso bs=1M
+    6  mkdir /repo
+    7  echo "/rhel10.iso  /repo  /iso9660 defaults  0 0" >> /etc/fstab
+    8  tail -1 /etc/fstab
+    9  mount -a
+   10  vim /etc/fstab
+   11  mount
+   12  mount -a
+   13  mount
+   14  history
+   15  cd /repo
+   16  ls
+   17  cd BaseOS/
+   18  ls
+   19  cd Packages/
+   20  ls
+   21  cd ../../AppStream/
+   22  cd Packages/
+   23  ls
+   24  cd
+   25  dnf config-manager --add-repo="file:///repo/AppStream"
+   26  dnf config-manager --add-repo="file:///repo/BaseOS"
+   27  dnf install -y nmap
+   28  cd /etc/yum.repos.d/
+   29  ls
+   30  vim repo_BaseOS.repo 
+   31  vim repo_AppStream.repo 
+   32  cd /etc/dnf/plugins/
+   33  ls
+   34  vim subscription-manager.conf 
+   35  cd
+   36  dnf search nmap
+   37  dnf search seinfo
+   38  dnf search all seinfo
+   39  dnf provides */Containerfile
+   40  dnf list selinux*
+   41  dnf install -y git
+   42  git clone https://github.com/sandervanvugt/rhcsa10
+   43  cd rhcsa10/
+   44  ls
+   45  git pull
+   46  history
+   47  seinfo
+   48  dnf download httpd
+   49  ls
+   50  rpm -pq --scripts httpd-2.4.63-1.el10.aarch64.rpm
+   51  ls
+   52  cd labs/
+   53  ls
+   54  cd ..
+   55  history
+   56  cd
+   57  tar -cvzf /root/archive.tgz -C /etc .
+   58  ls -l archive.tgz 
+   59  file archive.tgz 
+   60  file /bin/passwd
+   61  cut -d : -f 1 /etc/passwd
+   62  cut -d : -f 1 /etc/passwd | sort
+   63  cut -d : -f 1 /etc/passwd | sort > /var/tmp/users
+   64  less /var/tmp/users 
+   65  useradd bob
+   66  find / -user bob -type f
+   67  mkdir userfiles
+   68  find / -user bob -type f -exec cp {} /root/userfiles \;
+   69  cd rhcsa10/
+   70  ls
+   71  cd labs/
+   72  ls
+   73  ./live-lab1-grade.sh 
+   74  cd
+   75  ls --help | less
+   76  man ls
+   77  man semanage-fcontext
+   78  history
+   79  exit
+   80  visudo
+   81  export EDITOR=/usr/bin/nano
+   82  visudo
+   83  export EDITOR=
+   84  visudo
+   85  useradd linda
+   86  passwd linda
+   87  su - linda
+   88  exit
+   89  su - linda
+   90  visudo
+   91  history
+   92  ps aux | less
+   93  vim /etc/passwd
+   94  passwd bob
+   95  echo password  | passwd --stdin bob
+   96  history -d 96
+   97  vim /etc/login.defs
+   98  ls -la /etc/skel/
+   99  vim /etc/shadow
+  100  ls -l /etc/shadow
+  101  ls -l
+  102  ls -l /home
+  103  cat /etc/passwd
+  104  cat /etc/group
+  105  grep wheel /etc/group
+  106  usermod -aG wheel bob
+  107  id bob
+  108  history
+  109  vim /etc/login.defs 
+  110  touch /etc/skel/newfile
+  111  for i in anna anouk linda lisa; do useradd $i; done
+  112  tail -5 /etc/passwd
+  113  for i in anna anouk linda lisa; do echo password | passwd --stdin $i ; done
+  114  groupadd profs
+  115  groupadd students
+  116  usermod -aG profs anna
+  117  usermod -aG profs anouk
+  118  usermod -aG students lisa
+  119  usermod -aG students linda
+  120  id linda
+  121  usermod -G wheel linda
+  122  id linda
+  123  usermod -aG students linda
+  124  id linda
+  125  cd rhcsa10/labs
+  126  ls
+  127  ./live-lab2-grade.sh 
+  128  history
+  129  cd
+  130  echo hello > /home/linda/hellofile
+  131  su - linda
+  132  chmod 007 /home/linda/hellofile 
+  133  su - linda
+  134  chown linda:linda /home/linda/hellofile
+  135  su - linda
+  136  touch /home/linda/wortel
+  137  su - linda
+  138  history
+  139  mkdir -p /data/profs /data/students
+  140  chown :profs /data/profs
+  141  chgrp students /data/students
+  142  ls -l /data
+  143  chmod 770 /data/students
+  144  chmod g+w,o-rx /data/profs
+  145  ls -l
+  146  ls -l /data
+  147  ls -ld /tmp
+  148  ls -l /etc/shadow
+  149  ls -l /usr/bin/passwd
+  150  find / -perm /4000 2>/dev/null
+  151  id linda
+  152  su - linda
+  153  chmod g+s /data/students
+  154  su - lisa
+  155  historu
+  156  history
+  157  ls /etc/passw*
+  158  ls /etc/passw* -l
+  159  tail /etc/passwd-
+  160  history
+  161  umask
+  162  cd /etc
+  163  grep -Rl umask *
+  164  vim bashrc
+  165  cd profile.d/
+  166  ls
+  167  vim umask.sh
+  168  su - anna
+  169  cd
+  170  history > /tmp/may2026.txt

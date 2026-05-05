@@ -1,0 +1,379 @@
+    1  which dnf
+    2  ls -l $(which dnf) $(which yum)
+    3  df -h
+    4  lsblk
+    5  dd if=/dev/sr0 of=/rhel10.iso bs=1M
+    6  mkdir /repo
+    7  echo "/rhel10.iso  /repo  /iso9660 defaults  0 0" >> /etc/fstab
+    8  tail -1 /etc/fstab
+    9  mount -a
+   10  vim /etc/fstab
+   11  mount
+   12  mount -a
+   13  mount
+   14  history
+   15  cd /repo
+   16  ls
+   17  cd BaseOS/
+   18  ls
+   19  cd Packages/
+   20  ls
+   21  cd ../../AppStream/
+   22  cd Packages/
+   23  ls
+   24  cd
+   25  dnf config-manager --add-repo="file:///repo/AppStream"
+   26  dnf config-manager --add-repo="file:///repo/BaseOS"
+   27  dnf install -y nmap
+   28  cd /etc/yum.repos.d/
+   29  ls
+   30  vim repo_BaseOS.repo 
+   31  vim repo_AppStream.repo 
+   32  cd /etc/dnf/plugins/
+   33  ls
+   34  vim subscription-manager.conf 
+   35  cd
+   36  dnf search nmap
+   37  dnf search seinfo
+   38  dnf search all seinfo
+   39  dnf provides */Containerfile
+   40  dnf list selinux*
+   41  dnf install -y git
+   42  git clone https://github.com/sandervanvugt/rhcsa10
+   43  cd rhcsa10/
+   44  ls
+   45  git pull
+   46  history
+   47  seinfo
+   48  dnf download httpd
+   49  ls
+   50  rpm -pq --scripts httpd-2.4.63-1.el10.aarch64.rpm
+   51  ls
+   52  cd labs/
+   53  ls
+   54  cd ..
+   55  history
+   56  cd
+   57  tar -cvzf /root/archive.tgz -C /etc .
+   58  ls -l archive.tgz 
+   59  file archive.tgz 
+   60  file /bin/passwd
+   61  cut -d : -f 1 /etc/passwd
+   62  cut -d : -f 1 /etc/passwd | sort
+   63  cut -d : -f 1 /etc/passwd | sort > /var/tmp/users
+   64  less /var/tmp/users 
+   65  useradd bob
+   66  find / -user bob -type f
+   67  mkdir userfiles
+   68  find / -user bob -type f -exec cp {} /root/userfiles \;
+   69  cd rhcsa10/
+   70  ls
+   71  cd labs/
+   72  ls
+   73  ./live-lab1-grade.sh 
+   74  cd
+   75  ls --help | less
+   76  man ls
+   77  man semanage-fcontext
+   78  history
+   79  exit
+   80  visudo
+   81  export EDITOR=/usr/bin/nano
+   82  visudo
+   83  export EDITOR=
+   84  visudo
+   85  useradd linda
+   86  passwd linda
+   87  su - linda
+   88  exit
+   89  cd rhcsa10/
+   90  ./countdown 15
+   91  ./countdown 12
+   92  ./countdown 8
+   93  ./countdown 1
+   94  ./countdown 12
+   95  ./countdown 1
+   96  ./countdown 7
+   97  su - linda
+   98  visudo
+   99  history
+  100  ps aux | less
+  101  vim /etc/passwd
+  102  passwd bob
+  103  echo password  | passwd --stdin bob
+  104  history -d 96
+  105  vim /etc/login.defs
+  106  ls -la /etc/skel/
+  107  vim /etc/shadow
+  108  ls -l /etc/shadow
+  109  ls -l
+  110  ls -l /home
+  111  cat /etc/passwd
+  112  cat /etc/group
+  113  grep wheel /etc/group
+  114  usermod -aG wheel bob
+  115  id bob
+  116  history
+  117  vim /etc/login.defs 
+  118  touch /etc/skel/newfile
+  119  for i in anna anouk linda lisa; do useradd $i; done
+  120  tail -5 /etc/passwd
+  121  for i in anna anouk linda lisa; do echo password | passwd --stdin $i ; done
+  122  groupadd profs
+  123  groupadd students
+  124  usermod -aG profs anna
+  125  usermod -aG profs anouk
+  126  usermod -aG students lisa
+  127  usermod -aG students linda
+  128  id linda
+  129  usermod -G wheel linda
+  130  id linda
+  131  usermod -aG students linda
+  132  id linda
+  133  cd rhcsa10/labs
+  134  ls
+  135  ./live-lab2-grade.sh 
+  136  history
+  137  cd
+  138  echo hello > /home/linda/hellofile
+  139  su - linda
+  140  chmod 007 /home/linda/hellofile 
+  141  su - linda
+  142  chown linda:linda /home/linda/hellofile
+  143  su - linda
+  144  touch /home/linda/wortel
+  145  su - linda
+  146  history
+  147  mkdir -p /data/profs /data/students
+  148  chown :profs /data/profs
+  149  chgrp students /data/students
+  150  ls -l /data
+  151  chmod 770 /data/students
+  152  chmod g+w,o-rx /data/profs
+  153  ls -l
+  154  ls -l /data
+  155  ls -ld /tmp
+  156  ls -l /etc/shadow
+  157  ls -l /usr/bin/passwd
+  158  find / -perm /4000 2>/dev/null
+  159  id linda
+  160  su - linda
+  161  chmod g+s /data/students
+  162  su - lisa
+  163  historu
+  164  history
+  165  ls /etc/passw*
+  166  ls /etc/passw* -l
+  167  tail /etc/passwd-
+  168  history
+  169  umask
+  170  cd /etc
+  171  grep -Rl umask *
+  172  vim bashrc
+  173  cd profile.d/
+  174  ls
+  175  vim umask.sh
+  176  su - anna
+  177  cd
+  178  history > /tmp/may2026.txt
+  179  ip a
+  180  lsblk
+  181  udevadm monitor
+  182  lsblk
+  183  cd /proc
+  184  ls
+  185  cat partitions 
+  186  lsblk
+  187  cd
+  188  fdisk /dev/nvme0n1
+  189  poweroff
+  190  lsblk
+  191  ls -l /dev/nvme0n1
+  192  less /proc/modules 
+  193  less /proc/devices
+  194  vim /etc/passwd
+  195  fdisk /dev/nvme0n1
+  196  lsblk
+  197  mkfs.xfs /dev/nvme0n1p4
+  198  mount /dev/nvme0n1p4 /mnt
+  199  mount
+  200  cd /mnt
+  201  ls
+  202  touch hhhh
+  203  cd /
+  204  umount /mnt
+  205  ls /mnt
+  206  history
+  207  fdisk -l /dev/nvme0n1
+  208  mount | grep vfat
+  209  dnf search btrfs
+  210  mkfs.btrfs
+  211  mount /dev/nvme0n1p4 /mnt
+  212  cd /mnt
+  213  umount /mnt
+  214  lsof /mnt
+  215  mount
+  216  mount |  grep '^/'
+  217  findmnt
+  218  lsblk
+  219  cd
+  220  vim /etc/fstab
+  221  mount -a
+  222  reboot
+  223  lsblk
+  224  history
+  225  cat /etc/fstab
+  226  mount /dev/nvme0n1p4 /usr
+  227  ls /usr
+  228  umount /usr
+  229  history
+  230  history -w
+  231  lsblk
+  232  touch hh
+  233  cat /etc/fstab
+  234  blkid
+  235  blkid | awk '/n2p4/ { print $2 }'
+  236  blkid | awk '/n2p4/ { print $2 }' >> /etc/fstab
+  237  vim /etc/fstab
+  238  reboot
+  239  history
+  240  xfs_admin -h
+  241  xfs_admin -L koeien /dev/nvme0n2p4
+  242  cd /dev/disk
+  243  ls
+  244  cd
+  245  free -m
+  246  lsblk
+  247  fdisk /dev/nvme0n2
+  248  mkswap /dev/nvme0n2p5
+  249  blkid | awk '/n2p5/ { print $2 }'
+  250  blkid | awk '/n2p5/ { print $2 }' >> /etc/fstab
+  251  vim /etc/fstab
+  252  mount -a
+  253  free -m
+  254  swapon -a
+  255  free -m
+  256  history
+  257  vim /etc/default/grub 
+  258  cd /boot/
+  259  ls
+  260  cd loader/
+  261  ls
+  262  cd entries/
+  263  ls
+  264  uname -r
+  265  vim 563fdcc1b1be4bd0b7830ceaedb4eba3-6.12.0-55.9.1.el10_0.aarch64.conf 
+  266  cd
+  267  grub2-mkconfig -o /boot/grub2/grub.cfg 
+  268  reboot
+  269  cp rhcsa10/countdown /usr/local/bin
+  270  cp rhcsa10/countdown /usr/local/sbin
+  271  countdown 10
+  272  killal -USR1 $(pidof dd)
+  273  killall -USR1 $(pidof dd)
+  274  ps aux | grep dd
+  275  killall -USR1 $(pidof dd)
+  276  ps aux | grep dd
+  277  top
+  278  loginctl list-sessions 
+  279  loginctl list-users
+  280  loginctl kill-user linda
+  281  exit
+  282  history
+  283  man 7 signal
+  284  dd if=/dev/zero of=/dev/null
+  285  lsblk
+  286  dd if=/dev/sr0 of=/dev/sda bs=1M
+  287  dd if=/dev/zero of=/dev/null &
+  288  top
+  289  killall dd
+  290  nice --help | less
+  291  nice -n -5 dd if=/dev/zero of=/dev/null 
+  292  cd rhcsa10/
+  293  ls
+  294  git pull
+  295  cat stress1.service 
+  296  cat stress2.service 
+  297  cp stres* /etc/systemd/system/
+  298  systemctl daemon-reload
+  299  systemctl start stress1
+  300  systemctl start stress2
+  301  top
+  302  echo 0 > /sys/bus/cpu/devices/cpu1/online
+  303  top
+  304  killall dd
+  305  history
+  306  sysctl -a
+  307  sysctl -a | wc -l
+  308  tuned-adm list
+  309  tuned-adm recommend 
+  310  tuned-adm profile powersave
+  311  tuned-adm list
+  312  history
+  313  ssh linda@localhost
+  314  ip a
+  315  man ifconfig
+  316  systemctl status NetworkManager
+  317  nmtui
+  318  ip a
+  319  ping nu.nl
+  320  hostnamectl hostname rhcsa.example.local
+  321  exit
+  322  dnf install -y vsftpd
+  323  dnf install -y strace
+  324  strace dnf install -y httpd
+  325  vim /etc/hosts
+  326  dnf install -y curl
+  327  dnf install -y wget
+  328  history
+  329  nmtui
+  330  ip a
+  331  nmtui
+  332  ip a
+  333  ifconfig
+  334  systemctl -t help
+  335  systemctl list-units -t socket
+  336  systemctl list-units cups*
+  337  systemctl status cups.socket
+  338  systemctl cat cups.socket
+  339  systemctl list-unit-files sshd*
+  340  systemctl cat sshd.socket
+  341  systemctl list-units -t mount
+  342  grep myfile /etc/fstab
+  343  systemctl cat myfile.mount
+  344  systemctl cat -.mount
+  345  systemctl cat -- -.mount
+  346  cd /etc/systemd/system/
+  347  vim sleep.service
+  348  systemctl daemon-reload
+  349  systemctl enable --now sleep.service
+  350  systemctl status sleep.service
+  351  kill -9 10544
+  352  systemctl status sleep.service
+  353  sleep 5
+  354  systemctl status sleep.service
+  355  systemctl cat httpd.service
+  356  export EDITOR=/usr/bin/vim
+  357  systemctl edit httpd.service
+  358  systemctl cat httpd.service
+  359  cd /run/systemd/
+  360  ls
+  361  cd generator/
+  362  ls
+  363  cat boot.mount
+  364  systemctl show httpd.service
+  365  man systemd.directives
+  366  man systemd.service
+  367  journalctl
+  368  systemctl status sshd.service
+  369  journalctl -u sshd.service
+  370  cd
+  371  mkdir /var/log/journal
+  372  systemctl start systemd-journal-flush
+  373  ls -l /var/log/journal/
+  374  systemctl restart systemd-journal-flush
+  375  ls -l /var/log/journal/
+  376  journalctl -p err
+  377  systemctl enable --now httpd
+  378  systemctl edit httpd
+  379  history > /tmp/may2026
