@@ -377,3 +377,86 @@
   377  systemctl enable --now httpd
   378  systemctl edit httpd
   379  history > /tmp/may2026
+  380  ip a
+  381  lvs
+  382  lsblk
+  383  fdisk /dev/nvme0n1
+  384  pvcreate /dev/nvme0n1p6
+  385  pvs
+  386  xxd /dev/nvme0n1p6 | less
+  387  vgcreate vgdata /dev/nvme0n1p6
+  388  vgs
+  389  vgdisplay vgdata
+  390  echo $(( 511 * 4 ))
+  391  lvcreate -n lvdata -L 2G vgdata
+  392  lvcreate -n lvdata -l 100%FREE vgdata
+  393  lvs
+  394  mkfs /dev/vgdata/lvdata
+  395  vim /etc/fstab
+  396  xxd /dev/nvme0n1p6 | less
+  397  history
+  398  tail -1 /etc/fstab
+  399  vgs
+  400  lvs
+  401  mount -a
+  402  mkdir /lvdata
+  403  mount -a
+  404  df -h
+  405  dd if=/dev/random of=/lvdata/bigfile bs=1M
+  406  df -h
+  407  lvs
+  408  vgs
+  409  fdisk /dev/nvme0n1
+  410  vgs
+  411  vgextend vgdata /dev/nvme0n1p7
+  412  vgs
+  413  lvextend -r -l 50%FREE /dev/vgdata/lvdata
+  414  lvextend -r -l +50%FREE /dev/vgdata/lvdata
+  415  df -h
+  416  history
+  417  vim /etc/default/grub 
+  418  cd /boot/loader/
+  419  ls
+  420  cd entries/
+  421  ls
+  422  vim 563fdcc1b1be4bd0b7830ceaedb4eba3-6.12.0-55.9.1.el10_0.aarch64.conf 
+  423  cd
+  424  systemctl enable vsftpd
+  425  systemctl cat vsftpd.service
+  426  cd /etc/systemd/system/
+  427  ls
+  428  cd multi-user.target.wants/
+  429  ls -l
+  430  systemctl disable vsftpd
+  431  ls -l
+  432  cd
+  433  systemctl get-default
+  434  systemctl set-default reboot.target
+  435  reboot
+  436  showmount -e 192.168.29.141
+  437  dnf install -y nfs-utils
+  438  showmount -e 192.168.29.141
+  439  mount192.168.29.141:/nfsdata /mnt
+  440  mount 192.168.29.141:/nfsdata /mnt
+  441  munt
+  442  mount
+  443  umount /mnt
+  444  dnf install -y autofs
+  445  vim /etc/auto.master
+  446  vim /etc/auto.misc 
+  447  ls /
+  448  vim /etc/auto.master
+  449  vim /etc/auto.mydata
+  450  systemctl restart autofs
+  451  cd /mydata
+  452  ls -a
+  453  cd files
+  454  ls
+  455  vim /etc/auto.master
+  456  vim /etc/auto.ldap
+  457  systemctl restart autofs
+  458  cd /home/ldap/
+  459  ls -a
+  460  cd ldapuser3
+  461  cd
+  462  history > /tmp/may2026
