@@ -1,0 +1,198 @@
+    1  dnf install nmap
+    2  arch
+    3  ls -l $(which yum) $(which dnf)
+    4  df -h
+    5  lsblk
+    6  dd if=/dev/sr0 of=/rhel10.iso bs=1M
+    7  ls -l /rhel10.iso 
+    8  ls -lh /rhel10.iso 
+    9  mkdir /repo
+   10  vim /etc/fstab
+   11  mount -a
+   12  lsblk
+   13  df -h
+   14  ls /repo
+   15  mount
+   16  vim /etc/fstab
+   17  mount | grep '^/'
+   18  ls /repo
+   19  dnf config-manager --add-repo="file:///repo/BaseOS"
+   20  dnf config-manager --add-repo="file:///repo/AppStream"
+   21  dnf install -y nmap
+   22  cd /etc/yum.repos.d/
+   23  ls
+   24  cat repo_BaseOS.repo 
+   25  echo gpgcheck=0 >> /etc/yum.repos.d/repo_BaseOS.repo 
+   26  cat /etc/yum.repos.d/
+   27  cat /etc/yum.repos.d/repo_BaseOS.repo 
+   28  echo gpgcheck=0 >> /etc/yum.repos.d/repo_AppStream.repo 
+   29  dnf install -y nmap
+   30  history
+   31  sleep 60
+   32  dnf list se*
+   33  dnf list selinux*
+   34  dnf search seinfo
+   35  dnf search all seinfo
+   36  dnf provides */passwd
+   37  dnf info shadow-utils
+   38  cd
+   39  dnf install -y git
+   40  git clone https://github.com/sandervanvugt/rhcsa10
+   41  cd rhcsa10/
+   42  ls
+   43  cd labs
+   44  ls
+   45  ./live-lab1-grade.sh 
+   46  cd ..
+   47  ./countdown 14
+   48  cd 
+   49  tar cvf /root/archive.tgz -C /etc .
+   50  tar tvf archive.tgz 
+   51  cut -d : -f 1 /etc/passwd
+   52  cut -d : -f 1 /etc/passwd | sort
+   53  cut -d : -f 1 /etc/passwd | sort > /var/tmp/users
+   54  tail /var/tmp/users 
+   55  useradd bob
+   56  mkdir /root/userfiles
+   57  find / -user bob -t file
+   58  find / -user bob -type file
+   59  find / -user bob -type f
+   60  find / -user bob 
+   61  find / -user bob -type f -exec cp {} /root/userfiles/
+   62  find / -user bob -type f -exec cp {} /root/userfiles/ \;
+   63  ls -l userfiles/
+   64  ls -la userfiles/
+   65  history
+   66  cd rhcsa10/labs/
+   67  ls
+   68  ./live-lab1-grade.sh 
+   69  history
+   70  ls -l /etc/hosts
+   71  tar czvf ~/test.tgz /etc
+   72  tar tvg ~/test.tgz 
+   73  tar tvf ~/test.tgz 
+   74  c
+   75  cd
+   76  useradd leah
+   77  cp $(find / -user leah -type f) ~/userfiles/
+   78  ls -l /root/userfiles/
+   79  ls -la /root/userfiles/
+   80  su - leah
+   81  exit
+   82  ssh student@localhost
+   83  history
+   84  tar -czvf take1.tgz /etc
+   85  tar tvf take1.tgz 
+   86  tar -czvf take2.tgz -C /etc
+   87  tar -czvf take2.tgz -C /etc .
+   88  tar -tvf take2.tgz 
+   89  history
+   90  tar -czvf take3 -C /etc .
+   91  ls -l tak*
+   92  file take3
+   93  echo $EDITOR
+   94  EDITOR=/usr/bin/nano
+   95  visudo
+   96  export EDITOR=/usr/bin/nano
+   97  visudo
+   98  export EDITOR=
+   99  visudo
+  100  passwd leah
+  101  su - leah
+  102  visudo
+  103  visudo 
+  104  su - leah
+  105  visudo
+  106  su - leah
+  107  history
+  108  grep leah /etc/sudoers
+  109  less /etc/passwd
+  110  echo password | passwd --stdin leah
+  111  vim /etc/login.defs 
+  112  cd /etc/skel
+  113  touch myfile
+  114  useradd -m alex
+  115  ls -al /home/alex
+  116  passwd alex
+  117  grep alex /etc/shadow
+  118  cd
+  119  usermod --help
+  120  grep alex /etc/shadow
+  121  usermod -L alex
+  122  grep alex /etc/shadow
+  123  usermod -aG wheel leah
+  124  chage leah
+  125  history
+  126  vim /etc/login.defs 
+  127  touch /etc/newfile
+  128  touch /home/*/newfile
+  129  cd /home
+  130  ls
+  131  for i in *; do echo $i; done
+  132  for i in *; do touch $i/dollarIfile; done
+  133  ls -l *
+  134  ls -l */dollar*
+  135  for user in anna anouk linda lisa; do useradd $user; done
+  136  tail -4 /etc/passwd
+  137  for user in anna anouk linda lisa; do echo password | passwd --stdin $user; done
+  138  echo $?
+  139  tail -4 /etc/shadow
+  140  groupadd profs
+  141  groupadd students
+  142  usermod -aG profs anna
+  143  usermod -aG profs anouk
+  144  cd
+  145  cd rhcsa10/labs/
+  146  ls
+  147  ./live-lab2-grade.sh 
+  148  history
+  149  usermod -aG students linda
+  150  usermod -aG students lisa
+  151  ./live-lab2-grade.sh 
+  152  ls -l
+  153  cd
+  154  cd /home/leah
+  155  echo hello > leahfile
+  156  ls -l leahfile
+  157  chown leah:leah leahfile 
+  158  id leah
+  159  ls -l
+  160  chmod 044 leahfile 
+  161  ls -l
+  162  su - leah
+  163  touch wortel
+  164  su - leah
+  165  history
+  166  cd
+  167  vim hello
+  168  ./hello
+  169  ls -l hello 
+  170  chmod +x hello 
+  171  ./hello
+  172  mkdir /data/profs /data/students
+  173  mkdir -p /data/profs /data/students
+  174  chown :profs /data/profs
+  175  chgrp students /date/students
+  176  cd /data
+  177  ls -l
+  178  chgrp students students
+  179  chmod 770 students/
+  180  ls -l
+  181  chmod g+w,o-rx /data/profs
+  182  ls -l
+  183  grep students /etc/groups
+  184  grep students /etc/group
+  185  su - linda
+  186  chmod g+s /data/students
+  187  su - linda
+  188  su - lisa
+  189  chmod +t students/
+  190  ls -l
+  191  su - linda
+  192  su - lisa
+  193  ls -l /usr/bin/passwd /etc/shadow
+  194  cat /etc/shadow
+  195  history
+  196  find / -perm /4000
+  197  ip a
+  198  history > /tmp/july2026
