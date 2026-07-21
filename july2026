@@ -79,120 +79,322 @@
    79  ls -la /root/userfiles/
    80  su - leah
    81  exit
-   82  ssh student@localhost
-   83  history
-   84  tar -czvf take1.tgz /etc
-   85  tar tvf take1.tgz 
-   86  tar -czvf take2.tgz -C /etc
-   87  tar -czvf take2.tgz -C /etc .
-   88  tar -tvf take2.tgz 
-   89  history
-   90  tar -czvf take3 -C /etc .
-   91  ls -l tak*
-   92  file take3
-   93  echo $EDITOR
-   94  EDITOR=/usr/bin/nano
-   95  visudo
-   96  export EDITOR=/usr/bin/nano
-   97  visudo
-   98  export EDITOR=
-   99  visudo
-  100  passwd leah
-  101  su - leah
+   82  cd rhcsa10/
+   83  ./countdown 1
+   84  ./countdown 12
+   85  ./countdown 5
+   86  ./countdown 16
+   87  ssh student@localhost
+   88  history
+   89  tar -czvf take1.tgz /etc
+   90  tar tvf take1.tgz 
+   91  tar -czvf take2.tgz -C /etc
+   92  tar -czvf take2.tgz -C /etc .
+   93  tar -tvf take2.tgz 
+   94  history
+   95  tar -czvf take3 -C /etc .
+   96  ls -l tak*
+   97  file take3
+   98  echo $EDITOR
+   99  EDITOR=/usr/bin/nano
+  100  visudo
+  101  export EDITOR=/usr/bin/nano
   102  visudo
-  103  visudo 
-  104  su - leah
-  105  visudo
+  103  export EDITOR=
+  104  visudo
+  105  passwd leah
   106  su - leah
-  107  history
-  108  grep leah /etc/sudoers
-  109  less /etc/passwd
-  110  echo password | passwd --stdin leah
-  111  vim /etc/login.defs 
-  112  cd /etc/skel
-  113  touch myfile
-  114  useradd -m alex
-  115  ls -al /home/alex
-  116  passwd alex
-  117  grep alex /etc/shadow
-  118  cd
-  119  usermod --help
-  120  grep alex /etc/shadow
-  121  usermod -L alex
+  107  visudo
+  108  visudo 
+  109  su - leah
+  110  visudo
+  111  su - leah
+  112  history
+  113  grep leah /etc/sudoers
+  114  less /etc/passwd
+  115  echo password | passwd --stdin leah
+  116  vim /etc/login.defs 
+  117  cd /etc/skel
+  118  touch myfile
+  119  useradd -m alex
+  120  ls -al /home/alex
+  121  passwd alex
   122  grep alex /etc/shadow
-  123  usermod -aG wheel leah
-  124  chage leah
-  125  history
-  126  vim /etc/login.defs 
-  127  touch /etc/newfile
-  128  touch /home/*/newfile
-  129  cd /home
-  130  ls
-  131  for i in *; do echo $i; done
-  132  for i in *; do touch $i/dollarIfile; done
-  133  ls -l *
-  134  ls -l */dollar*
-  135  for user in anna anouk linda lisa; do useradd $user; done
-  136  tail -4 /etc/passwd
-  137  for user in anna anouk linda lisa; do echo password | passwd --stdin $user; done
-  138  echo $?
-  139  tail -4 /etc/shadow
-  140  groupadd profs
-  141  groupadd students
-  142  usermod -aG profs anna
-  143  usermod -aG profs anouk
-  144  cd
-  145  cd rhcsa10/labs/
-  146  ls
-  147  ./live-lab2-grade.sh 
-  148  history
-  149  usermod -aG students linda
-  150  usermod -aG students lisa
-  151  ./live-lab2-grade.sh 
-  152  ls -l
-  153  cd
-  154  cd /home/leah
-  155  echo hello > leahfile
-  156  ls -l leahfile
-  157  chown leah:leah leahfile 
-  158  id leah
-  159  ls -l
-  160  chmod 044 leahfile 
-  161  ls -l
-  162  su - leah
-  163  touch wortel
-  164  su - leah
-  165  history
-  166  cd
-  167  vim hello
-  168  ./hello
-  169  ls -l hello 
-  170  chmod +x hello 
-  171  ./hello
-  172  mkdir /data/profs /data/students
-  173  mkdir -p /data/profs /data/students
-  174  chown :profs /data/profs
-  175  chgrp students /date/students
-  176  cd /data
-  177  ls -l
-  178  chgrp students students
-  179  chmod 770 students/
-  180  ls -l
-  181  chmod g+w,o-rx /data/profs
+  123  cd
+  124  usermod --help
+  125  grep alex /etc/shadow
+  126  usermod -L alex
+  127  grep alex /etc/shadow
+  128  usermod -aG wheel leah
+  129  chage leah
+  130  history
+  131  vim /etc/login.defs 
+  132  touch /etc/newfile
+  133  touch /home/*/newfile
+  134  cd /home
+  135  ls
+  136  for i in *; do echo $i; done
+  137  for i in *; do touch $i/dollarIfile; done
+  138  ls -l *
+  139  ls -l */dollar*
+  140  for user in anna anouk linda lisa; do useradd $user; done
+  141  tail -4 /etc/passwd
+  142  for user in anna anouk linda lisa; do echo password | passwd --stdin $user; done
+  143  echo $?
+  144  tail -4 /etc/shadow
+  145  groupadd profs
+  146  groupadd students
+  147  usermod -aG profs anna
+  148  usermod -aG profs anouk
+  149  cd
+  150  cd rhcsa10/labs/
+  151  ls
+  152  ./live-lab2-grade.sh 
+  153  history
+  154  usermod -aG students linda
+  155  usermod -aG students lisa
+  156  ./live-lab2-grade.sh 
+  157  ls -l
+  158  cd
+  159  cd /home/leah
+  160  echo hello > leahfile
+  161  ls -l leahfile
+  162  chown leah:leah leahfile 
+  163  id leah
+  164  ls -l
+  165  chmod 044 leahfile 
+  166  ls -l
+  167  su - leah
+  168  touch wortel
+  169  su - leah
+  170  history
+  171  cd
+  172  vim hello
+  173  ./hello
+  174  ls -l hello 
+  175  chmod +x hello 
+  176  ./hello
+  177  mkdir /data/profs /data/students
+  178  mkdir -p /data/profs /data/students
+  179  chown :profs /data/profs
+  180  chgrp students /date/students
+  181  cd /data
   182  ls -l
-  183  grep students /etc/groups
-  184  grep students /etc/group
-  185  su - linda
-  186  chmod g+s /data/students
-  187  su - linda
-  188  su - lisa
-  189  chmod +t students/
-  190  ls -l
-  191  su - linda
-  192  su - lisa
-  193  ls -l /usr/bin/passwd /etc/shadow
-  194  cat /etc/shadow
-  195  history
-  196  find / -perm /4000
-  197  ip a
-  198  history > /tmp/july2026
+  183  chgrp students students
+  184  chmod 770 students/
+  185  ls -l
+  186  chmod g+w,o-rx /data/profs
+  187  ls -l
+  188  grep students /etc/groups
+  189  grep students /etc/group
+  190  su - linda
+  191  chmod g+s /data/students
+  192  su - linda
+  193  su - lisa
+  194  chmod +t students/
+  195  ls -l
+  196  su - linda
+  197  su - lisa
+  198  ls -l /usr/bin/passwd /etc/shadow
+  199  cat /etc/shadow
+  200  history
+  201  find / -perm /4000
+  202  ip a
+  203  history > /tmp/july2026
+  204  history
+  205  ls
+  206  cd
+  207  find / -perm /4000
+  208  find / -perm /4000 > suidfiles.txt
+  209  ls
+  210  chmod u+s hello
+  211  ls -l
+  212  find / -perm /4000 > suidfiles2.txt
+  213  diff suidfiles.txt suidfiles2.txt 
+  214  echo $?
+  215  vim scansuid.sh
+  216  chmod +x scansuid.sh 
+  217  ./scansuid.sh 
+  218  cd /data
+  219  ls
+  220  chmod 770 *
+  221  ls -l
+  222  cd
+  223  lsblk
+  224  poweroff
+  225  lsblk
+  226  poweroff
+  227  lsblk
+  228  ls /proc
+  229  cat /proc/partitions 
+  230  echo $(( 1024 * 1024 * 1024 * 1024 ))
+  231  echo $(( 1000 * 1000 * 1000 * 1000 )
+  232  echo $(( 1000 * 1000 * 1000 * 1000 ))
+  233  lsblk
+  234  fdisk /dev/nvme0n2
+  235  mkfs.xfs /dev/nvme0n2p4
+  236  mount /dev/nvme0n2p4 /mnt
+  237  lsblk
+  238  history
+  239  fdisk -l 
+  240  fdisk -l /dev/nvme0n2
+  241  fdisk /dev/nvme0n2
+  242  mount | grep fat
+  243  mkdir /trees
+  244  lsblk
+  245  vim /etc/fstab
+  246  reboot
+  247  cd rhcsa10/
+  248  ./countdown 7
+  249  lsblk
+  250  cat /etc/fstab
+  251  blkid
+  252  blkid | awk '/n1p4/ { print $2 }'
+  253  blkid | awk '/n1p4/ { print $2 }' >> /etc/fstab
+  254  vim /etc/fstab
+  255  reboot
+  256  echo $PATH
+  257  cp rhcsa10/countdown /usr/bin/
+  258  countdown 16
+  259  history
+  260  lsblk --fs
+  261  lsblk
+  262  fdisk /dev/nvme0n2
+  263  lsblk
+  264  mkfs.xfs /dev/nvme0n2p1
+  265  mkfs.xfs -L myxfs /dev/nvme0n2p2
+  266  mkswap /dev/nvme0n2p3
+  267  blkid
+  268  blkid | grep n2
+  269  blkid | awk '/n2p1/ { print $2 }'
+  270  blkid | awk '/n2p1/ { print $2 }' >> /etc/fstab
+  271  blkid | awk '/n2p2/ { print $2 }' >> /etc/fstab
+  272  blkid | awk '/n2p3/ { print $2 }' >> /etc/fstab
+  273  vim /etc/fstab
+  274  free -m
+  275  mount -a
+  276  mkdir -p /mounts/{files,xfs}
+  277  ls -l /mounts
+  278  swapon -a
+  279  free -m
+  280  lsblk
+  281  systemctl daemon-reload
+  282  reboot
+  283  lsblk
+  284  dd if=/dev/zero of=/swapfile bs=1M count=1024
+  285  ls -lh /swapfile 
+  286  mkswap /swapfile
+  287  chmod 600 /swapfile
+  288  vim /etc/fstab
+  289  swapon -a
+  290  free -m
+  291  history
+  292  tail -3 /etc/fstab
+  293  free -m
+  294  grep -i active /proc/meminfo 
+  295  history
+  296  sleep infinity &
+  297  jobs
+  298  ps aux
+  299  kill -9 7111
+  300  top
+  301  lscpu
+  302  cd /sys/bus/cpu/devices/cpu1
+  303  ls
+  304  cat online
+  305  echo 0 > online
+  306  lscpu | less
+  307  cd
+  308  dd if=/dev/zero of=/dev/null &
+  309  top
+  310  nice --help | less
+  311  nice -n -20 dd if=/dev/zero of=/dev/null
+  312  bg
+  313  top
+  314  killall dd
+  315  kill -9 7192
+  316  sysctl -a 
+  317  sysctl -a | wc -l
+  318  tuned-adm list
+  319  tuned-adm profile powersave
+  320  systemctl status tuned
+  321  tuned-adm recommend
+  322  history
+  323  cd /usr/lib/tuned/
+  324  ls
+  325  cd profiles/
+  326  ls
+  327  cd powersave/
+  328  ls
+  329  cat tuned.conf 
+  330  cd
+  331  ip a
+  332  systemctl status NetworkManager
+  333  nmtui
+  334  exit
+  335  countdown 3
+  336  ip a
+  337  dnf install -y httpd
+  338  vim /etc/hosts
+  339  cd /etc/NetworkManager/system-connections/
+  340  ls
+  341  less ens160.nmconnection 
+  342  vim /etc/hosts
+  343  cd
+  344  man -k nmcli
+  345  man nmcli-examples
+  346  history
+  347  systemctl -t help
+  348  systemctl list-unit-files -t socket
+  349  systemctl cat sshd.socket
+  350  systemctl cat sshd.service
+  351  history
+  352  ls /usr/lib/systemd/
+  353  ls /usr/lib/systemd/system
+  354  cd /etc/systemd/system/
+  355  vim sleep.service
+  356  systemctl enable --now sleep.service
+  357  systemctl status sleep
+  358  kill -9 10984
+  359  systemctl status sleep
+  360  cd
+  361  systemctl list-units -t service
+  362  systemctl list-unit-files -t service
+  363  systemctl status sshd.service
+  364  dnf install -y httpd
+  365  systemctl cat httpd.service
+  366  systemctl show httpd.service
+  367  systemctl edit httpd.service
+  368  export EDITOR=/usr/bin/vim
+  369  systemctl edit httpd.service
+  370  systemctl daemon-reload
+  371  systemctl restart httpd
+  372  ps aux | grep http
+  373  killall httpd
+  374  systemctl status httpd
+  375  history
+  376  journalctl
+  377  journalctl -p err
+  378  journalctl -f
+  379  journalctl -u sshd.service
+  380  mkdir /var/log/journal
+  381  ls -l /var/log/journal
+  382  systemctl start systemd-journal-f
+  383  systemctl start systemd-journal-flush
+  384  ls -l /var/log/journal
+  385  systemctl restart systemd-journal-flush
+  386  ls -l /var/log/jour
+  387  ls -l /var/log/journal/
+  388  history
+  389  vim /etc/default/grub
+  390  cd /boot/
+  391  ls
+  392  cd loader/
+  393  ls
+  394  cd entries/
+  395  ls
+  396  vim 4470edb9f922472c8c68351e23fa0f94-6.12.0-55.9.1.el10_0.aarch64.conf 
+  397  grub2-mkconfig -o /boot/grub2/grub.cfg
+  398  reboot
+  399  journalctl
+  400  history > /tmp/july2026 
