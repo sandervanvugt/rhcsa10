@@ -398,3 +398,178 @@
   398  reboot
   399  journalctl
   400  history > /tmp/july2026 
+  401  lsblk
+  402  fdisk /dev/nvme0n1
+  403  fdisk -l /dev/nvme0n1
+  404  pvcreate /dev/nvme0n1p5
+  405  xxd /dev/nvme0n1p5 | less
+  406  vgcreate vgdata /dev/nvme0n1p5
+  407  vgs
+  408  vgcreate --help | less
+  409  lvcreate -L 1G -n lvdata vgdata
+  410  xxd /dev/nvme0n1p5 | less
+  411  mkfs.ext4 /dev/vgdata/lvdata
+  412  mount /dev/vgdata/lvdata /lvdata
+  413  mkdir /lvdata
+  414  mount /dev/vgdata/lvdata /lvdata
+  415  mount 
+  416  ls -l /dev/vgdata/lvdata /dev/mapper/vgdata-lvdata 
+  417  vim /etc/fstab
+  418  umount /lvdata
+  419  mount -a
+  420  mount
+  421  tune2fs -l /dev/mapper/vgdata-lvdata 
+  422  history
+  423  ls -l /dev/vgdata/lvdata /dev/mapper/vgdata-lvdata 
+  424  lvs
+  425  lvreduce /dev/vgdata/lvdata -r -L 500M /dev/vgdata/lvdata
+  426  lvreduce /dev/vgdata/lvdata -r -L 500M
+  427  lsblk
+  428  lvresize  /dev/vgdata/lvdata -r -l +50%FREE
+  429  lsblk
+  430  df -h
+  431  history
+  432  vgs
+  433  echo $(( 1024 * 5 ))
+  434  fdisk /dev/nvme0n1
+  435  vgs
+  436  vgextend vgdata /dev/nvme0n1p6
+  437  vgextend rhel /dev/nvme0n1p7
+  438  vgs
+  439  lvcreate -L 1020M -n lvdb vgdata
+  440  mkfs.xfs /dev/vgdata/lvdb
+  441  vim /etc/fstab
+  442  lvextend /dev/rhel/root -r +5056M
+  443  lvextend /dev/rhel/root -r -L +5056M
+  444  lvs
+  445  history
+  446  getenforce
+  447  dnf install -y httpd
+  448  systemctl enable --now httpd
+  449  ps Zaux | grep httpd
+  450  ls -lZ /var/www
+  451  cd /var/www/html
+  452  vim index.html
+  453  systemctl restart httpd
+  454  curl localhost
+  455  history
+  456  vim /etc/httpd/conf/httpd.conf 
+  457  mkdir /webn
+  458  rmdir /webn/
+  459  mkdir /web
+  460  vim /web/index.html
+  461  systemctl restart httpd
+  462  curl localhost
+  463  getenforce
+  464  setenforce
+  465  setenforce permissive
+  466  getenforce
+  467  curl localhost
+  468  cd /var/log/httpd/
+  469  ls
+  470  cat error_log 
+  471  cd
+  472  vim /etc/httpd/conf/httpd.conf 
+  473  systemctl restart httpd
+  474  curl localhost
+  475  getenforce
+  476  setenforce enforcing
+  477  curl localhost
+  478  history
+  479  grep -A7 DocumentRoot /etc/httpd/conf/httpd.conf 
+  480  grep -A9 DocumentRoot /etc/httpd/conf/httpd.conf 
+  481  history
+  482  grep -A9 DocumentRoot /etc/httpd/conf/httpd.conf 
+  483  grep AVC /var/log/audit/audit.log 
+  484  date -d @1784735102
+  485  ls -dZ /web
+  486  ls -dZ /var/www/html/
+  487  man semanage-fcontext
+  488  # semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
+  489         # restorecon -R -v /web
+  490  semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
+  491  ls -Zd /web
+  492  restorecon -Rv /web
+  493  getenforce
+  494  curl localhost
+  495  man semanage-fcontext
+  496  history
+  497  ls -Zd /web
+  498  reboot
+  499  history
+  500  dnf list selinux*
+  501  dnf install -y selinux-policy-doc
+  502  man -k _selinux
+  503  man -k _selinux | grep http
+  504  man httpd_selinux 
+  505  vim /etc/httpd/conf/httpd.conf 
+  506  systemctl restart httpd
+  507  systemctl status httpd.service
+  508  journalctl -xeu httpd.service
+  509  grep AVC /var/log/audit/audit.log 
+  510  journalctl | grep sealert
+  511  sealert -l 0b3f75d4-4970-4787-b5a1-b1e898b73323 | less
+  512  man semanage-port
+  513  semanage port -a -t http_port_t -p tcp 82
+  514  systemctl restart httpd
+  515  systemctl status httpd
+  516  history
+  517  getsebool -A
+  518  getsebool -a
+  519  getsebool -a | wc -l
+  520  semanage boolean -l | wc -l
+  521  semanage fcontext -l | wc -l
+  522  getsebool -a | grep ftp
+  523  setsebool -P ftpd_anon_write on
+  524  getsebool -a | grep ftp
+  525  semanage boolean -l -C
+  526  semanage fcontext -l -C
+  527  semanage port -l -C
+  528  journalctl | grep sealert
+  529  sealert -l 0bd325d5-d881-4a01-ab47-f2f6a87352ed | less
+  530  history
+  531  ls -Z /etc/hosts
+  532  mv /etc/hosts /var/www/html
+  533  ls -Z /var/www/html/hosts 
+  534  cp /var/www/html/hosts /etc
+  535  ls -Z /etc/hosts
+  536  ls -Zd /etc
+  537  restorecon -R /var/www/html
+  538  ls -Z /var/www/html/hosts 
+  539  history
+  540  systemctl list-unit-files -t target
+  541  systemctl get-default
+  542  systemctl set-default graphical.target
+  543  vim /etc/hosts
+  544  dnf install -y nfs-utils
+  545  showmount -e sprite
+  546  ping sprite
+  547  vim /etc/hosts
+  548  showmount -e sprite
+  549  mount sprite:/nfsdata /mnt
+  550  mount
+  551  umount /mnt
+  552  dnf install -y autofs
+  553  vim /etc/auto.master
+  554  vim /etc/auto.misc
+  555  vim /etc/auto.nfsdata
+  556  systemctl enable --now autofs
+  557  ls -l
+  558  cd /
+  559  ls
+  560  cd nfsdata
+  561  ls -a
+  562  cd files
+  563  mount
+  564  vim /etc/auto.master
+  565  vim /etc/auto.ldap
+  566  systemctl restart autofs
+  567  cd /home/ldap
+  568  ls -a
+  569  cd ldapuser1
+  570  cd ..
+  571  cd ldapuser2
+  572  cd ..
+  573  ls
+  574  vim /etc/auto.misc
+  575  history > /tmp/july2026 
