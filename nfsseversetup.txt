@@ -1,0 +1,12 @@
+   49  dnf install nfs-utils
+   50  mkdir -p /nfsdata /home/ldap/ldapuser{1..9}
+   51  ls /home/ldap
+   52  vim /etc/exports
+   53  systemctl enable --now nfs-server
+   54  for i in nfs mountd rpc-bind; do firewall-cmd --add-service $i --permanent; done
+   55  firewall-cmd --list-all
+   56  firewall-cmd --reload
+   57  for i in nfs mountd rpc-bind; do firewall-cmd --add-service $i --permanent; done
+   58  firewall-cmd --list-all
+   59  history
+
