@@ -573,3 +573,193 @@
   573  ls
   574  vim /etc/auto.misc
   575  history > /tmp/july2026 
+  576  cd 
+  577  cd rhcsa10/
+  578  git pull
+  579  history
+  580  cd /usr/lib
+  581  cd firewalld/
+  582  ls
+  583  cd services/
+  584  ls
+  585  vim minecraft.xml 
+  586  firewall-cmd --add-service minecraft --permanent
+  587  firewall-cmd --reload
+  588  firewall-cmd --list-all
+  589  cp minecraft.xml /etc/firewalld/services/sander.xml
+  590  cd /etc/firewalld/services/
+  591  vim sander.xml 
+  592  firewall-cmd --get-services | grep sander
+  593  firewall-cmd --reload
+  594  firewall-cmd --get-services | grep sander
+  595  firewall-cmd --add-service sander --permanent
+  596  firewall-cmd --reload
+  597  cd
+  598  history
+  599  hwclock 
+  600  date
+  601  timedatectl set-time --help
+  602  timedatectl set-time 16:30
+  603  date -s 16:30
+  604  hwclock
+  605  hwclock --help
+  606  hwclock --systohc
+  607  hwclock
+  608  systemctl status chronyd
+  609  date
+  610  timedatectl list-timezones
+  611  timedatectl show
+  612  timedatectl status
+  613  timedatectl set-timezone Africa/Addis_Ababa
+  614  timedatectl status
+  615  history
+  616  timedatectl status
+  617  timedatectl status; sleep 60; timedatectl status
+  618  systemctl status chronyd
+  619  date -s 16:33
+  620  systemctl status chronyd
+  621  date
+  622  vim /etc/chrony.conf 
+  623  chronyc sources
+  624  systemctl restart chronyd
+  625  chronyc sources
+  626  vim /etc/chrony.conf 
+  627  history
+  628  systemctl list-unit-files -t timer
+  629  systemctl list-unit-files raid-check*
+  630  systemctl cat raid-check.timer
+  631  systemctl list-units -t timer
+  632  systemctl list-unit-files logrotate*
+  633  systemctl status logrotate.servicce
+  634  systemctl status logrotate.service
+  635  systemctl status logrotate.timer
+  636  dnf install -y sysstat
+  637  systemctl list-unit-files sysst*
+  638  systemctl cat sysstat-collect.timer 
+  639  man systemd.time
+  640  systemctl status crond
+  641  ls /etc/cron*/*
+  642  vim /etc/crontab 
+  643  crontab -e -u lisa
+  644  date
+  645  sleep 50; journalctl -F
+  646  journalctl
+  647  history
+  648  reboot
+  649  ls -l /sbin/init
+  650  ls -l /usr/lib/systemd/systemd
+  651  ls -l /
+  652  flatpak --version
+  653  exit
+  654  vim /etc/httpd/conf/httpd.conf 
+  655  man semanage-port
+  656  semanage port -a -t http_port_t -p tcp 82
+  657  useradd -u 1100 -s /sbin/nologin lori
+  658  grep lori /etc/passwd
+  659  grep -R /etc/ '^[Aa]dministrator'
+  660  grep -R /etc/* '^[Aa]dministrator'
+  661  grep -R '^[Aa]dministrator' /etc/
+  662  grep -R '^[Aa]dministrator' /etc/*
+  663  grep -R '^[Aa]dministrator' /etc/* > /tmp/stratorfiles.txt
+  664  cat /tmp/stratorfiles.txt
+  665  grep -Rl '^[Aa]dministrator' /etc/* > /tmp/stratorfiles.txt
+  666  cat /tmp/stratorfiles.txt
+  667  find /etc
+  668  find /etc -exec grep -l '^[Aa]dministrator' {} \;
+  669  find /etc -exec grep -l '^[Aa]dministrator' {} \; 2>/dev/null
+  670  ln -s /etc/hosts /tmp/hosts
+  671  ls -l /tmp/hosts
+  672  mkdir /data/sales
+  673  chown linda:sales /data/sales
+  674  groupadd sales
+  675  usermod -aG sales linda
+  676  usermod -aG sales lisa
+  677  chown linda:sales /data/sales
+  678  chmod 3770 /data/sales
+  679  vgs
+  680  lvcreate -l 50 -n lvlav vgdata
+  681  lvcreate -l 50 -n lvlab vgdata
+  682  mkfs.xfs /dev/vgdata/lvlab
+  683  mkdir /lvlab
+  684  vim /etc/fstab
+  685  man mount
+  686  systemctl daemon-reload
+  687  cd /run/systemd/generator/
+  688  ls
+  689  cat lvlab.mount 
+  690  cp lvlab.mount /etc/systemd/system/
+  691  systemctl enable lvlab.mount
+  692  systemctl cat sshd.service
+  693  vim /etc/systemd/system/lvlab.mount 
+  694  systemctl enable lvlab.mount
+  695  vim /etc/fstab
+  696  reboot
+  697  cd rhcsa10/
+  698  ls
+  699  vim script1 
+  700  ./script1
+  701  vim script2 
+  702  ./script2
+  703  ./script2 iughiugu
+  704  echo $SHELL
+  705  grep root /etc/passwd
+  706  vim script3 
+  707  ./script3 5
+  708  ls
+  709  less resources.txt 
+  710  ./countdown 13
+  711  ls
+  712  cat mini-exam-45min.txt 
+  713  tuned-adm recommend 
+  714  tuned-adm profile virtual-guest
+  715  reboot
+  716  mount | grep lvlab
+  717  systemctl status lvlab.mounbt
+  718  systemctl status lvlab.mount
+  719  history
+  720  systemctl cat lvlab.mount
+  721  systemctl start lvlab.mount
+  722  journalctl -xe lvlab.mount
+  723  journalctl -xeu lvlab.mount
+  724  systemctl cat lvlab.mount
+  725  mkfs.xfs /dev/vgdata/lvla
+  726  mkfs.xfs /dev/vgdata/lvlab
+  727  systemctl start lvlab.mount
+  728  systemctl cat lvlab.mount
+  729  mkfs.ext4 /dev/vgdata/lvlab
+  730  vim /etc/systemd/system/lvlab.mount 
+  731  systemctl daemon-reload
+  732  systemctl start lvlab.mount
+  733  cd rhcsa10/
+  734  ls
+  735  less mini-exam-45min.txt 
+  736  cd rhcsa10/
+  737  less mini-exam-45min.txt 
+  738  exit
+  739  find / -perm /6000
+  740  find / -perm /6000 > /root/sugidfiles.txt
+  741  vim /root/sugidcheck
+  742  chmod +x sugidcheck 
+  743  ./sugidcheck 
+  744  touch /tmp/testfile
+  745  chmod u+s /tmp/testfile
+  746  ./sugidcheck 
+  747  journalctl
+  748  cat sugidcheck 
+  749  crontab -e -u root
+  750  sleep 33
+  751  journalctl
+  752  crontab -e -u root
+  753  exit
+  754  cd rhcsa10/
+  755  ls
+  756  cd exam/
+  757  ls
+  758  cd ../labs/
+  759  ls
+  760  ./live-mini-exam-grade.sh 
+  761  cd
+  762  cd rhcsa10/
+  763  ls
+  764  less resources.txt 
+  765  history > /tmp/july2026 
