@@ -1,6 +1,6 @@
-find /usr -perm /6000 -size -100k > /tmp/suidgidcheck
+ssh server2 "find /usr -perm /6000 -size -100k | awk -F\"/\" '{ print \$NF }' | sort > /tmp/suidgidcheck"
 
-if diff /tmp/suidgidcheck /root/sugidfiles &>/dev/null
+if ssh server2 "ls /root/sugidfiles/ | awk '{ print \$NF }' > /root/sugidfiles.files; diff /tmp/suidgidcheck /root/sugidfiles.files &>/dev/null"
 then
 	echo -e "\033[32m[OK]\033[0m\t\t you correctly identified all SUID and SGID files"
 	SCORE=$(( SCORE + 10 ))
