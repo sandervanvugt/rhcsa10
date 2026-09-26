@@ -1,4 +1,5 @@
-find /usr -perm /6000 -size -100k > /tmp/suidgidcheck
+ssh server2 find /usr -perm /6000 -size -100k > /tmp/suidgidcheck
+scp server2:/root/sugidfiles /root/sugidfiles
 
 if diff /tmp/suidgidcheck /root/sugidfiles &>/dev/null
 then

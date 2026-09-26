@@ -14,8 +14,9 @@ else
 	fi
 fi
 TOTAL=$(( TOTAL + 10 ))
-
-if grep myfiles.*/mnt/data /etc/fstab &>/dev/null
+#RHCSA lets us use UUID! clean the text of UUID= & ", makes the validation easier
+if grep myfiles.*/mnt/data /etc/fstab &>/dev/null || \
+   grep $(blkid | awk '/myfile/ { print $2 }' | sed -E 's/\"|UUID=//g').*/mnt/data /etc/fstab &>/dev/null
 then
 	echo -e "\033[32m[OK]\033[0m\t\t the \033[1mmyfiles\033[0m LV mounts on /mnt/data"
 	SCORE=$(( SCORE + 10 ))

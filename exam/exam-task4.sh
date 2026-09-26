@@ -1,5 +1,6 @@
-export EXT4ID=$(blkid | awk '/ext4/ { print $2 }')
-export SWAPID=$(blkid | awk '/swap/ && !/mapper/ { print $2 }')
+#add sed to allow filtering where user adds with id UUID=1234 or UUID="1234"
+export EXT4ID=$(blkid | awk '/ext4/ { print $2 }' | sed 's/\"/.*/g')
+export SWAPID=$(blkid | awk '/swap/ && !/mapper/ { print $2 }' | sed 's/\"/.*/g')
 
 if [ -z $EXT4ID ] || [ -z $SWAPID ]
 then
