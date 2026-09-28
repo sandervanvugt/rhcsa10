@@ -1,0 +1,156 @@
+    1  subscription-manager unregister
+    2  subscription-manager clean
+    3  subscription-manager status
+    4  df -h
+    5  lvs
+    6  vgs
+    7  poweroff
+    8  lsblk
+    9  vgs
+   10  fdisk /dev/nvme0n1
+   11  lsblk
+   12  vgs
+   13  vgextend rhel
+   14  vgextend rhel /dev/nvme0n1p4
+   15  vgs
+   16  lvs
+   17  lvextend /dev/rhel/root -l +100%FREE
+   18  lvs
+   19  df -h
+   20  xfs_growfs /
+   21  df -h
+   22  history
+   23  vim countdown
+   24  chmod +x countdown 
+   25  ./countdown 12
+   26  history
+   27  df -h
+   28  dnf repolist
+   29  lsblk
+   30  dd if=/dev/sr0 of=/rhel102.iso bs=1M
+   31  ls -l /rhel102.iso 
+   32  ls -lh /rhel102.iso 
+   33  mkdir /repo
+   34  vim /etc/fstab
+   35  mount -a
+   36  lsblk
+   37  ls /repo
+   38  history
+   39  tail -1 /etc/fstab
+   40  yum install nmap
+   41  dnf config-manager --add-repo="file:///repo/BaseOS"
+   42  dnf config-manager --add-repo="file:///repo/AppStream"
+   43  ls -l /etc/yum.repos.d/
+   44  dnf install nmap -y
+   45  vim /etc/yum.repos.d/repo_BaseOS.repo 
+   46  vim /etc/yum.repos.d/repo_AppStream.repo 
+   47  dnf install nmap -y
+   48  rpm -qa
+   49  rpm -qa | grep nmap
+   50  rpm -ql nmap
+   51  rpm -qc nmap
+   52  rpm -qc httpd
+   53  dnf install httpd
+   54  rpm -qc httpd
+   55  rpm -q --scripts httpd
+   56  dnf list selinux*
+   57  dnf search seinfo
+   58  dnf search all seinfo
+   59  dnf provides */seinfo
+   60  history
+   61  dnf repolist
+   62  history
+   63  history | grep dd
+   64  history | grep ^dnf
+   65  history | grep ' dnf'
+   66  history | grep 43
+   67  history | grep 45
+   68  vim /etc/yum.repos.d/repo_BaseOS.repo 
+   69  which yum
+   70  ls -l $(which yum) $(which dnf)
+   71  exit
+   72  ./countdown 12
+   73  ./countdown 1
+   74  ./countdown 12
+   75  ps aux | grep -v root
+   76  ps aux | grep -v root | grep -v student
+   77  less /etc/passwd
+   78  exit
+   79  less /etc/shadow
+   80  vim /etc/login.defs
+   81  useradd thando
+   82  id thando
+   83  echo password 
+   84  echo password | passwd --stdin thando
+   85  grep thando /etc/shadow
+   86  groupadd sales
+   87  usermod -aG sales thando
+   88  id thando
+   89  chpasswd --help
+   90  chpasswd password:thando
+   91  echo "thando:password" | chpasswd
+   92  grep root /etc/shadow
+   93  id student
+   94  visudo
+   95  exit
+   96  visudo
+   97  su - anna
+   98  visudo
+   99  ls -l
+  100  mkdir -p /data/sales
+  101  cd /data
+  102  ls -l
+  103  chown thando:sales sales
+  104  ls -l
+  105  echo hello > sales/hello.txt
+  106  chmod 055 sales/hello.txt 
+  107  su - thando
+  108  chown thando /data/sales/hello.txt 
+  109  su - thando
+  110  history
+  111  mkdir -p /data/profs
+  112  mkdir -p /data/students
+  113  groupadd students
+  114  groupadd profs
+  115  ls -l
+  116  chown :profs profs
+  117  chgrp students students/
+  118  ls -l
+  119  chmod 770 students/
+  120  chmod g+w,o-rx profs/
+  121  ls -l
+  122  cd /home/thando/
+  123  touch myfile
+  124  ls -l
+  125  su - thando
+  126  useradd lisa
+  127  usermod -aG students lisa
+  128  usermod -aG students linda
+  129  useradd linda
+  130  usermod -aG students linda
+  131  echo "linda:passwd" | chpasswd
+  132  echo "lisa:passwd" | chpasswd
+  133  su - linda
+  134  chmod g+s /data/students
+  135  su - linda
+  136  su - lisa
+  137  chmod +t /data/students/
+  138  ls -ld /data/students/
+  139  su - lisa
+  140  history
+  141  ls -l /usr/bin/passwd /etc/shadow
+  142  find / -perm /4000
+  143  history
+  144  cd
+  145  groupadd zurg
+  146  usermod -aG zurg thando
+  147  useradd -G zurg adam
+  148  echo "adam:password" | chpasswd
+  149  mkdir /data/zurg
+  150  chown adam:zurg /data/zurg
+  151  chmod 3770 /data/zurg
+  152  su - adam
+  153  su - thando
+  154  su - adam
+  155  dnf install -y git
+  156  history > /tmp/sept26.txt
