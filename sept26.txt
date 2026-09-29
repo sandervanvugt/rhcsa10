@@ -154,3 +154,204 @@
   154  su - adam
   155  dnf install -y git
   156  history > /tmp/sept26.txt
+  157  ip a
+  158  git clone https://github.com/sandervanvugt/rhcsa10
+  159  cd rhcsa10/
+  160  ls
+  161  cd
+  162  find / -perm /4000
+  163  find / -perm /4000 > suidfiles.txt
+  164  history
+  165  echo hello > a.txt
+  166  echo hello > b.txt
+  167  diff a.txt b.txt 
+  168  echo $?
+  169  echo bye >> b.txt
+  170  diff a.txt b.txt 
+  171  echo $?
+  172  if diff a.txt b.txt; then echo no difference; fi
+  173  vim finddiff.sh
+  174  chmod +x finddiff.sh 
+  175  ./finddiff.sh 
+  176  touch newfile
+  177  chmod u+s newfile 
+  178  ls -l newfile 
+  179  ./finddiff.sh 
+  180  history
+  181  cat finddiff.sh 
+  182  chmod -x finddiff.sh 
+  183  ls -l finddiff.sh 
+  184  bash finddiff.sh 
+  185  chmod +x finddiff.sh 
+  186  echo $PATH
+  187  countdown
+  188  ./countdown 
+  189  cp countdown /bin/
+  190  dd if=/dev/zero of=/dev/null &
+  191  jobs
+  192  fg 2
+  193  bg 2
+  194  ps aux 
+  195  ps aux | less
+  196  top
+  197  dd if=/dev/zero of=/dev/null &
+  198  top
+  199  ps faux | less
+  200  history
+  201  top
+  202  killall dd
+  203  systemctl list-units
+  204  systemctl list-units -t service
+  205  systemctl cat cups.service
+  206  systemctl -t service list-units
+  207  systemctl -t service list-unit-files
+  208  systemctl enable --now brltty.service
+  209  systemctl status brltty
+  210  systemctl cat sshd
+  211  ps aux | grep ssh
+  212  kill -9 1317
+  213  systemctl status sshd
+  214  systemctl start httpd
+  215  pidof httpd
+  216  systemctl status httpd
+  217  kill -9 19208
+  218  systemctl status httpd
+  219  systemctl start httpd
+  220  systemctl edit httpd
+  221  systemctl cat httpd
+  222  systemctl status httpd
+  223  kill -9 19401
+  224  systemctl status httpd
+  225  history
+  226  cd rhcsa10/
+  227  ls
+  228  cp stress1.service sleep.service
+  229  vim sleep.service
+  230  systemctl cat sshd.service 
+  231  vim sleep.service
+  232  ls /usr/lib/systemd/system
+  233  ls /etc/systemd/system
+  234  cp sleep.service /etc/systemd/system/
+  235  systemctl daemon-reload
+  236  systemctl status sleep.service
+  237  systemctl enable --now sleep
+  238  systemctl status sleep.service
+  239  kill 21085
+  240  systemctl status sleep.service
+  241  systemctl start sleep.service
+  242  systemctl status sleep.service
+  243  kill -9 21097
+  244  systemctl status sleep.service
+  245  systemctl cat sleep.service 
+  246  history
+  247  cat sleep.service 
+  248  history | tail -20 | head -10
+  249  cat sleep.service 
+  250  systemctl show sshd.service
+  251  man systemd.directives
+  252  man org.freedesktop.systemd1
+  253  man systemd.directives
+  254  cd /etc/systemd/system/
+  255  ls
+  256  vim httpd.service.d/override.conf 
+  257  cd
+  258  systemctl list-units -t target
+  259  systemctl cat sound.target
+  260  systemctl cat graphical.target
+  261  systemctl get-default
+  262  systemctl set-default multi-user.target
+  263  reboot
+  264  ./countdown 12
+  265  ./countdown 9
+  266  ./countdown 1
+  267  ./countdown 13
+  268  systemctl set-default graphical.target
+  269  systemctl isolate graphical.target
+  270  systemctl isolate graphical.target
+  271  systemctl status sshd.service
+  272  journalctl
+  273  journalctl -p err
+  274  journalctl -u sshd.service
+  275  mkdir /var/log/journa
+  276  systemctl restart systemd-journal-flush.service 
+  277  ls -l /var/log/journal/
+  278  history
+  279  lsblk
+  280  ls -l /dev/nvm*
+  281  tail -1 /etc/fstab
+  282  poweroff
+  283  countdown 12
+  284  lsblk
+  285  gdisk
+  286  dnf provides */gdisk
+  287  fdisk /dev/nvme0n2
+  288  lsblk
+  289  mkfs.xfs /dev/nvme0n2p1
+  290  mount /dev/nvme0n2p1 /mnt
+  291  mount
+  292  cd /mnt
+  293  touch coffe
+  294  ls
+  295  umount /mnt
+  296  lsof /mnt
+  297  cd
+  298  umount /mnt
+  299  vim /etc/fstab
+  300  mount -a
+  301  reboot
+  302  lsblk
+  303  ls /demo
+  304  reboot
+  305  blkid
+  306  blkid | awk '/n2p1/ { print $2 }'
+  307  blkid | awk '/n2p1/ { print $2 }' >> /etc/fstab
+  308  vim /etc/fstab
+  309  reboot
+  310  countdown 10
+  311  lsblk
+  312  history
+  313  vim /etc/fstab
+  314  reboot
+  315  touch ff
+  316  lsblk
+  317  blkid | awk '/n2p1/ { print $2 }' >> /etc/fstab
+  318  vim /etc/fstab
+  319  mount -a
+  320  systemctl daemon-reload
+  321  reboot
+  322  vim /etc/default/grub 
+  323  cd /boot/loader/entries/
+  324  ls
+  325  vim c965ed2666764ffeace11a03a1556c35-6.12.0-211.7.3.el10_2.aarch64.conf 
+  326  cd ../..
+  327  ls
+  328  cd grub2/
+  329  ls
+  330  vim grub.cfg 
+  331  grub2-mkconfig -o /boot/grub2/grub.cfg
+  332  reboot
+  333  history
+  334  countdown 12
+  335  lsblk
+  336  fdisk /dev/nvme0n2
+  337  pvcreate /dev/nvme0n2p2
+  338  vgcreate vgdata /dev/nvme0n2p2
+  339  vgs
+  340  lvcreate -n lvdata -L 2G vgdata
+  341  lvcreate -n lvdata -l 511 vgdata
+  342  ls -l /dev/mapper/vgdata-lvdata /dev/vgdata/lvdata 
+  343  mkfs.ext4 -L coffee /dev/mapper/vgdata-lvdata 
+  344  vim /etc/fstab
+  345  mount -a
+  346  reboot
+  347  history
+  348  vgs
+  349  pvs
+  350  vgextend vgdata /dev/nvme0n2p3
+  351  vgs
+  352  lvs
+  353  lvresize -r /dev/vgdata/lvdata -l +50%FREE
+  354  lvs
+  355  df -h
+  356  history
+  357  history > /tmp/sept26.txt 
