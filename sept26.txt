@@ -526,3 +526,188 @@
   526  history
   527  reboot
   528  history > /tmp/sept26.txt 
+  529  vim /etc/ssh/sshd_config
+  530  systemctl restart sshd
+  531  firewall-cmd --list-all
+  532  firewall-cmd --get-services
+  533  cd /usr/lib/firewalld/services/
+  534  vim ssh.xml 
+  535  firewall-cmd --list-all
+  536  firewall-cmd --add-service httpd
+  537  firewall-cmd --list-all
+  538  firewall-cmd --reload
+  539  firewall-cmd --list-all
+  540  firewall-cmd --add-service httpd --permanent
+  541  firewall-cmd --add-service http --permanent
+  542  firewall-cmd --reload
+  543  nmap -sn 192.168.29.0/24
+  544  nmap -p 22 192.168.29.139
+  545  curl -v http://localhost:80
+  546  nc -zv nfsserver.example.com 22
+  547  nc -zv nfsserver.example.com 23
+  548  history
+  549  cd
+  550  cd -
+  551  cp http.xml /etc/firewalld/services/web.xml
+  552  vim /etc/firewalld/services/web.xml
+  553  firewall-cmd --reload
+  554  firewall-cmd --list-all | grep web
+  555  firewall-cmd --get-services
+  556  firewall-cmd --add-service web --permanent
+  557  firewall-cmd --reload
+  558  history
+  559  cd
+  560  systemctl status atd
+  561  at teatime
+  562  atq
+  563  systemctl status crond
+  564  vim /etc/crontab 
+  565  ls /etc/cron*/*
+  566  ls -d /etc/cron*/
+  567  crontab -u thando -e
+  568  journalctl -f
+  569  systemctl list-units -t timer
+  570  systemctl list-units fstrim*
+  571  systemctl list-unit-files fstrim*
+  572  systemctl cat fstrim.service
+  573  systemctl status fstrim.service
+  574  systemctl cat fstrim.timer
+  575  systemctl list-units -t timer
+  576  systemctl list-unit-files -t timer
+  577  dnf install -y sysstat
+  578  systemctl list-unit-files -t timer
+  579  systemctl cat fstrim.timer
+  580  man systemd.time
+  581  man systemd.timer
+  582  history
+  583  vim /etc/crontab 
+  584  man 5 crontab
+  585  crontab -e -u linda
+  586  sysctl -a
+  587  sysctl -a | wc -l
+  588  systemctl status tuned
+  589  tuned-adm list
+  590  tuned-adm profile powersave
+  591  tuned-adm recommend
+  592  history
+  593  vim /etc/default/grub 
+  594  cd /boot/loader/entries/
+  595  ls
+  596  vim c965ed2666764ffeace11a03a1556c35-6.12.0-211.7.3.el10_2.aarch64.conf 
+  597  grub2-mkconfig -o /boot/grub2/grub.cfg
+  598  history
+  599  cd
+  600  free -m
+  601  grep ctive /proc/meminfo
+  602  fdisk /dev/nvme0n1
+  603  free -m
+  604  mkswap /dev/nvme0n1p7
+  605  blkid | awk '/n1p7/ { print $2 }'
+  606  blkid | awk '/n1p7/ { print $2 }' >> /etc/fstab
+  607  vim /etc/fstab
+  608  swapon -a
+  609  free -m
+  610  history
+  611  ssh student@nfsserver
+  612  hwclock
+  613  timedatectl show
+  614  timedatectl set-timezone Africa/Nairobi
+  615  timedatectl show
+  616  date
+  617  hwclock
+  618  date -s 17:51
+  619  hwclock --help
+  620  systemctl status chrony
+  621  systemctl status chronyd
+  622  vim /etc/chrony.conf 
+  623  systemctl restart nfsserver
+  624  systemctl restart chronyd
+  625  chronyc sources
+  626  ssh student@nfsserver
+  627  chronyc sources
+  628  systemctl restart chronyd
+  629  chronyc sources
+  630  history
+  631  history | grep clone
+  632  cd rhcsa10/
+  633  ls
+  634  cd labs
+  635  ls
+  636  cd ..
+  637  less mini-exam-45min.txt 
+  638  git pull
+  639  less mini-exam-45min.txt 
+  640  exit
+  641  dnf install -y httpd
+  642  vim /etc/httpd/conf/httpd.conf 
+  643  man semanage-port
+  644  semanage port -a -t http_port_t -p tcp 82
+  645  systemctl restart httpd
+  646  useradd -u 1100 -s /sbin/nologin lori
+  647  grep lori /etc/passwd
+  648  grep '[Aa]dministrator' /etc/*
+  649  grep '[Aa]dministrator' /etc/* 2>/dev/null
+  650  grep '^[Aa]dministrator' /etc/* 2>/dev/null
+  651  grep -R '^[Aa]dministrator' /etc/* 2>/dev/null
+  652  grep -Rl '^[Aa]dministrator' /etc/* 2>/dev/null
+  653  grep -Rl '^[Aa]dministrator' /etc/* 2>/dev/null >/tmp/stratorfiles.txt
+  654  ln -s /etc/hosts /tmp/hosts
+  655  ls -l /tmp/hosts
+  656  mkdir -p /data/sales
+  657  chown linda:sales /data/sales
+  658  chmod 3770 /data/sales
+  659  groupadd sales
+  660  usermod -aG sales linda
+  661  usermod -aG sales lisa
+  662  echo $(( 4 * 150 ))
+  663  vgs
+  664  lvcreate -n lvlab -L 600M vgdata
+  665  mkfs.xfs /dev/vgdata/lvdata
+  666  mkdir /lvlab
+  667  vim /etc/fstab
+  668  mount -a
+  669  mkfs.xfs /dev/vgdata/lvlab
+  670  mount -a
+  671  vim /etc/fstab
+  672  mount -a
+  673  systemctl daemon-reload
+  674  cd /run/systemd/generator/
+  675  kls
+  676  ls
+  677  cat lvlab.mount
+  678  cp lvlab.mount /etc/systemd/system/
+  679  systemctl daemon-reload
+  680  systemctl enable lvlab.mount
+  681  cat /etc/systemd/system/sleep.service 
+  682  vim /etc/systemd/system/lvlab.mount 
+  683  systemctl daemon-reload
+  684  vim /etc/fstab
+  685  umount /lvlab 
+  686  systemctl enable --now lvlab.mount
+  687  systemctl status lvlab.mount
+  688  cd
+  689  tuned-adm recommend
+  690  tuned-adm profile virtual-guest
+  691  man find
+  692  find / -perm /6000 2>/dev/null
+  693  vim sugidcheck
+  694  chmod +x sugidcheck 
+  695  ./sugidcheck 
+  696  find / -perm /6000 2>/dev/null > /root/sugidfiles.txt
+  697  ./sugidcheck 
+  698  touch /tmp/testfile
+  699  chmod u+s /tmp/testfile
+  700  ./sugidcheck 
+  701  journalctl
+  702  crontab -e
+  703  exit
+  704  history
+  705  ls
+  706  cd rhcsa10/
+  707  ls
+  708  cd labs
+  709  ls
+  710  ./live-mini-exam-grade.sh 
+  711  cd
+  712  history
+  713  history > /tmp/sept26.txt 
