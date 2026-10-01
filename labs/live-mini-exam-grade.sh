@@ -169,13 +169,13 @@ else
 	echo -e "\033[31m[FAIL]\033[0m\t\t logical volume lvlab was not found. Please make sure you master this topic, it is very important and you probably fail the exam if you can't manage LVM."| tee -a /tmp/exam-report.txt
 fi
 
-# check if it has a 50 extent size
-if [[ $(lvdisplay | grep -A 11 '\blvlab' | awk '/Current LE/ { print $3 }') == 50 ]]
+# check if it has a 150 extent size
+if [[ $(lvdisplay | grep -A 11 '\blvlab' | awk '/Current LE/ { print $3 }') == 150 ]]
 then
-	echo -e "\033[32m[OK]\033[0m\t\t lvlab has a size of 50 extents"
+	echo -e "\033[32m[OK]\033[0m\t\t lvlab has a size of 150 extents"
 	SCORE=$(( SCORE + 10 ))
 else
-	echo -e "\033[31m[FAIL]\033[0m\t\t lvlab size is not 50 extents"| tee -a /tmp/exam-report.txt
+	echo -e "\033[31m[FAIL]\033[0m\t\t lvlab size is not 150 extents"| tee -a /tmp/exam-report.txt
 fi
 
 # format with xfs
