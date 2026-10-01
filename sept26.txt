@@ -355,3 +355,174 @@
   355  df -h
   356  history
   357  history > /tmp/sept26.txt 
+  358  history | grep git
+  359  echo $(( 1024 * 1024 ))
+  360  lsblk
+  361  fdisk /dev/nvme0n1
+  362  vgcreate vgdb /dev/nvme0n1p5
+  363  vgs
+  364  lvcreate -n lvdb -L 1020M vgbd
+  365  lvcreate -n lvdb -L 1020M vgdb
+  366  lvs
+  367  mkfs.xfs /dev/vgdb/lvdb
+  368  mkdir /lvdb
+  369  vim /etc/fstab
+  370  mount -a
+  371  mount
+  372  vgextend vgdb /dev/nvme0n1p6
+  373  vgs
+  374  lvresize -r /dev/vgdb/lvdb -l +100%FREE
+  375  df -h
+  376  history
+  377  systemctl status NetworkManager
+  378  ip route show
+  379  ip a
+  380  nmtui
+  381  exit
+  382  vim /etc/hosts
+  383  ping lilayi
+  384  ip a
+  385  history
+  386  man nmcli-examples
+  387  cd /etc/sysconfig/
+  388  ls
+  389  cat network 
+  390  cd ..
+  391  cd NetworkManager/
+  392  ls
+  393  cd system-connections/
+  394  ls
+  395  vim ens160.nmconnection 
+  396  ping lilayi
+  397  cd
+  398  dnf install nfs-utils -y
+  399  vim /etc/hosts
+  400  showmount -e nfsserver
+  401  mount nfsserver:/nfsdata /mnt
+  402  mount
+  403  cd /mnt
+  404  touch hello
+  405  ls
+  406  cd
+  407  umount /mnt
+  408  history
+  409  dnf install -y autofs
+  410  cd /etc
+  411  vim auto.master
+  412  vim auto.misc 
+  413  vim auto.master
+  414  vim auto.nfsdata
+  415  systemctl enable --now autofs
+  416  ls /
+  417  cd /nfsdata
+  418  ls -al
+  419  cd files
+  420  mount
+  421  history
+  422  grep nfsdata /etc/auto.master
+  423  cat /etc/auto.nfsdata 
+  424  vim /etc/auto.master
+  425  vim /etc/auto.ldap
+  426  cd /home
+  427  ls
+  428  systemctl restart autofs
+  429  ls
+  430  cd ldap
+  431  ls -a
+  432  cd ldapuser1
+  433  cd ..
+  434  ls
+  435  cd ldapuser4
+  436  history
+  437  grep ldap /etc/auto.master
+  438  cat /etc/auto.ldap
+  439  cd
+  440  rpm -qa | grep http
+  441  ps aux | grep http
+  442  systemctl enable --now httpd
+  443  ps aux | grep http
+  444  ps Zaux | grep http
+  445  ls -lZ /var/www
+  446  echo hello > /var/www/html/index.html
+  447  systemctl restart httpd
+  448  curl localhost
+  449  mkdir /web
+  450  echo goedemiddag > /web/index.html
+  451  vim /etc/httpd/conf/httpd.conf 
+  452  systemctl restart httpd
+  453  curl localhost
+  454  ps Zaux | grep httpd
+  455  ls -ldZ /web
+  456  history
+  457  ps Zaux 
+  458  ps Zaux | grep ssh
+  459  semanage port -l
+  460  semanage port -l | grep ssh
+  461  getenforce
+  462  setenforce permissive
+  463  curl localhost
+  464  setenforce enforcing
+  465  grep AVC /var/log/audit/audit.log 
+  466  date -d @1790780331
+  467  ls -lZ /var/www
+  468  ls -Z /var/www/html/index.html 
+  469  getenforce
+  470  curl localhost
+  471  man semanage-fcontext
+  472  semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
+  473  ls -ldZ /web
+  474  restorecon -Rv /web
+  475  curl localhost
+  476  history
+  477  cd /etc/selinux/
+  478  ls
+  479  cd targeted/
+  480  ls
+  481  cd contexts/
+  482  ls
+  483  cd ../policy/
+  484  las
+  485  ls
+  486  cd
+  487  semanage fcontext -l
+  488  semanage fcontext -l | grep web
+  489  getsebool -a 
+  490  getsebool -a | grep ftp
+  491  setsebool -P ftpd_anon_write on
+  492  getsebool -a | grep ftp
+  493  semanage fcontext -l -C
+  494  semanage fcontext -Cl
+  495  ssh localhost
+  496  ssh student@localhost
+  497  dnf install -y nmap
+  498  nmap 192.168.29.100
+  499  vim /etc/ssh/sshd_config
+  500  systemctl restart sshd
+  501  systemctl status sshd
+  502  journalctl -eu sshd.service
+  503  setenforce permissive
+  504  systemctl restart sshd
+  505  setenforce enforcing
+  506  grep AVC /var/log/audit/audit.log 
+  507  man semanage-port
+  508  semanage port -a -t ssh_port_t -p tcp 2022
+  509  getenforce
+  510  systemctl restart sshd
+  511  ss -tupn
+  512  ss -tupnl
+  513  ss -tulpn
+  514  history
+  515  journalctl | grep sealert
+  516  sealert -l b9d8e12d-c3f4-4e0d-b70a-e05a873557ff | less
+  517  sealert -l cdfbe3ac-dd11-4e99-aaac-6141ffa93db6 | less
+  518  journalctl | grep sealert
+  519  sealert -l 8fc3678e-1884-4bbf-bbfe-ae7a67d63b0b | less
+  520  cp /etc/hosts /web
+  521  ls -lZ /etc/hosts /web/hosts
+  522  rm /etc/hosts
+  523  mv /web/hosts /etc/
+  524  ls -Z /etc/hosts
+  525  restorecon -v /etc/hosts
+  526  history
+  527  reboot
+  528  history > /tmp/sept26.txt 
